@@ -8,9 +8,10 @@ public class SlashingState : State
 	public override void OnEnter(StateController stateController)
 	{
 		base.OnEnter(stateController);
-		sc.ams.CardSystem_AdjustAbility(sc.cm.hand[^1].GetComponent<AbilityContainerScript>().myAbility, true); // load ability
-		sc.cm.activatedCard = sc.cm.hand[^1].GetComponent<AbilityContainerScript>(); // record activated card
-		sc.cm.MoveCard_HandLastToGraveLast();
+		AbilityContainerScript cardBeingUsed = sc.cm.hand[^1].GetComponent<AbilityContainerScript>();
+		sc.ams.CardSystem_AdjustAbility(cardBeingUsed.myAbility, true); // load ability
+		sc.cm.activatedCard = cardBeingUsed; // record activated card
+		sc.cm.MoveCard_HandLastToGraveLast(); // move last card in hand to be the last card in grave
 		AbilityManagerScript.onPlayerSlash?.Invoke();
 	}
 	public override void OnUpdate()
@@ -24,7 +25,8 @@ public class SlashingState : State
 	public override void OnExit()
 	{
 		base.OnExit();
-		sc.ams.CardSystem_AdjustAbility(sc.cm.graveyard[^1].GetComponent<AbilityContainerScript>().myAbility, false); // unload ability
+		AbilityContainerScript cardSentToGrave = sc.cm.graveyard[^1].GetComponent<AbilityContainerScript>();
+		sc.ams.CardSystem_AdjustAbility(cardSentToGrave.myAbility, false); // unload ability
 		if (sc.cm.graveyard[^1].GetComponent<AbilityContainerScript>().tempCard)
 		{
 			sc.cm.graveyard.RemoveAt(sc.cm.graveyard.Count - 1);

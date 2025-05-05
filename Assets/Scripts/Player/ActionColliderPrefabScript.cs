@@ -22,8 +22,8 @@ public class ActionColliderPrefabScript : MonoBehaviour
 		{
 			if (collision.gameObject.GetComponent<EnemyScript>().spawn_iFrame <= 0)
 			{
-				AbilityManagerScript.onEnemyHit?.Invoke(this);
 				CalculateDmg();
+				AbilityManagerScript.onEnemyHit?.Invoke(this);
 				collision.gameObject.GetComponent<EnemyScript>().GetHit(dmg);
 			}
 		}

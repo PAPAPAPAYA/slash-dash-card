@@ -27,7 +27,8 @@ public class AbilityManagerScript : MonoBehaviour
 		MoreSlash,
 		spikeSlash,
 		copyFromGrave_Slash,
-		madnessCut
+		madnessCut,
+		copyLast
 	};
 	[Header("MADNESS")]
 	public int madnessCount;
@@ -225,14 +226,34 @@ public class AbilityManagerScript : MonoBehaviour
 	{
 		switch (ability)
 		{
-			case Abilities.madnessCut: //! need to implement
+			case Abilities.copyLast:
+				if (loadAbility)
+				{
+					if (CardManager.me.graveyard.Count > 0)
+					{
+						AbilityContainerScript lastUsedCard = CardManager.me.graveyard[^1].GetComponent<AbilityContainerScript>();
+						CardSystem_AdjustAbility(lastUsedCard.myAbility, true); // load ability
+					}
+				}
+				else
+				{
+					if (CardManager.me.graveyard.Count > 1)
+					{
+						AbilityContainerScript secondLastUsedCard = CardManager.me.graveyard[^2].GetComponent<AbilityContainerScript>();
+						CardSystem_AdjustAbility(secondLastUsedCard.myAbility, false); // unload ability
+					}
+				}
+				break;
+			case Abilities.madnessCut:
 				if (loadAbility)
 				{
 					onEnemyHit += ApplyMadnessDmg;
+					onPlayerSlash += AddMadness;
 				}
 				else
 				{
 					onEnemyHit -= ApplyMadnessDmg;
+					onPlayerSlash -= AddMadness;
 				}
 				break;
 			case Abilities.copyFromGrave_Slash:
@@ -272,6 +293,21 @@ public class AbilityManagerScript : MonoBehaviour
 		}
 	}
 	#region ABILITY FUNCs
+	private void ResumeOG(AbilityContainerScript acs)
+	{
+		acs.abilityName = acs.og_abilityName;
+		acs.myAbility = acs.og_ability;
+		acs.tempCard = acs.og_tempCard;
+		acs.dmg = acs.og_dmg;
+	}
+	private void CopyGraveLast(AbilityContainerScript acs)
+	{
+		AbilityContainerScript lastUsedCard = CardManager.me.graveyard[^1].GetComponent<AbilityContainerScript>();
+		acs.abilityName = lastUsedCard.abilityName;
+		acs.myAbility = lastUsedCard.myAbility;
+		acs.tempCard = lastUsedCard.tempCard;
+		acs.dmg = lastUsedCard.dmg;
+	}
 	private void AddMadness()
 	{
 		madnessCount++;
