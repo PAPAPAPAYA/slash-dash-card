@@ -39,10 +39,10 @@ public class CardUIManager : MonoBehaviour
 
 	private void MakeCurrentCardBigger()
 	{
-		if (CardManager.me.reloaded)
+		if (CardManagerNew.me.reloaded)
 		{
 			if (cardHolders_hand.Count > 0)
-			cardHolders_hand[^1].transform.localScale = new Vector3(1.15f, 1.15f, 1);
+				cardHolders_hand[^1].transform.localScale = new Vector3(1.15f, 1.15f, 1);
 		}
 	}
 	private void MakeCardHolders() // pre-make card holders and only activate and deactivate based on the hand and graveyard
@@ -66,11 +66,11 @@ public class CardUIManager : MonoBehaviour
 			cardHolder.transform.localScale = new Vector3(1,1,1);
 			cardHolder.SetActive(false);
 		}
-		for (int i = 0; i < CardManager.me.hand.Count; i++) // activate and change text based on hand
+		for (int i = 0; i < CardManagerNew.me.hand.Count; i++) // activate and change text based on hand
 		{
 			premade_cardHolders_hand[i].SetActive(true);
 			cardHolders_hand.Add(premade_cardHolders_hand[i]);
-			premade_cardHolders_hand[i].GetComponentInChildren<TextMeshPro>().text = CardManager.me.hand[i].GetComponent<AbilityContainerScript>().abilityName;
+			premade_cardHolders_hand[i].GetComponentInChildren<TextMeshPro>().text = CardManagerNew.me.hand[i].GetComponent<CardScript>().cardName;
 		}
 		ArrangeHandUI();
 	}
@@ -88,11 +88,11 @@ public class CardUIManager : MonoBehaviour
 		{
 			cardHolder.SetActive(false);
 		}
-		for (int i = 0; i < CardManager.me.graveyard.Count; i++) // activate and change text based on grave
+		for (int i = 0; i < CardManagerNew.me.grave.Count; i++) // activate and change text based on grave
 		{
 			premade_cardHolders_grave[i].SetActive(true);
 			cardHolders_grave.Add(premade_cardHolders_grave[i]);
-			premade_cardHolders_grave[i].GetComponentInChildren<TextMeshPro>().text = CardManager.me.graveyard[i].GetComponent<AbilityContainerScript>().abilityName;
+			premade_cardHolders_grave[i].GetComponentInChildren<TextMeshPro>().text = CardManagerNew.me.grave[i].GetComponent<CardScript>().cardName;
 		}
 		ArrangeGraveUI();
 	}

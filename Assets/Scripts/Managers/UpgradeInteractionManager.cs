@@ -43,7 +43,7 @@ public class UpgradeInteractionManager : MonoBehaviour
 	}
 	private void DetectUpgrade(AbilityContainerScript acs, Button button) // assign event to button based on the ability container assigned to the button
 	{
-		button.onClick.AddListener(() => AbilityManagerScript.me.GainUpgrade(acs.myAbility));
+		//button.onClick.AddListener(() => AbilityManagerScript.me.GainUpgrade(acs.myAbility));
 		button.onClick.AddListener(() => HideButtons());
 		button.GetComponentInChildren<TextMeshProUGUI>().text = acs.abilityName;
 	}

@@ -45,6 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityName: Copy Last
-  myAbility: 11
+  myAbilities: 0c000000
   tempCard: 0
   dmg: 1
+  ammoAddAmount: 0
+  og_abilityName: 
+  og_myAbilities: 
+  og_tempCard: 0
+  og_dmg: 0
+  og_ammoAddAmount: 0

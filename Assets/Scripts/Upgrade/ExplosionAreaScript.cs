@@ -7,7 +7,13 @@ public class ExplosionAreaScript : MonoBehaviour
 {
 	public int dmg;
 	public bool dot;
-	public float timer = .1f;
+	public float timer = .2f;
+	private float timer_og;
+	void Start()
+	{
+		timer_og = timer;
+	}
+	
 	private void Update()
 	{
 		// timer: when time, destroy self
@@ -17,7 +23,9 @@ public class ExplosionAreaScript : MonoBehaviour
 		}
 		else
 		{
-			Destroy(gameObject);
+			//Destroy(gameObject);
+			timer = timer_og;
+			CollisionMakerScript.me.explosionCollider_pool.Release(gameObject);
 		}
 	}
 	private void OnTriggerEnter2D(Collider2D other)

@@ -135,7 +135,6 @@ public class EnemyScript : MonoBehaviour
 		}
 		else if (mySR.material.name.Contains(poisonedMat.name))
 		{
-			print("og mat");
 			mySR.material = ogMat;
 		}
 	}
@@ -196,7 +195,7 @@ public class EnemyScript : MonoBehaviour
 			collision.GetComponent<PlayerHurtBoxScript>() &&
 			myEnemyType != EnemyType.score)
 		{
-			collision.GetComponent<PlayerHurtBoxScript>().GetHit(dmg);
+			collision.GetComponent<PlayerHurtBoxScript>().GetHit_byEnemy(dmg);
 		}
 	}
 	private void ShootOutCorpse(GameObject obj2Shoot, float spawnForce)

@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3b8c079601e564cb8890752fb05773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 2
+  hp: 5
   moveSpd: 4
   hurt_stunDuration: 0.5
   spawn_iFrame: 0

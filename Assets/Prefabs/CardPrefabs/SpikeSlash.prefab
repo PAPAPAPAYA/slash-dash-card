@@ -45,5 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityName: Spike Slash
-  myAbility: 8
+  myAbilities: 08000000
   tempCard: 0
+  dmg: 1
+  ammoAddAmount: 0
+  og_abilityName: 
+  og_myAbilities: 
+  og_tempCard: 0
+  og_dmg: 0
+  og_ammoAddAmount: 0

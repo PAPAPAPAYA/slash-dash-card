@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class KnifeScript : MonoBehaviour
 {
+	public bool homing;
 	public float speed;
-	public float hp;
+	[HideInInspector]public float hp;
 	public float rotateSpeed;
 	public float homingAngleRange;
-	private GameObject target;
+	private GameObject _target;
 	public int dmg;
 	public float summonSickness;
-	private bool summonSick = true;
+	private bool _summonSick = true;
 	public float lifeSpan;
-	private Rigidbody2D rb;
+	private Rigidbody2D _rb;
 	public Color color_summonSick;
 	private Color color_og;
 
@@ -21,15 +22,14 @@ public class KnifeScript : MonoBehaviour
 	{
 		color_og = GetComponent<SpriteRenderer>().color;
 		DecideTarget();
-		rb = GetComponent<Rigidbody2D>();
-		rotateSpeed = AbilityManagerScript.me.bullet_rotateSpd;
+		_rb = GetComponent<Rigidbody2D>();
+		//rotateSpeed = AbilityManagerScript.me.bullet_rotateSpd;
 	}
 	void Update()
 	{
 		//transform.position += speed * Time.deltaTime * transform.up;
-
+		
 		SummonSickness();
-
 		if (lifeSpan > 0)
 		{
 			lifeSpan -= Time.deltaTime;
@@ -46,22 +46,22 @@ public class KnifeScript : MonoBehaviour
 	}
 	private void FixedUpdate()
 	{
-		if (AbilityManagerScript.me.lvl_homingBullet > 0)
+		if (homing)
 		{
 			Homing();
 		}
-		rb.velocity = transform.up * speed;
+		_rb.velocity = transform.up * speed;
 	}
 	#region HOMING
 	private void Homing()
 	{
-		if (target != null)
+		if (_target != null)
 		{
-			if (Vector2.Angle(transform.up, target.transform.position - transform.position) < homingAngleRange)
+			if (Vector2.Angle(transform.up, _target.transform.position - transform.position) < homingAngleRange)
 			{
-				Vector2 dir = (Vector2)(target.transform.position - transform.position).normalized;
-				float rotateAmount = Vector3.Cross(dir, transform.up).z;
-				rb.angularVelocity = -rotateAmount * rotateSpeed;
+				var dir = (Vector2)(_target.transform.position - transform.position).normalized;
+				var rotateAmount = Vector3.Cross(dir, transform.up).z;
+				_rb.angularVelocity = -rotateAmount * rotateSpeed;
 			}
 			else
 			{
@@ -76,15 +76,15 @@ public class KnifeScript : MonoBehaviour
 	}
 	private void DecideTarget()
 	{
-		float dist = float.MaxValue;
-		foreach (GameObject enemy in EnemySpawnerScript.me.enemies)
+		var dist = float.MaxValue;
+		foreach (var enemy in EnemySpawnerScript.me.enemies)
 		{
-			Vector3 enemyPos = enemy.transform.position;
+			var enemyPos = enemy.transform.position;
 			if (Vector2.Distance((Vector2)enemyPos, (Vector2)transform.position) < dist &&
 			      Vector2.Angle(transform.up, enemyPos - transform.position) < homingAngleRange)
 			{
 				dist = Vector2.Distance((Vector2)enemyPos, (Vector2)transform.position);
-				target = enemy;
+				_target = enemy;
 			}
 		}
 	}
@@ -93,13 +93,13 @@ public class KnifeScript : MonoBehaviour
 	{
 		if (summonSickness > 0)
 		{
-			summonSick = true;
+			_summonSick = true;
 			summonSickness -= Time.deltaTime;
 			GetComponent<SpriteRenderer>().color = color_summonSick;
 		}
 		else
 		{
-			summonSick = false;
+			_summonSick = false;
 			GetComponent<SpriteRenderer>().color = color_og;
 		}
 	}
@@ -107,7 +107,7 @@ public class KnifeScript : MonoBehaviour
 	{
 		if (collision.CompareTag("Enemy"))
 		{
-			if (!summonSick)
+			if (!_summonSick)
 			{
 				if (AbilityManagerScript.me.lvl_onBulletHit_explosion > 0)
 				{

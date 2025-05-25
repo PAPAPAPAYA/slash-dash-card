@@ -12,24 +12,31 @@ public class AbilityManagerScript : MonoBehaviour
 		me = this;
 	}
 	#endregion
-	[Header("BASICS")]
 	private GameObject player;
 	private PlayerControlScript playerScript;
+	private CardManager cm;
 	public enum Abilities
 	{
-		bullet,
-		explosiveBullet,
-		homingBullet,
-		piercingBullet,
-		deathExplosion,
-		poisonCloud_scoreGet,
-		poisonCloud_poisonedEnemyKilled,
-		MoreSlash,
-		spikeSlash,
-		copyFromGrave_Slash,
-		madnessCut,
-		copyLast
+		bullet, // when hitting enemy, shoot out bullets
+		explosiveBullet, // bullets explode when hitting enemies
+		homingBullet, // homing bullets
+		piercingBullet, // bullets hp +
+		deathExplosion, // when enemy is killed, explodes
+		poisonCloud_scoreGet, // when killing score, spawn poison cloud
+		poisonCloud_poisonedEnemyKilled, // when a poisoned enemy is killed, spawn poison cloud
+		MoreSlash, // more slash colliders
+		spikeSlash, // spawn spike behind when slashing
+		copyFromGrave, // copy a random card from grave
+		madnessCut, // add madness
+		resetMadness, // reset madness
+		copyLast, // copy last used card
+		drawBullet, // add ammo (when a card is added to hand, consume an ammo and shoot out a bullet)
+		discardNextCard, // discard next card in hand
+		multipleSlashes, // deal dmg multiple times
+		selfBurn, // deal dmg to self
+		graveExplosion_selfPos, // cause explosion at current player pos
 	};
+	public List<Abilities> lastCardAbility;
 	[Header("MADNESS")]
 	public int madnessCount;
 	[Header("SPIKE")]
@@ -42,6 +49,8 @@ public class AbilityManagerScript : MonoBehaviour
 	public int poison_dmg;
 	public float poison_interval;
 	[Header("BULLET")]
+	public int ammo;
+	public bool bullet_whenCardDrawn;
 	public int bulletHP;
 	public int onEnemyHit_BulletAmount;
 	public float bullet_rotateSpd;
@@ -61,10 +70,14 @@ public class AbilityManagerScript : MonoBehaviour
 	public GameObject actionPrefab;
 
 	#region DELEGATES
-	public delegate void OnEnemyHit(ActionColliderPrefabScript acps);
+	public delegate void BeforeUnload();
+	public static BeforeUnload beforeUnload;
+	public delegate void OnEnemyHit();
 	public static OnEnemyHit onEnemyHit;
-	public delegate void OnPlayerHit();
-	public static OnPlayerHit onPlayerHit;
+	public delegate void OnPlayerHitByEnemy(); // only used for spawning collider to push back enemies when hit by enemies
+	public static OnPlayerHitByEnemy onPlayerHitByEnemy;
+	public delegate void OnPlayerHurt();
+	public static OnPlayerHurt onPlayerHurt;
 	public delegate void OnPlayerSlash();
 	public static OnPlayerSlash onPlayerSlash;
 	public delegate void OnEnemyKilled(Vector2 pos);
@@ -79,6 +92,7 @@ public class AbilityManagerScript : MonoBehaviour
 	public static WhenSlashing whenSlashing;
 	#endregion
 
+	#region DEPRECATED LEVEL SYSTEM
 	[Header("ACTIVATED UPGRADES")]
 	public bool onPlayerHit_KnockBack = false;
 	public bool wallBounce = false;
@@ -92,18 +106,21 @@ public class AbilityManagerScript : MonoBehaviour
 	public int lvl_onScoreKilled_poison;
 	public int lvl_onPoisonedEnemyKilled_poison;
 	public int lvl_spikeSlash;
+	#endregion
+	[Header("FOR TESTING")]
 	public Abilities abilityeToGrant;
 	private void Start()
 	{
 		player = PlayerControlScript.me.gameObject;
 		playerScript = PlayerControlScript.me;
+		cm = CardManager.me;
 
 		onPlayerSlash += MakeSlashCollider;
 		onPlayerSlash += MakeExtraSlashColliders;
 
 		if (onPlayerHit_KnockBack)
 		{
-			onPlayerHit += ActivateKnockBackArea;
+			onPlayerHitByEnemy += ActivateKnockBackArea;
 		}
 
 		// if (speedUp) // not in use, when slashes an enemy, give a speed boost
@@ -226,44 +243,102 @@ public class AbilityManagerScript : MonoBehaviour
 	{
 		switch (ability)
 		{
-			case Abilities.copyLast:
+			case Abilities.selfBurn:
 				if (loadAbility)
 				{
-					if (CardManager.me.graveyard.Count > 0)
+					onPlayerSlash += SelfBurn;
+				}
+				else
+				{
+					onPlayerSlash -= SelfBurn;
+				}
+				break;
+			case Abilities.multipleSlashes:
+				if(loadAbility)
+				{
+					for (int i = 0; i < cm.activatedCard.extraSlashAmount; i++)
 					{
-						AbilityContainerScript lastUsedCard = CardManager.me.graveyard[^1].GetComponent<AbilityContainerScript>();
-						CardSystem_AdjustAbility(lastUsedCard.myAbility, true); // load ability
+						onPlayerSlash += MakeSlashCollider;
 					}
 				}
 				else
 				{
-					if (CardManager.me.graveyard.Count > 1)
+					for (int i = 0; i < cm.activatedCard.extraSlashAmount; i++)
 					{
-						AbilityContainerScript secondLastUsedCard = CardManager.me.graveyard[^2].GetComponent<AbilityContainerScript>();
-						CardSystem_AdjustAbility(secondLastUsedCard.myAbility, false); // unload ability
+						onPlayerSlash -= MakeSlashCollider;
 					}
+				}
+				break;
+			case Abilities.discardNextCard:
+				if (loadAbility)
+				{
+					onPlayerSlash += cm.MoveCard_HandLastToGraveFirst;
+				}
+				else
+				{
+					onPlayerSlash -= cm.MoveCard_HandLastToGraveFirst;
+				}
+				break;
+			case Abilities.copyLast:
+				if (loadAbility)
+				{
+					if (cm.lastUsedCard != null)
+					{
+						// copy abilities
+						foreach (var myAbility in cm.lastUsedCard.myAbilities)
+						{
+							CardSystem_AdjustAbility(myAbility, true); // load ability
+						}
+						// copy other variables
+						cm.activatedCard.dmg = cm.lastUsedCard.dmg;
+						cm.activatedCard.ammoAddAmount = cm.lastUsedCard.ammoAddAmount;
+						cm.activatedCard.extraSlashAmount = cm.lastUsedCard.extraSlashAmount;
+						cm.activatedCard.selfBurnAmount = cm.lastUsedCard.selfBurnAmount;
+					}
+				}
+				else
+				{
+					if (cm.lastUsedCard != null)
+					{
+						// unload abilities
+						foreach (var myAbility in cm.lastUsedCard.myAbilities)
+						{
+							CardSystem_AdjustAbility(myAbility, false); // unload ability
+						}
+						cm.lastUsedCard.GetComponent<AbilityContainerScript>().ResetVariables();
+					}
+				}
+				break;
+			case Abilities.resetMadness:
+				if (loadAbility)
+				{
+					beforeUnload += ResetMadness;
+				}
+				else
+				{
+					beforeUnload -= ResetMadness;
 				}
 				break;
 			case Abilities.madnessCut:
 				if (loadAbility)
 				{
 					onEnemyHit += ApplyMadnessDmg;
-					onPlayerSlash += AddMadness;
+					beforeUnload += AddMadness;
 				}
 				else
 				{
 					onEnemyHit -= ApplyMadnessDmg;
-					onPlayerSlash -= AddMadness;
+					beforeUnload -= AddMadness;
 				}
 				break;
-			case Abilities.copyFromGrave_Slash:
+			case Abilities.copyFromGrave:
 				if (loadAbility)
 				{
-					onPlayerSlash += CardManager.me.CopyCard_randomGraveToHandFirst;
+					onPlayerSlash += cm.CopyCard_randomGraveToHandFirst;
 				}
 				else
 				{
-					onPlayerSlash -= CardManager.me.CopyCard_randomGraveToHandFirst;
+					onPlayerSlash -= cm.CopyCard_randomGraveToHandFirst;
 				}
 				break;
 			case Abilities.spikeSlash:
@@ -288,33 +363,60 @@ public class AbilityManagerScript : MonoBehaviour
 				}
 				//print("Bullet on enemy hit");
 				break;
+			case Abilities.drawBullet:
+				if (loadAbility)
+				{
+					beforeUnload += AddAmmo;
+				}
+				else
+				{
+					beforeUnload -= AddAmmo;
+				}
+				break;
 			default:
 				break;
 		}
 	}
 	#region ABILITY FUNCs
-	private void ResumeOG(AbilityContainerScript acs)
+	public void SelfBurn()
 	{
-		acs.abilityName = acs.og_abilityName;
-		acs.myAbility = acs.og_ability;
-		acs.tempCard = acs.og_tempCard;
-		acs.dmg = acs.og_dmg;
+		PlayerControlScript.me.GetHit(cm.activatedCard.selfBurnAmount);
 	}
-	private void CopyGraveLast(AbilityContainerScript acs)
+	public void BulletWhenCardDrawn()
 	{
-		AbilityContainerScript lastUsedCard = CardManager.me.graveyard[^1].GetComponent<AbilityContainerScript>();
-		acs.abilityName = lastUsedCard.abilityName;
-		acs.myAbility = lastUsedCard.myAbility;
-		acs.tempCard = lastUsedCard.tempCard;
-		acs.dmg = lastUsedCard.dmg;
+		if (ammo>0)
+		{
+			ammo--;
+			NewSpawnKnife_atPlayerPos();
+		}
+	}
+	private void NewSpawnKnife_atPlayerPos()
+	{
+		GameObject knife = Instantiate(knifePrefab);
+		knife.GetComponent<KnifeScript>().hp = bulletHP;
+		knife.transform.SetPositionAndRotation(player.transform.position, Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
+	}
+	private void AddAmmo()
+	{
+		print("add ammo");
+		AbilityContainerScript effectOwnerCard = cm.activatedCard;
+		ammo += effectOwnerCard.ammoAddAmount;
+	}
+	private void ResetMadness()
+	{
+		print("reset madness");
+		madnessCount = 0;
 	}
 	private void AddMadness()
 	{
+		print("add madness");
 		madnessCount++;
 	}
-	private void ApplyMadnessDmg(ActionColliderPrefabScript acps)
+	private void ApplyMadnessDmg()
 	{
-		acps.dmg = acps.dmg_og + madnessCount;
+		AbilityContainerScript effectOwnerCard = cm.activatedCard;
+		effectOwnerCard.dmg = effectOwnerCard.og_dmg + madnessCount;
+		print("madness dmg boosted: "+effectOwnerCard.dmg);
 	}
 	private void SpawnSpike_atPos(Vector2 pos)
 	{
@@ -331,7 +433,7 @@ public class AbilityManagerScript : MonoBehaviour
 		eas.dot = true;
 		collider.transform.position = pos;
 	}
-	private void MakeExplosion_atPos(Vector2 pos)
+	public void MakeExplosion_atPos(Vector2 pos)
 	{
 		GameObject explosion = Instantiate(Prefab_explosionArea);
 		explosion.GetComponent<ExplosionAreaScript>().dmg = explosion_dmg;
@@ -368,7 +470,7 @@ public class AbilityManagerScript : MonoBehaviour
 			);
 		}
 	}
-	private void SpawnKnife_atPos(ActionColliderPrefabScript acps)
+	private void SpawnKnife_atPos()
 	{
 		for (int i = 0; i < onEnemyHit_BulletAmount; i++)
 		{

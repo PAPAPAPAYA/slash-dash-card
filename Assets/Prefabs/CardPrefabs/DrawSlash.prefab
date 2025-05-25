@@ -46,4 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Copy frorm grave Slash
   myAbility: 9
+  myAbilities: 09000000
   tempCard: 0
+  dmg: 1
+  ammoAddAmount: 0
+  og_abilityName: 
+  og_ability: 0
+  og_myAbilities: 
+  og_tempCard: 0
+  og_dmg: 0
+  og_ammoAddAmount: 0

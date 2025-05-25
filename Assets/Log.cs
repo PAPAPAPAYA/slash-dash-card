@@ -1,15 +1,29 @@
 // log
 
 //* 2025/05/05
+//* misc
+	//// switch to rider
 //* card
-	//// copy last used card
-	// madness cut: each time it's used, +1 dmg // todo: need to reset counter each hand
+	// use object pooling for bullets
+	// copy last used card
+	//// madness cut: each time it's used, +1 dmg
+	//// add ammo, when there is any ammo left, shoot out bullet when card drawn (ammo amount can be set in card)
+	//// discard next card, add 3 ammo
+	//// self burn, explosion when entering grave//todo: object pool
+	//// reset madness // todo: invokes event in lingeringEffectManager, but timing is off
 //* system
 	// get card
+	//// enlarge current card
 	//// show card
 	// arrange card
+	//// debug grave order
 //* structure
-	// support mulitple abilities in one card
+	//// use card to set ability variables//todo: when it comes to it, change the corresponding ability func
+	//// use card to store effect and timing? //todo: card function ready to be tested, start with slashing state and work backwards
+	//// send card to grave
+	//// invoke OnToGrave event
+	//// ammo
+	//// support multiple abilities in one card
 
 //* 2025/01/01
 //* spawner优化
@@ -24,13 +38,13 @@
 	    // 增加击中时的stun
 	    //// 增加碰撞体数量
 	    //// 被击中时范围击飞
-	    /// 被击中时aoe
+	    //// 被击中时aoe
 	    //// 击中时小刀
 		  //// 小刀homing
 		  //// 小刀击中aoe
 		  //// 小刀有生命
 	    //// 击杀aoe
-	    /// 刹车时aoe
+	    //// 刹车时aoe
 	    // 尸体弹跳碰撞造成伤害
 	    //// 尝试当无法击杀时，玩家会马上停下，击飞敌人
 	    	//// 将这个东西做成能力

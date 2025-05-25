@@ -9,7 +9,7 @@ public class ActionColliderPrefabScript : MonoBehaviour
 	private PlayerControlScript pcs;
 	public int dmg_og;
 	
-	void Start()
+	private void Start()
 	{
 		pcs = PlayerControlScript.me;
 		dmg_og = dmg;
@@ -18,18 +18,19 @@ public class ActionColliderPrefabScript : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.gameObject.CompareTag("Enemy") &&
-				collision.gameObject.GetComponent<EnemyScript>())
+			collision.gameObject.GetComponent<EnemyScript>())
 		{
 			if (collision.gameObject.GetComponent<EnemyScript>().spawn_iFrame <= 0)
 			{
+				AbilityManagerScript.onEnemyHit?.Invoke();
 				CalculateDmg();
-				AbilityManagerScript.onEnemyHit?.Invoke(this);
 				collision.gameObject.GetComponent<EnemyScript>().GetHit(dmg);
 			}
 		}
 	}
 	private void CalculateDmg()
 	{
-		dmg = CardManager.me.activatedCard.dmg;
+		CardManagerNew.me.activatedCard.GetComponent<CardEventTrigger>().InvokeOnDmgCalculation();
+		dmg = CardManagerNew.me.activatedCard.dmg;
 	}
 }

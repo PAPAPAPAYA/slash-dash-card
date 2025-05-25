@@ -137,7 +137,9 @@ public class PlayerControlScript : MonoBehaviour
 		// move
 		rb.AddForce(dir * force, ForceMode2D.Impulse);
 		// spawn action collider
-		 StartCoroutine(SpawnActionCollider(aps.precastDuration));
+		//StartCoroutine(SpawnActionCollider(aps.precastDuration));
+		// set invincibility
+		invincible = true;
 		// change state
 		sc.ChangeState(sc.slashingState);
 		// update moving asap
@@ -169,14 +171,11 @@ public class PlayerControlScript : MonoBehaviour
 		Destroy(collider);
 		invincible = false;
 	}
-	public void GetHit(int hitAmount)
+	public void GetHit(int hitAmount) // used to inflict dmg caused not directly by enemy collider (in that case use GetHit_byEnemy in PlayerHurtBoxScript)
 	{
-		if (!invincible)
-		{
-			hp -= hitAmount;
-			GameObject ps = Instantiate(PS_blood);
-			ps.transform.position = transform.position;
-			AbilityManagerScript.onPlayerHit?.Invoke();
-		}
+		hp -= hitAmount;
+		GameObject ps = Instantiate(PS_blood);
+		ps.transform.position = transform.position;
+		AbilityManagerScript.onPlayerHurt?.Invoke();
 	}
 }

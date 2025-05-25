@@ -21,14 +21,14 @@ public class PlayerHurtBoxScript : MonoBehaviour
 	{
 		transform.position = pcs.transform.position;
 	}
-	public void GetHit(int hitAmount)
+	public void GetHit_byEnemy(int hitAmount)
 	{
 		if (!pcs.invincible)
 		{
 			pcs.hp -= hitAmount;
 			GameObject ps = Instantiate(pcs.PS_blood);
 			ps.transform.position = transform.position;
-			AbilityManagerScript.onPlayerHit?.Invoke();
+			AbilityManagerScript.onPlayerHitByEnemy?.Invoke();
 		}
 	}
 }

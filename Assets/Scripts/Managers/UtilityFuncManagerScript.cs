@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.WebSockets;
 using UnityEngine;
 
 public class UtilityFuncManagerScript : MonoBehaviour
@@ -25,4 +26,13 @@ public class UtilityFuncManagerScript : MonoBehaviour
 		shuffled = list.OrderBy(x => Random.value).ToList();
 		return shuffled;
 	}
+	// used to copy ability list
+	public void CopyList(List<AbilityManagerScript.Abilities> from, List<AbilityManagerScript.Abilities> to)
+	{
+		to.Clear();
+		foreach (AbilityManagerScript.Abilities fromItem in from)
+		{
+			to.Add(fromItem);
+		}
+	} 
 }

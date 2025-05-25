@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ExplosionAtPosEffect : MonoBehaviour
+{
+	public int explosion_dmg;
+	[Header("REFs")]
+	public GameObjectReferenceSO explosionAreaRef;
+	public GameObject explosionAreaPrefab;
+	public EnumStorage.PosType posType;
+
+	void Start()
+	{
+		explosionAreaPrefab = explosionAreaRef.Value();
+	}
+	public void MakeExplosion_atPos()
+	{
+		explosionAreaPrefab = explosionAreaRef.Value();
+		//GameObject explosion = Instantiate(Prefab_explosionArea);
+		GameObject explosion = CollisionMakerScript.me.explosionCollider_pool.Get();
+		explosion.GetComponent<ExplosionAreaScript>().dmg = explosion_dmg;
+		switch (posType)
+		{
+			case EnumStorage.PosType.playerPos:
+				explosion.transform.position = PlayerControlScript.me.transform.position;
+				break;
+			default:
+				break;
+		}
+	}
+}

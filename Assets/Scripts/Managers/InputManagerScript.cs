@@ -12,6 +12,7 @@ public class InputManagerScript : MonoBehaviour
 	public float mouseDragDuration = 0; // how long mouse held down
 	private PlayerControlScript pcs;
 	private CardManager handMan;
+	private CardManagerNew cardMan;
 	#region SINGLETON
 	public static InputManagerScript me;
 	private void Awake()
@@ -23,6 +24,7 @@ public class InputManagerScript : MonoBehaviour
 	{
 		pcs = PlayerControlScript.me;
 		handMan = CardManager.me;
+		cardMan = CardManagerNew.me;
 	}
 	
 	void Update()
@@ -46,7 +48,7 @@ public class InputManagerScript : MonoBehaviour
 			//&& !pcs.moving
 			)
 			{
-				if (handMan.reloaded)
+				if (cardMan.reloaded)
 				{
 					pcs.Slash(mouseDragDir);
 				}

@@ -99,12 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d32735cab8cf24c958c4845545714b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homing: 1
   speed: 12
   hp: 2
-  rotateSpeed: 200
-  homingAngleRange: 30
+  rotateSpeed: 500
+  homingAngleRange: 60
   dmg: 1
-  summonSickness: 0.1
+  summonSickness: 0
   lifeSpan: 10
   color_summonSick: {r: 1, g: 0, b: 0, a: 0}
 --- !u!61 &1216017832597884606

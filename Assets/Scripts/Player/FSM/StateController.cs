@@ -13,6 +13,7 @@ public class StateController : MonoBehaviour
 	#endregion
 	
 	#region REFS
+	public CardManagerNew cmn;
 	public CardManager cm;
 	public PlayerControlScript pcs;
 	public AbilityManagerScript ams;
@@ -29,6 +30,7 @@ public class StateController : MonoBehaviour
 	void Start()
 	{
 		currentState = idleState;
+		cmn = CardManagerNew.me;
 		cm = CardManager.me;
 		pcs = PlayerControlScript.me;
 		ams = AbilityManagerScript.me;

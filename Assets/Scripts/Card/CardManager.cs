@@ -19,6 +19,7 @@ public class CardManager : MonoBehaviour
 	public int hand_count_og;
 	private CardUIManager cardUIMan;
 	public AbilityContainerScript activatedCard;
+	public AbilityContainerScript lastUsedCard;
 	void Start()
 	{
 		LoadCardsToHand();
@@ -31,6 +32,24 @@ public class CardManager : MonoBehaviour
 			hand.Add(Instantiate(card));
 		}
 		hand_count_og = hand.Count;
+	}
+	public void MoveCard_HandLastToGraveFirst()
+	{
+		if (hand.Count > 0)
+		{ 
+			graveyard.Insert(0, hand[^1]);
+			if (graveyard[0].GetComponent<AbilityContainerScript>().myAbilities.Contains(AbilityManagerScript.Abilities.graveExplosion_selfPos))
+			{
+				AbilityManagerScript.me.MakeExplosion_atPos(PlayerControlScript.me.transform.position);
+			}
+			hand.RemoveAt(hand.Count - 1);
+			cardUIMan.UpdateHandUI();
+			cardUIMan.UpdateGraveUI();
+		}
+		if (hand.Count == 0)
+		{
+			reloaded = false;
+		}
 	}
 	public void MoveCard_HandLastToGraveLast()
 	{
@@ -46,35 +65,29 @@ public class CardManager : MonoBehaviour
 			reloaded = false;
 		}
 	}
-	public void MoveCard_GraveLastToHandLast()
+	public void  MoveCard_GraveFirstToHandLast()
 	{
 		if (graveyard.Count > 0)
 		{
-			hand.Add(graveyard[^1]);
-			graveyard.RemoveAt(graveyard.Count - 1);
-			cardUIMan.UpdateHandUI();
-			cardUIMan.UpdateGraveUI();
-		}
-	}
-	public void MoveCard_GraveFirstToHandFirst()
-	{
-		if (graveyard.Count > 0)
-		{
-			hand.Insert(0, graveyard[0]);
+			hand.Add(graveyard[0]);
 			graveyard.RemoveAt(0);
 			cardUIMan.UpdateHandUI();
 			cardUIMan.UpdateGraveUI();
+			// check if ability activated
+			AbilityManagerScript.me.BulletWhenCardDrawn();
 		}
 	}
 	public void CopyCard_randomGraveToHandFirst()
 	{
 		if (graveyard.Count > 0)
 		{
-			var copiedCard = Instantiate (graveyard[Random.Range(0, graveyard.Count - 1)]);
+			var copiedCard = Instantiate(graveyard[Random.Range(0, graveyard.Count - 1)]);
 			hand.Insert(0, copiedCard);
 			hand[0].GetComponent<AbilityContainerScript>().tempCard = true;
 			cardUIMan.UpdateHandUI();
 			cardUIMan.UpdateGraveUI();
+			// check if ability activated
+			AbilityManagerScript.me.BulletWhenCardDrawn();
 		}
 	}
 	void Update()
@@ -88,5 +101,5 @@ public class CardManager : MonoBehaviour
 			reloaded = false;
 		}
 	}
-	
+
 }
