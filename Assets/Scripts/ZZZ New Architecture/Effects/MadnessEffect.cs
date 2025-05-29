@@ -19,7 +19,7 @@ public class MadnessEffect : MonoBehaviour
 	}
 	public void LoadResetMadness()
 	{
-		LingerEffectManager.me.OnLastHand.RemoveListener(ResetMadness);
-		LingerEffectManager.me.OnLastHand.AddListener(ResetMadness);
+		LingerEffectManager.me.onLastHand.RemoveListener(ResetMadness);
+		LingerEffectManager.me.onLastHand.AddListener(ResetMadness);
 	}
 }

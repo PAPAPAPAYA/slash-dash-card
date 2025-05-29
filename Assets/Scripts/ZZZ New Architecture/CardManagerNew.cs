@@ -7,25 +7,27 @@ public class CardManagerNew : MonoBehaviour
 	public List<GameObject> hand;
 	public List<GameObject> grave;
 	public bool reloaded;
-	private CardUIManager cardUIMan;
+	private CardUIManager _cardUIManager;
 	public static CardManagerNew me;
-	private int hand_count_og;
+	private int _handCountOg;
 	public CardScript activatedCard;
+	public CardScript lastUsedCard;
 	void Awake()
 	{
-		cardUIMan = CardUIManager.me;
+		_cardUIManager = CardUIManager.me;
 		me = this;
 	}
 	void Start()
 	{
-		hand_count_og = hand.Count;
+		_handCountOg = hand.Count;
 	}
 	
 	void Update()
 	{
-		if (hand.Count >= hand_count_og)
+		if (hand.Count >= _handCountOg && !reloaded)
 		{
 			reloaded = true;
+			LingerEffectManager.me.InvokeOnReloadedEvent();
 		}
 		if (hand.Count == 0)
 		{
@@ -40,8 +42,8 @@ public class CardManagerNew : MonoBehaviour
 			hand[^1].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when send to grave
 			grave.Insert(0, hand[^1]);
 			hand.RemoveAt(hand.Count - 1);
-			cardUIMan.UpdateHandUI();
-			cardUIMan.UpdateGraveUI();
+			_cardUIManager.UpdateHandUI();
+			_cardUIManager.UpdateGraveUI();
 		}
 		if (hand.Count == 0)
 		{
@@ -54,8 +56,8 @@ public class CardManagerNew : MonoBehaviour
 		{
 			hand.Add(grave[0]);
 			grave.RemoveAt(0);
-			cardUIMan.UpdateHandUI();
-			cardUIMan.UpdateGraveUI();
+			_cardUIManager.UpdateHandUI();
+			_cardUIManager.UpdateGraveUI();
 			LingerEffectManager.me.InvokeOnCardDrawnEvent();
 			// check if ability activated
 			//AbilityManagerScript.me.BulletWhenCardDrawn();

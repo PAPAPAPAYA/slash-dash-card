@@ -23,23 +23,31 @@ public class AmmoEffect : MonoBehaviour
         }
         public void LoadDrawBullet()
         {
-                LingerEffectManager.me.OnCardDrawn.RemoveListener(DrawBullet);
-                LingerEffectManager.me.OnCardDrawn.AddListener(DrawBullet);
+                LingerEffectManager.me.onCardDrawn.RemoveListener(DrawBullet);
+                LingerEffectManager.me.onCardDrawn.AddListener(DrawBullet);
+        }
+        public void LoadResetAmmoCounter()
+        {
+                LingerEffectManager.me.onReloaded.RemoveListener(ResetAmmoCounter);
+                LingerEffectManager.me.onReloaded.AddListener(ResetAmmoCounter);
+        }
+        private void ResetAmmoCounter()
+        {
+                ammoCounter.value = 0;
         }
         private void DrawBullet()
         {
-                if (ammoCounter.value > 0)
+                for (int i = 0; i < ammoCounter.value; i++)
                 {
-                        ammoCounter.value--;
-                        NewSpawnKnife_atPlayerPos();
-                        NewSpawnKnife_atPlayerPos();
-                        NewSpawnKnife_atPlayerPos();
+                        SpawnBullet_atPlayerPos();
                 }
+                ammoCounter.value--;
         }
-        private void NewSpawnKnife_atPlayerPos()
+        private void SpawnBullet_atPlayerPos()
         {
-                var knife = Instantiate(_bulletPrefab);
-                knife.GetComponent<KnifeScript>().hp = bulletHp.value;
-                knife.transform.SetPositionAndRotation(PlayerControlScript.me.transform.position, Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
+                print("Spawning bullet");
+                var bullet = GameObjectPoolScript.me.BulletPool.Get();
+                bullet.GetComponent<KnifeScript>().hp = bulletHp.value;
+                bullet.transform.SetPositionAndRotation(PlayerControlScript.me.transform.position, Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
         }
 }

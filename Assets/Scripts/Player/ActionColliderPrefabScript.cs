@@ -24,7 +24,7 @@ public class ActionColliderPrefabScript : MonoBehaviour
 			{
 				AbilityManagerScript.onEnemyHit?.Invoke();
 				CalculateDmg();
-				collision.gameObject.GetComponent<EnemyScript>().GetHit(dmg);
+				collision.gameObject.GetComponent<EnemyScript>().GetHit(dmg, EnumStorage.DmgType.playerSlash);
 			}
 		}
 	}

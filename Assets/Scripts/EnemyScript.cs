@@ -74,7 +74,6 @@ public class EnemyScript : MonoBehaviour
 		{
 			UpdateDot();
 		}
-		Die();
 		FacePlayer();
 		UpdateHpIndicator();
 		// not in use
@@ -106,14 +105,18 @@ public class EnemyScript : MonoBehaviour
 			transform.position = Vector3.MoveTowards(transform.position, PlayerControlScript.me.transform.position, moveSpd * Time.deltaTime);
 		}
 	}
-	public void GetHit(int amount)
+	public void GetHit(int amount, EnumStorage.DmgType dmgType)
 	{
 		if (spawn_iFrame <= 0 &&
-			  hp > 0)
+			hp > 0)
 		{
 			if (!undying)
 			{
 				hp -= amount;
+				if (hp <= 0)
+				{
+					Die(dmgType);
+				}
 			}
 			All_Hit_VFXs();
 		}
@@ -130,7 +133,7 @@ public class EnemyScript : MonoBehaviour
 			else
 			{
 				poison_timer = poison_interval;
-				GetHit(poison_dmg);
+				GetHit(poison_dmg, EnumStorage.DmgType.poison);
 			}
 		}
 		else if (mySR.material.name.Contains(poisonedMat.name))
@@ -149,45 +152,46 @@ public class EnemyScript : MonoBehaviour
 			mySR.material = poisonedMat;
 		}
 	}
-	IEnumerator HurtStun()
+	private IEnumerator HurtStun()
 	{
 		hurt_stunned = true;
 		yield return new WaitForSecondsRealtime(hurt_stunDuration);
 		hurt_stunned = false;
 	}
-	private void Die()
+	private void Die(EnumStorage.DmgType dmgType)
 	{
-		if (hp <= 0)
+		switch (myEnemyType)
 		{
-			switch (myEnemyType)
-			{
-				case EnemyType.brawler:
-					ShootOutCorpse(GameManager.me.scorePrefab, GameManager.me.score_spawnForce);
-					AbilityManagerScript.onEnemyKilled?.Invoke(transform.position);
-					if (poison_duration > 0)
-					{
-						AbilityManagerScript.onPoisonedEnemyKilled?.Invoke(transform.position);
-					}
-					break;
-				case EnemyType.shooter:
-					ShootOutCorpse(GameManager.me.scorePrefab, GameManager.me.score_spawnForce);
-					AbilityManagerScript.onEnemyKilled?.Invoke(transform.position);
-					if (poison_duration > 0)
-					{
-						AbilityManagerScript.onPoisonedEnemyKilled?.Invoke(transform.position);
-					}
-					break;
-				case EnemyType.score:
-					GameManager.me.score++;
-					AbilityManagerScript.onScoreKilled?.Invoke(transform.position);
-					break;
-				default:
-					break;
-			}
-			All_Hit_VFXs();
-			EnemySpawnerScript.me.enemies.Remove(gameObject);
-			Destroy(gameObject);
+			case EnemyType.brawler:
+				ShootOutCorpse(GameManager.me.scorePrefab, GameManager.me.score_spawnForce);
+				AbilityManagerScript.onEnemyKilled?.Invoke(transform.position);
+				if (poison_duration > 0)
+				{
+					AbilityManagerScript.onPoisonedEnemyKilled?.Invoke(transform.position);
+				}
+				break;
+			case EnemyType.shooter:
+				ShootOutCorpse(GameManager.me.scorePrefab, GameManager.me.score_spawnForce);
+				AbilityManagerScript.onEnemyKilled?.Invoke(transform.position);
+				if (poison_duration > 0)
+				{
+					AbilityManagerScript.onPoisonedEnemyKilled?.Invoke(transform.position);
+				}
+				break;
+			case EnemyType.score:
+				GameManager.me.score++;
+				AbilityManagerScript.onScoreKilled?.Invoke(transform.position);
+				break;
+			default:
+				break;
 		}
+		All_Hit_VFXs();
+		if (dmgType == EnumStorage.DmgType.playerSlash)
+		{
+			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled();
+		}
+		EnemySpawnerScript.me.enemies.Remove(gameObject);
+		Destroy(gameObject);
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{

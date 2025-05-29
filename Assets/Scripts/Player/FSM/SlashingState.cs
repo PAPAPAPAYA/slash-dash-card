@@ -14,8 +14,12 @@ public class SlashingState : State
 		//AbilityContainerScript cardBeingUsed = sc.cm.hand[^1].GetComponent<AbilityContainerScript>();
 		//sc.cm.lastUsedCard = sc.cm.activatedCard;
 		
-		cardBeingUsed.GetComponent<CardEventTrigger>().InvokeActivateEvent(); //! when card used
 		sc.cmn.activatedCard = cardBeingUsed; // record activated card
+		cardBeingUsed.GetComponent<CardEventTrigger>().InvokeActivateEvent(); //! when card used
+		foreach (var card in sc.cmn.hand)
+		{
+			card.GetComponent<CardEventTrigger>().InvokeOnAnyCardActivated();
+		}
 		//sc.cm.activatedCard = cardBeingUsed; // record activated card
 		//foreach (var ability in cardBeingUsed.myAbilities)
 		{

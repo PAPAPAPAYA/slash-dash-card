@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,16 +12,30 @@ public class LingerEffectManager : MonoBehaviour
 	{
 		me = this;
 	}
-	
 	#endregion
-	public UnityEvent OnLastHand;
+	public UnityEvent onLastHand;
 	public void InvokeOnLastHandEvent()
 	{
-		OnLastHand.Invoke();
+		onLastHand.Invoke();
 	}
-	public UnityEvent OnCardDrawn;
+	public UnityEvent onCardDrawn;
 	public void InvokeOnCardDrawnEvent()
 	{
-		OnCardDrawn.Invoke();
+		onCardDrawn.Invoke();
+	}
+	public UnityEvent onReloaded;
+	public void InvokeOnReloadedEvent()
+	{
+		onReloaded.Invoke();
+	}
+	private void OnEnable()
+	{
+		onReloaded.AddListener(ClearAllEvents);
+	}
+	private void ClearAllEvents()
+	{
+		onLastHand.RemoveAllListeners();
+		onCardDrawn.RemoveAllListeners();
+		onReloaded.RemoveAllListeners();
 	}
 }

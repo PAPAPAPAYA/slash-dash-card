@@ -25,7 +25,7 @@ public class ExplosionAreaScript : MonoBehaviour
 		{
 			//Destroy(gameObject);
 			timer = timer_og;
-			CollisionMakerScript.me.explosionCollider_pool.Release(gameObject);
+			GameObjectPoolScript.me.ExplosionPool.Release(gameObject);
 		}
 	}
 	private void OnTriggerEnter2D(Collider2D other)
@@ -34,7 +34,7 @@ public class ExplosionAreaScript : MonoBehaviour
 		{
 			if (other.CompareTag("Enemy"))
 			{
-				other.GetComponent<EnemyScript>().GetHit(dmg);
+				other.GetComponent<EnemyScript>().GetHit(dmg, EnumStorage.DmgType.explosion);
 			}
 		}
 		else if (dot)
@@ -42,7 +42,7 @@ public class ExplosionAreaScript : MonoBehaviour
 			if (other.CompareTag("Enemy"))
 			{
 				// tell the enemy to apply dot to itself
-				EnemyScript es = other.GetComponent<EnemyScript>();
+				var es = other.GetComponent<EnemyScript>();
 				if (es.myEnemyType != EnemyScript.EnemyType.score)
 				{
 					es.StartPoison();

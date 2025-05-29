@@ -8,4 +8,12 @@ public class EnumStorage : MonoBehaviour
 	{
 		playerPos
 	};
+
+	public enum DmgType
+	{
+		playerSlash,
+		explosion,
+		bullet,
+		poison
+	};
 }

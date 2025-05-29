@@ -4,14 +4,20 @@
 //* misc
 	//// switch to rider
 //* card
-	// use object pooling for bullets
-	// copy last used card
+	// add a rubbish card
+	//// heal
+	//// death explosion: need to distinguish source of damage
+	//// revamp ammo: everytime the player draws, shoot out bullets based on ammo count
+	//// use object pooling for bullets
+	//// copy last used card
 	//// madness cut: each time it's used, +1 dmg
 	//// add ammo, when there is any ammo left, shoot out bullet when card drawn (ammo amount can be set in card)
 	//// discard next card, add 3 ammo
 	//// self burn, explosion when entering grave//todo: object pool
 	//// reset madness // todo: invokes event in lingeringEffectManager, but timing is off
 //* system
+	// check for cost, if cost not satisfied, no effect
+	// object pool enemy
 	// get card
 	//// enlarge current card
 	//// show card

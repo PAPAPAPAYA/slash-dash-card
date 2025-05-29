@@ -18,7 +18,7 @@ public class ExplosionAtPosEffect : MonoBehaviour
 	{
 		explosionAreaPrefab = explosionAreaRef.Value();
 		//GameObject explosion = Instantiate(Prefab_explosionArea);
-		GameObject explosion = CollisionMakerScript.me.explosionCollider_pool.Get();
+		GameObject explosion = GameObjectPoolScript.me.ExplosionPool.Get();
 		explosion.GetComponent<ExplosionAreaScript>().dmg = explosion_dmg;
 		switch (posType)
 		{

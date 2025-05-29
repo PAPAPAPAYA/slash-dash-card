@@ -5,6 +5,11 @@ using UnityEngine.Events;
 
 public class CardEventTrigger : MonoBehaviour
 {
+	public UnityEvent TryPayCostEvent;
+	public void InvokeTryPayCostEvent()
+	{
+		TryPayCostEvent.Invoke();
+	}
 	public UnityEvent EnemyHitEvent;
 	public void InvokeEnemyHitEvent()
 	{
@@ -25,9 +30,21 @@ public class CardEventTrigger : MonoBehaviour
 	{
 		OnDmgCalculation.Invoke();
 	}
+
+	public UnityEvent OnEnemyKilled;
+
+	public void InvokeOnEnemyKilled()
+	{
+		OnEnemyKilled.Invoke();
+	}
 	public UnityEvent OnSlashFinished;
 	public void InvokeOnSlashFinished()
 	{
 		OnSlashFinished.Invoke();
+	}
+	public UnityEvent OnAnyCardActivated;
+	public void InvokeOnAnyCardActivated()
+	{
+		OnAnyCardActivated.Invoke();
 	}
 }

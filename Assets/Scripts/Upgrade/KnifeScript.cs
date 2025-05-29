@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,21 +15,26 @@ public class KnifeScript : MonoBehaviour
 	public float summonSickness;
 	private bool _summonSick = true;
 	public float lifeSpan;
+	private float _lifeSpan_Og;
 	private Rigidbody2D _rb;
 	public Color color_summonSick;
 	private Color color_og;
 
-	private void Start()
+	private void Awake()
 	{
 		color_og = GetComponent<SpriteRenderer>().color;
-		DecideTarget();
 		_rb = GetComponent<Rigidbody2D>();
+		_lifeSpan_Og = lifeSpan;
 		//rotateSpeed = AbilityManagerScript.me.bullet_rotateSpd;
+	}
+	private void OnEnable()
+	{
+		DecideTarget();
+		lifeSpan = _lifeSpan_Og;
 	}
 	void Update()
 	{
 		//transform.position += speed * Time.deltaTime * transform.up;
-		
 		SummonSickness();
 		if (lifeSpan > 0)
 		{
@@ -36,12 +42,11 @@ public class KnifeScript : MonoBehaviour
 		}
 		else
 		{
-			Destroy(gameObject);
+			GameObjectPoolScript.me.BulletPool.Release(gameObject);
 		}
-		
 		if (hp<=0)
 		{
-			Destroy(gameObject);
+			GameObjectPoolScript.me.BulletPool.Release(gameObject);
 		}
 	}
 	private void FixedUpdate()
@@ -115,7 +120,7 @@ public class KnifeScript : MonoBehaviour
 				}
 				else
 				{
-					collision.GetComponent<EnemyScript>().GetHit(dmg);
+					collision.GetComponent<EnemyScript>().GetHit(dmg, EnumStorage.DmgType.bullet);
 				}
 				hp--;
 			}

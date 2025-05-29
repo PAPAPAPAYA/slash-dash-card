@@ -59,7 +59,7 @@ public class KnockBackAreaScript : MonoBehaviour
 	    }
 	    if (enemy.GetComponent<EnemyScript>().myEnemyType == EnemyScript.EnemyType.bullet)
 	    {
-		  enemy.GetComponent<EnemyScript>().GetHit(1);
+		  enemy.GetComponent<EnemyScript>().GetHit(1, EnumStorage.DmgType.explosion);
 	    }
       }
       public void KnockBackEnemies()
@@ -76,7 +76,7 @@ public class KnockBackAreaScript : MonoBehaviour
 		  }
 		  if (enemy.GetComponent<EnemyScript>().myEnemyType == EnemyScript.EnemyType.bullet)
 		  {
-			enemy.GetComponent<EnemyScript>().GetHit(1);
+			enemy.GetComponent<EnemyScript>().GetHit(1, EnumStorage.DmgType.explosion);
 		  }
 	    }
       }
@@ -94,7 +94,7 @@ public class KnockBackAreaScript : MonoBehaviour
 		  }
 		  if (enemy.GetComponent<EnemyScript>().myEnemyType == EnemyScript.EnemyType.bullet)
 		  {
-			enemy.GetComponent<EnemyScript>().GetHit(1);
+			enemy.GetComponent<EnemyScript>().GetHit(1, EnumStorage.DmgType.explosion);
 		  }
 	    }
       }
