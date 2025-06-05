@@ -30,10 +30,7 @@ public class GameManager : MonoBehaviour
 	{
 		hpIndicator.GetComponent<TextMeshProUGUI>().text = hpText + PlayerControlScript.me.hp;
 		scoreIndicator.GetComponent<TextMeshProUGUI>().text = scoreText + score + "/" + upgradeAmount;
-		if (!CardSystemActivated)
-		{
-			CheckUpgrade();
-		}
+		CheckUpgrade();
 	}
 	
 	private void CheckUpgrade()
@@ -42,7 +39,8 @@ public class GameManager : MonoBehaviour
 		{
 			score  -= upgradeAmount;
 			upgradeAmount  = (int)(upgradeAmount_scaler * upgradeAmount);
-			UpgradeInteractionManager.me.ShowButtons();
+			CardObtainManager.me.ShowCardOptions();
+			//UpgradeInteractionManager.me.ShowButtons();
 		}
 	}
 }

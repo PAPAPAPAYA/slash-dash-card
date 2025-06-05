@@ -6,13 +6,19 @@ public class CardScript : MonoBehaviour
 {
 	public string cardName;
 	public int dmg;
-	public int og_dmg;
-	void OnEnable()
+	public bool tempCard;
+	private int _ogDmg;
+	private void OnEnable()
 	{
-		og_dmg = dmg;
+		_ogDmg = dmg;
 	}
 	public void ResetDmg()
 	{
-		dmg = og_dmg;
+		dmg = _ogDmg;
+	}
+
+	public void SetCostPayed()
+	{
+		CardManagerNew.me.costPayed = true;
 	}
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7687162125735939421}
   - component: {fileID: 1985561835630797147}
-  - component: {fileID: 1358510699577763947}
+  - component: {fileID: 3279869876178189038}
   - component: {fileID: 3534304680296172571}
   - component: {fileID: 3589631536816475824}
   m_Layer: 0
@@ -47,15 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c992d514cd7efe40820f6d093c28dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CardActivateEvent:
+  TryPayCostEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1358510699577763947}
-        m_TargetAssemblyTypeName: SelfBurnEffect, Assembly-CSharp
-        m_MethodName: SelfBurn
+      - m_Target: {fileID: 3589631536816475824}
+        m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
+        m_MethodName: SetCostPayed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -65,6 +62,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  EnemyHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CardActivateEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnToGraveEvent:
     m_PersistentCalls:
       m_Calls:
@@ -80,7 +83,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1358510699577763947
+      - m_Target: {fileID: 3279869876178189038}
+        m_TargetAssemblyTypeName: HPEffect, Assembly-CSharp
+        m_MethodName: SelfBurn
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDmgCalculation:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSlashFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAnyCardActivated:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3279869876178189038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,9 +116,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7677447964595475450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d0ed79a782d7864f84e545bc2fa468d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e9e782c1c426f34d9eaad7b96d95dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healAmount: 0
   selfBurnAmount: 1
 --- !u!114 &3534304680296172571
 MonoBehaviour:
@@ -107,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion_dmg: 1
   explosionAreaRef: {fileID: 11400000, guid: f5b2cdd0f2d355046b7300139b3c47f5, type: 2}
+  explosionAreaPrefab: {fileID: 0}
   posType: 0
 --- !u!114 &3589631536816475824
 MonoBehaviour:
@@ -122,3 +151,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Self Explosion
   dmg: 1
+  tempCard: 0

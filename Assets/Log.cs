@@ -4,7 +4,10 @@
 //* misc
 	//// switch to rider
 //* card
-	// add a rubbish card
+	// add a rubbish card //todo: WIP
+		// curse
+			// need to be drawn two times
+			// burn this card when used
 	//// heal
 	//// death explosion: need to distinguish source of damage
 	//// revamp ammo: everytime the player draws, shoot out bullets based on ammo count
@@ -17,11 +20,17 @@
 	//// reset madness // todo: invokes event in lingeringEffectManager, but timing is off
 //* system
 	// check for cost, if cost not satisfied, no effect
-	// object pool enemy
+	//// object pool enemy // todo: sometimes a white enemy is spawned and doesn't move
+		//// object pool score
+		// todo: scores have more than 1 hp, and need to check if i-frame is reset
 	// get card
+		// show card options
+			// need to disable player character control
+		// make cards moveable with mouse drag
 	//// enlarge current card
 	//// show card
 	// arrange card
+		// activate card moveability only when CardObtainManager is showing options
 	//// debug grave order
 //* structure
 	//// use card to set ability variables//todo: when it comes to it, change the corresponding ability func

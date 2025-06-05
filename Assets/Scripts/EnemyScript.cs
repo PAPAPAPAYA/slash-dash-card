@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.Text;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -20,8 +22,9 @@ public class EnemyScript : MonoBehaviour
 	public int hp;
 	public float moveSpd;
 	public float hurt_stunDuration;
-	private bool hurt_stunned;
+	private bool _hurtStunned;
 	public float spawn_iFrame;
+	private float _spawnIFrameOg;
 	public EnemyType myEnemyType;
 	public bool shielded;
 	public float rotSpd;
@@ -56,16 +59,24 @@ public class EnemyScript : MonoBehaviour
 	public float hurt_bulletTime_duration;
 	[Header("FOR PLAYTESTs")]
 	public bool undying;
-	private void Start()
+
+	private void Awake()
 	{
 		mySR = myImg.GetComponent<SpriteRenderer>();
 		ogMat = mySR.material;
 		shoot_timer = Random.Range(2, shoot_interval);
+		_spawnIFrameOg = spawn_iFrame;
+	}
+	private void OnEnable()
+	{
+		mySR.material = ogMat;
+		spawn_iFrame = _spawnIFrameOg;
+		_hurtStunned = false;
 	}
 	private void Update()
 	{
 		MoveLogic();
-		if (spawn_iFrame > 0) // i-frames when spawned so that it won't get killed the moment it is spanwed
+		if (spawn_iFrame > 0) // i-frames when spawned so that it won't get killed the moment it is spawned
 		{
 			spawn_iFrame -= Time.deltaTime;
 		}
@@ -80,7 +91,6 @@ public class EnemyScript : MonoBehaviour
 		ControlShadow();
 		FreezeHPIndicatorRotation();
 	}
-	
 	private void Shoot()
 	{
 		if (myEnemyType == EnemyType.shooter)
@@ -99,7 +109,7 @@ public class EnemyScript : MonoBehaviour
 	}
 	private void MoveLogic()
 	{
-		if (!hurt_stunned &&
+		if (!_hurtStunned &&
 			  myEnemyType != EnemyType.score)
 		{
 			transform.position = Vector3.MoveTowards(transform.position, PlayerControlScript.me.transform.position, moveSpd * Time.deltaTime);
@@ -110,6 +120,7 @@ public class EnemyScript : MonoBehaviour
 		if (spawn_iFrame <= 0 &&
 			hp > 0)
 		{
+			All_Hit_VFXs();
 			if (!undying)
 			{
 				hp -= amount;
@@ -118,7 +129,6 @@ public class EnemyScript : MonoBehaviour
 					Die(dmgType);
 				}
 			}
-			All_Hit_VFXs();
 		}
 	}
 	private void UpdateDot()
@@ -154,9 +164,9 @@ public class EnemyScript : MonoBehaviour
 	}
 	private IEnumerator HurtStun()
 	{
-		hurt_stunned = true;
+		_hurtStunned = true;
 		yield return new WaitForSecondsRealtime(hurt_stunDuration);
-		hurt_stunned = false;
+		_hurtStunned = false;
 	}
 	private void Die(EnumStorage.DmgType dmgType)
 	{
@@ -191,7 +201,7 @@ public class EnemyScript : MonoBehaviour
 			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled();
 		}
 		EnemySpawnerScript.me.enemies.Remove(gameObject);
-		Destroy(gameObject);
+		GameObjectPoolScript.me.EnemyPool.Release(gameObject);
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -204,9 +214,10 @@ public class EnemyScript : MonoBehaviour
 	}
 	private void ShootOutCorpse(GameObject obj2Shoot, float spawnForce)
 	{
-		GameObject obj = Instantiate(obj2Shoot);
-		float randX = Random.Range(-1f, 1f);
-		float randY = Random.Range(-1f, 1f);
+		//var obj = Instantiate(obj2Shoot);
+		var obj = GameObjectPoolScript.me.ScorePool.Get();
+		var randX = Random.Range(-1f, 1f);
+		var randY = Random.Range(-1f, 1f);
 		Vector3 randDir = new(randX, randY, 0);
 		randDir = randDir.normalized;
 		obj.transform.position = new Vector3(transform.position.x, transform.position.y, obj.transform.position.z);
@@ -270,7 +281,7 @@ public class EnemyScript : MonoBehaviour
 	private void All_Hit_VFXs()
 	{
 		//CameraScript.me.CamShake_EnemyHit();
-		GameObject ps = Instantiate(PS_blood);
+		var ps = Instantiate(PS_blood);
 		ps.transform.position = transform.position;
 		StartCoroutine(HurtStun());
 		HitFlash();

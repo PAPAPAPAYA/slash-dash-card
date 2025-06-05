@@ -15,6 +15,7 @@ public class SlashingState : State
 		//sc.cm.lastUsedCard = sc.cm.activatedCard;
 		
 		sc.cmn.activatedCard = cardBeingUsed; // record activated card
+		cardBeingUsed.GetComponent<CardEventTrigger>().InvokeTryPayCostEvent(); // ! when try to pay cost
 		cardBeingUsed.GetComponent<CardEventTrigger>().InvokeActivateEvent(); //! when card used
 		foreach (var card in sc.cmn.hand)
 		{

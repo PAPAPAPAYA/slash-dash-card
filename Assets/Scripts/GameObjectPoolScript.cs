@@ -7,18 +7,45 @@ public class GameObjectPoolScript : MonoBehaviour
 {
         #region SINGLETON
         public static GameObjectPoolScript me;
-        void Awake()
+        private void Awake()
         {
                 me = this;
         }
         #endregion
         public GameObject bulletPrefab;
         public ObjectPool<GameObject> BulletPool;
+        public GameObject bulletParent;
         public GameObject explosionPrefab;
         public ObjectPool<GameObject> ExplosionPool;
-	
+        public GameObject explosionParent;
+        public List<GameObject> enemyPrefabs;
+        public ObjectPool<GameObject> EnemyPool;
+        public GameObject enemyParent;
+        public GameObject scorePrefab;
+        public ObjectPool<GameObject> ScorePool;
+        public GameObject scoreParent;
         private void Start()
         {
+                ScorePool = new ObjectPool<GameObject>
+                (
+                        InstantiateScore,
+                        gameObjectToGet => gameObjectToGet.SetActive(true),
+                        gameObjectToGet => gameObjectToGet.SetActive(false),
+                        gameObjectToGet => Destroy(gameObjectToGet),
+                        true,
+                        50,
+                        500
+                );
+                EnemyPool = new ObjectPool<GameObject>
+                (
+                        InstantiateEnemy,
+                        enemyToGet => enemyToGet.SetActive(true),
+                        enemyToGet => enemyToGet.SetActive(false),
+                        enemyToGet => Destroy(enemyToGet),
+                        true,
+                        50,
+                        200
+                );
                 BulletPool = new ObjectPool<GameObject>
                 (
                         InstantiateBullet,
@@ -40,17 +67,29 @@ public class GameObjectPoolScript : MonoBehaviour
                         500
                 );
         }
+
+        private GameObject InstantiateScore()
+        {
+                var scoreToMake = Instantiate(scorePrefab);
+                scoreToMake.transform.SetParent(scoreToMake.transform);
+                return scoreToMake;
+        }
+        private GameObject InstantiateEnemy()
+        {
+                var enemyToMake = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)]);
+                enemyToMake.transform.SetParent(enemyParent.transform);
+                return enemyToMake;
+        }
         private GameObject InstantiateBullet()
         {
                 var objectToMake = Instantiate(bulletPrefab);
-                objectToMake.transform.SetParent(gameObject.transform);
+                objectToMake.transform.SetParent(bulletParent.transform);
                 return objectToMake;
         }
-
         private GameObject InstantiateExplosion()
         {
                 var objectToMake = Instantiate(explosionPrefab);
-                objectToMake.transform.SetParent(gameObject.transform);
+                objectToMake.transform.SetParent(explosionParent.transform);
                 return objectToMake;
         }
 }

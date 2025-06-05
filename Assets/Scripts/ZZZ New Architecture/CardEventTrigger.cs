@@ -5,10 +5,10 @@ using UnityEngine.Events;
 
 public class CardEventTrigger : MonoBehaviour
 {
-	public UnityEvent TryPayCostEvent;
+	public UnityEvent<bool> TryPayCostEvent;
 	public void InvokeTryPayCostEvent()
 	{
-		TryPayCostEvent.Invoke();
+		TryPayCostEvent.Invoke(true);
 	}
 	public UnityEvent EnemyHitEvent;
 	public void InvokeEnemyHitEvent()
@@ -18,7 +18,10 @@ public class CardEventTrigger : MonoBehaviour
 	public UnityEvent CardActivateEvent;
 	public void InvokeActivateEvent()
 	{
-		CardActivateEvent.Invoke();
+		if (TryPayCostEvent.GetPersistentEventCount() > 0 && CardManagerNew.me.costPayed)
+		{
+			CardActivateEvent.Invoke();
+		}
 	}
 	public UnityEvent OnToGraveEvent;
 	public void InvokeOntoGraveEvent()

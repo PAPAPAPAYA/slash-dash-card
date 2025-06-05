@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7001516046628970457
+--- !u!1 &5925643762552677827
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8256150214712601699}
-  - component: {fileID: 3071456336232900953}
-  - component: {fileID: 8655754742116681359}
-  - component: {fileID: 8063705759560178760}
-  - component: {fileID: 5237793213461125955}
+  - component: {fileID: 1246814817749287062}
+  - component: {fileID: 4197852778064033386}
+  - component: {fileID: 4139134272043970923}
+  - component: {fileID: 4164072368948644625}
   m_Layer: 0
-  m_Name: AddRubbishHeal
+  m_Name: Curse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8256150214712601699
+--- !u!4 &1246814817749287062
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7001516046628970457}
+  m_GameObject: {fileID: 5925643762552677827}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -35,13 +34,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3071456336232900953
+--- !u!114 &4197852778064033386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7001516046628970457}
+  m_GameObject: {fileID: 5925643762552677827}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c992d514cd7efe40820f6d093c28dd3, type: 3}
@@ -50,7 +49,7 @@ MonoBehaviour:
   TryPayCostEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5237793213461125955}
+      - m_Target: {fileID: 4164072368948644625}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: SetCostPayed
         m_Mode: 1
@@ -68,10 +67,10 @@ MonoBehaviour:
   CardActivateEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8655754742116681359}
-        m_TargetAssemblyTypeName: CardMannipulationEffect, Assembly-CSharp
-        m_MethodName: AddCurseToHand
-        m_Mode: 1
+      - m_Target: {fileID: 4139134272043970923}
+        m_TargetAssemblyTypeName: HPEffect, Assembly-CSharp
+        m_MethodName: SelfBurn
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -82,19 +81,7 @@ MonoBehaviour:
         m_CallState: 2
   OnToGraveEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8063705759560178760}
-        m_TargetAssemblyTypeName: HPEffect, Assembly-CSharp
-        m_MethodName: Heal
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnDmgCalculation:
     m_PersistentCalls:
       m_Calls: []
@@ -107,46 +94,32 @@ MonoBehaviour:
   OnAnyCardActivated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8655754742116681359
+--- !u!114 &4139134272043970923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7001516046628970457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 266511e72b3a8394c949c05117d415ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardToAddToGrave: {fileID: 0}
-  cardToAddToHand: {fileID: 5925643762552677827, guid: d3455c2e3aef4114ca65d3054a6e4125, type: 3}
---- !u!114 &8063705759560178760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7001516046628970457}
+  m_GameObject: {fileID: 5925643762552677827}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e9e782c1c426f34d9eaad7b96d95dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 2
-  selfBurnAmount: 0
---- !u!114 &5237793213461125955
+  healAmount: 0
+  selfBurnAmount: 1
+--- !u!114 &4164072368948644625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7001516046628970457}
+  m_GameObject: {fileID: 5925643762552677827}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Add Curse and Heal
+  cardName: Self Burn
   dmg: 1
-  tempCard: 0
+  tempCard: 1

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class EnemySpawnerScript : MonoBehaviour
 {
+	public ObjectPool<GameObject> EnemyPool;
 	public List<GameObject> enemyPrefabs;
 	public float spawnRadius;
-	
 	public List<GameObject> enemies;
 	[Header("SPAWN AMOUNTs")]
 	public int spawnAmount;
@@ -32,7 +33,6 @@ public class EnemySpawnerScript : MonoBehaviour
 		spawnAmount_increaseTimer = spawnAmount_increaseInterval;
 		spawnHP_increaseTimer = spawnHP_increaseInterval;
 	}
-	
 	private void Update()
 	{
 		if (spawnTimer > 0) // spawn cd
@@ -53,20 +53,12 @@ public class EnemySpawnerScript : MonoBehaviour
 	}
 	private void SpawnOne()
 	{
-		GameObject enemySpawned = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)]);
-		Vector3 spawnPos = RandomPointOnUnitCircle(spawnRadius);
+		GameObject enemySpawned = GameObjectPoolScript.me.EnemyPool.Get();
+		Vector3 spawnPos = UtilityFuncManagerScript.me.RandomPointOnUnitCircle(spawnRadius);
 		spawnPos += PlayerControlScript.me.transform.position;
 		enemySpawned.transform.position = spawnPos;
 		enemySpawned.GetComponent<EnemyScript>().hp = spawnHP;
 		enemies.Add(enemySpawned);
-	}
-	public static Vector3 RandomPointOnUnitCircle(float radius)
-	{
-		float angle = Random.Range(0f, Mathf.PI * 2);
-		float x = Mathf.Sin(angle) * radius;
-		float y = Mathf.Cos(angle) * radius;
-
-		return new Vector3(x, y, 0);
 	}
 	private void DecreaseSpawnInterval()
 	{
@@ -98,6 +90,5 @@ public class EnemySpawnerScript : MonoBehaviour
 			spawnHP++;
 			spawnHP_increaseTimer = spawnHP_increaseInterval;
 		}
-
 	}
 }
