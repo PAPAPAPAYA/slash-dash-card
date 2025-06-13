@@ -45,6 +45,8 @@ public class CardManager : MonoBehaviour
 			hand.RemoveAt(hand.Count - 1);
 			cardUIMan.UpdateHandUI();
 			cardUIMan.UpdateGraveUI();
+			//cardUIMan.UpdateHandMagnets();
+			//cardUIMan.UpdateGraveMagnets();
 		}
 		if (hand.Count == 0)
 		{
@@ -86,6 +88,8 @@ public class CardManager : MonoBehaviour
 			hand[0].GetComponent<AbilityContainerScript>().tempCard = true;
 			cardUIMan.UpdateHandUI();
 			cardUIMan.UpdateGraveUI();
+			cardUIMan.UpdateHandMagnets();
+			cardUIMan.UpdateGraveMagnets();
 			// check if ability activated
 			AbilityManagerScript.me.BulletWhenCardDrawn();
 		}

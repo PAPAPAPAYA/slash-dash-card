@@ -18,17 +18,20 @@ public class CardObtainManager : MonoBehaviour
         {
                 for (var i = 0; i < 3; i++)
                 {
+                        print("?");
                         var option = Instantiate(cardHolderPrefab) ;
                         option.transform.position = optionPos[i].position;
                         option.transform.localScale = optionPos[i].localScale;
                         option.transform.SetParent(gameObject.transform);
+                        option.GetComponent<CardHolderScript>().myMagnet = optionPos[i].gameObject;
+                        optionPos[i].GetComponent<CardMagnetScript>().myCard = option;
                         if (i == 2)
                         {
                                 Time.timeScale = 0;
                         }
                 }
         }
-        public GameObject RollCardOption()
+        private GameObject RollCardOption()
         {
                 // randomly spawn a card from pool
                 return cardPool[Random.Range(0, cardPool.Count)];

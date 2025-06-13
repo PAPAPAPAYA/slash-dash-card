@@ -39,7 +39,7 @@ public class GameObjectPoolScript : MonoBehaviour
                 EnemyPool = new ObjectPool<GameObject>
                 (
                         InstantiateEnemy,
-                        enemyToGet => enemyToGet.SetActive(true),
+                        GetEnemy,
                         enemyToGet => enemyToGet.SetActive(false),
                         enemyToGet => Destroy(enemyToGet),
                         true,
@@ -71,7 +71,7 @@ public class GameObjectPoolScript : MonoBehaviour
         private GameObject InstantiateScore()
         {
                 var scoreToMake = Instantiate(scorePrefab);
-                scoreToMake.transform.SetParent(scoreToMake.transform);
+                scoreToMake.transform.SetParent(scoreParent.transform);
                 return scoreToMake;
         }
         private GameObject InstantiateEnemy()
@@ -79,6 +79,10 @@ public class GameObjectPoolScript : MonoBehaviour
                 var enemyToMake = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)]);
                 enemyToMake.transform.SetParent(enemyParent.transform);
                 return enemyToMake;
+        }
+        private void GetEnemy(GameObject enemyToGet)
+        {
+                enemyToGet.SetActive(true);
         }
         private GameObject InstantiateBullet()
         {

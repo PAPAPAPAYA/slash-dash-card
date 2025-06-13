@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Wall
   - KnockBackArea
+  - Score
   layers:
   - Default
   - TransparentFX

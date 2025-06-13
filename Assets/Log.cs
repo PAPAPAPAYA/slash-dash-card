@@ -22,11 +22,17 @@
 	// check for cost, if cost not satisfied, no effect
 	//// object pool enemy // todo: sometimes a white enemy is spawned and doesn't move
 		//// object pool score
-		// todo: scores have more than 1 hp, and need to check if i-frame is reset
-	// get card
+		//// todo: scores have more than 1 hp, and need to check if i-frame is reset -- turns out i was releasing the scores incorrectly
+	// get card // todo: UI is such a fucking mess
 		// show card options
 			// need to disable player character control
-		// make cards moveable with mouse drag
+		// activate new card magnets when a new card is in hand zone
+		// shift magnet on the left side's myCard if a new card is in between two existing card holders / card magnets
+		//// make hand and grave magnets and assign them
+		//// make cards moveable with mouse drag
+		//// cards in hand appear bigger when in grave
+		//// snap cards to position //todo: when getting card being dragged position through card ui manager, the position doesn't update
+	// when player dash into an enemy, player get stuck inside an enemy
 	//// enlarge current card
 	//// show card
 	// arrange card

@@ -50,6 +50,8 @@ public class CardManagerNew : MonoBehaviour
 			hand.RemoveAt(hand.Count - 1);
 			_cardUIManager.UpdateHandUI();
 			_cardUIManager.UpdateGraveUI();
+			_cardUIManager.UpdateHandMagnets();
+			_cardUIManager.UpdateGraveMagnets();
 		}
 		if (hand.Count == 0)
 		{
@@ -64,6 +66,8 @@ public class CardManagerNew : MonoBehaviour
 			grave.RemoveAt(0);
 			_cardUIManager.UpdateHandUI();
 			_cardUIManager.UpdateGraveUI();
+			_cardUIManager.UpdateHandMagnets();
+			_cardUIManager.UpdateGraveMagnets();
 			LingerEffectManager.me.InvokeOnCardDrawnEvent();
 			// check if ability activated
 			//AbilityManagerScript.me.BulletWhenCardDrawn();

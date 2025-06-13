@@ -170,6 +170,7 @@ public class EnemyScript : MonoBehaviour
 	}
 	private void Die(EnumStorage.DmgType dmgType)
 	{
+		All_Hit_VFXs();
 		switch (myEnemyType)
 		{
 			case EnemyType.brawler:
@@ -179,6 +180,7 @@ public class EnemyScript : MonoBehaviour
 				{
 					AbilityManagerScript.onPoisonedEnemyKilled?.Invoke(transform.position);
 				}
+				GameObjectPoolScript.me.EnemyPool.Release(gameObject);
 				break;
 			case EnemyType.shooter:
 				ShootOutCorpse(GameManager.me.scorePrefab, GameManager.me.score_spawnForce);
@@ -187,21 +189,22 @@ public class EnemyScript : MonoBehaviour
 				{
 					AbilityManagerScript.onPoisonedEnemyKilled?.Invoke(transform.position);
 				}
+				GameObjectPoolScript.me.EnemyPool.Release(gameObject);
 				break;
 			case EnemyType.score:
 				GameManager.me.score++;
 				AbilityManagerScript.onScoreKilled?.Invoke(transform.position);
+				GameObjectPoolScript.me.ScorePool.Release(gameObject);
 				break;
 			default:
 				break;
 		}
-		All_Hit_VFXs();
 		if (dmgType == EnumStorage.DmgType.playerSlash)
 		{
 			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled();
 		}
 		EnemySpawnerScript.me.enemies.Remove(gameObject);
-		GameObjectPoolScript.me.EnemyPool.Release(gameObject);
+		
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -216,6 +219,8 @@ public class EnemyScript : MonoBehaviour
 	{
 		//var obj = Instantiate(obj2Shoot);
 		var obj = GameObjectPoolScript.me.ScorePool.Get();
+		obj.GetComponent<EnemyScript>().hp = 1;
+		EnemySpawnerScript.me.enemies.Add(obj);
 		var randX = Random.Range(-1f, 1f);
 		var randY = Random.Range(-1f, 1f);
 		Vector3 randDir = new(randX, randY, 0);
