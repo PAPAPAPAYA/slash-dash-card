@@ -16,19 +16,26 @@ public class CardObtainManager : MonoBehaviour
         #endregion
         public void ShowCardOptions()
         {
+                ActivateCardMagnets();
                 for (var i = 0; i < 3; i++)
                 {
-                        print("?");
                         var option = Instantiate(cardHolderPrefab) ;
                         option.transform.position = optionPos[i].position;
                         option.transform.localScale = optionPos[i].localScale;
                         option.transform.SetParent(gameObject.transform);
                         option.GetComponent<CardHolderScript>().myMagnet = optionPos[i].gameObject;
-                        optionPos[i].GetComponent<CardMagnetScript>().myCard = option;
+                        optionPos[i].GetComponent<CardMagnetScript>().myCardHolder = option;
                         if (i == 2)
                         {
                                 Time.timeScale = 0;
                         }
+                }
+        }
+        private void ActivateCardMagnets()
+        {
+                foreach (var option in optionPos)
+                {
+                        option.gameObject.SetActive(true);
                 }
         }
         private GameObject RollCardOption()

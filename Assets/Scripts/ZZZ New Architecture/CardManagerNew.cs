@@ -38,6 +38,33 @@ public class CardManagerNew : MonoBehaviour
 			reloaded = false;
 		}
 	}
+	public void MoveAllGraveToHand() // move all cards in grave to hand
+	{
+		while (grave.Count > 0)
+		{
+			MoveCard_GraveFirstToHandLast();
+		}
+	}
+	public void MoveCard_HandFirstToGraveLast()
+	{
+		if (hand.Count > 0)
+		{
+			if (!hand[0].GetComponent<CardScript>().tempCard)
+			{
+				hand[0].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when send to grave
+				grave.Add(hand[0]);
+			}
+			hand.RemoveAt(0);
+			_cardUIManager.UpdateHandUI();
+			_cardUIManager.UpdateGraveUI();
+			_cardUIManager.UpdateHandMagnets();
+			_cardUIManager.UpdateGraveMagnets();
+		}
+		if (hand.Count == 0)
+		{
+			reloaded = false;
+		}
+	}
 	public void MoveCard_HandLastToGraveFirst()
 	{
 		if (hand.Count > 0)

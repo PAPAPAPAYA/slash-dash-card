@@ -16,4 +16,10 @@ public class EnumStorage : MonoBehaviour
 		bullet,
 		poison
 	};
+
+	public enum GameState
+	{
+		game,
+		upgrade
+	};
 }

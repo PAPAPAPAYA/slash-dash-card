@@ -16,22 +16,34 @@
 	//// madness cut: each time it's used, +1 dmg
 	//// add ammo, when there is any ammo left, shoot out bullet when card drawn (ammo amount can be set in card)
 	//// discard next card, add 3 ammo
-	//// self burn, explosion when entering grave//todo: object pool
-	//// reset madness // todo: invokes event in lingeringEffectManager, but timing is off
+	//// self burn, explosion when entering grave
+	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
-	// check for cost, if cost not satisfied, no effect
-	//// object pool enemy // todo: sometimes a white enemy is spawned and doesn't move
+	//// check for cost, if cost not satisfied, no effect
+	//// object pool enemy
 		//// object pool score
-		//// todo: scores have more than 1 hp, and need to check if i-frame is reset -- turns out i was releasing the scores incorrectly
-	// get card // todo: UI is such a fucking mess
+		////scores have more than 1 hp, and need to check if i-frame is reset -- turns out i was releasing the scores incorrectly
+	// get card // UI is such a fucking mess
 		// show card options
 			// need to disable player character control
-		// activate new card magnets when a new card is in hand zone
-		// shift magnet on the left side's myCard if a new card is in between two existing card holders / card magnets
+		//// activate new card magnets when a new card is in hand zone
+		//// auto shift card holders to right
+		//// stop listening for mouse over if already dragging a card
+		//todo: add a button to confirm order and cards in hand
+		//todo: allocate actual cards to card options
+		// todo: because the card options are enlarged and shrinks when dragged, when dragging outside the original size, it flickers between enlarged and shrunk
+		// todo: shift magnet on the left side's myCard if a new card is in between two existing card holders / card magnets
+			// need to add newly obtained card to hand, or else auto shift right will bug out
+				// even added newly obtained card's cardholder to cardholder_hand, auto shift right is still bugging out, maybe need to refresh the order of the list?
+			// need to optimize to shift left or shift right
+		
+			//// no shifting
+			//// or
+			//// auto shift right, shift all cards on left/right when inserting a new card
 		//// make hand and grave magnets and assign them
 		//// make cards moveable with mouse drag
 		//// cards in hand appear bigger when in grave
-		//// snap cards to position //todo: when getting card being dragged position through card ui manager, the position doesn't update
+		//// snap cards to position //when getting card being dragged position through card ui manager, the position doesn't update
 	// when player dash into an enemy, player get stuck inside an enemy
 	//// enlarge current card
 	//// show card
@@ -40,7 +52,7 @@
 	//// debug grave order
 //* structure
 	//// use card to set ability variables//todo: when it comes to it, change the corresponding ability func
-	//// use card to store effect and timing? //todo: card function ready to be tested, start with slashing state and work backwards
+	//// use card to store effect and timing? //card function ready to be tested, start with slashing state and work backwards
 	//// send card to grave
 	//// invoke OnToGrave event
 	//// ammo

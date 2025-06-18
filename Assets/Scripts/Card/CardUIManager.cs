@@ -21,16 +21,14 @@ public class CardUIManager : MonoBehaviour
 	public List<GameObject> premade_cardHolders_grave;
 	public List<GameObject> cardHolders_hand; // stores activated hand card holders
 	public List<GameObject> cardHolders_grave; // stores activated grave card holders
-	#region CARD MAGNETS
+	#region MAGNETS
+	public GameObject handParent;
+	public GameObject graveParent;
+	public GameObject magnetPrefab;
 	public List<GameObject> premade_cardMagnets_hand;
 	public List<GameObject> premade_cardMagnets_grave;
 	public List<GameObject> cardMagnets_hand;
 	public List<GameObject> cardMagnets_grave;
-	#endregion
-	#region Magnets
-	public GameObject handParent;
-	public GameObject graveParent;
-	public GameObject magnetPrefab;
 	#endregion
 	#region SINGLETON
 	public static CardUIManager me;
@@ -54,7 +52,45 @@ public class CardUIManager : MonoBehaviour
 	{
 		//MakeCurrentCardBigger();
 	}
+	public void RefreshListBasedOnMagnetsStatus()
+	{
+		
+	}
+	public void ShiftCardHolders()
+	{
+		for (var i = 1; i < cardMagnets_hand.Count; i++)
+		{
+			var currentMagnetScript = cardMagnets_hand[i].GetComponent<CardMagnetScript>();
+			var lastMagnetScript = cardMagnets_hand[i - 1].GetComponent<CardMagnetScript>();
+			if (!lastMagnetScript.myCardHolder)
+			{
+				lastMagnetScript.myCardHolder = currentMagnetScript.myCardHolder;
+				lastMagnetScript.myCardHolder.GetComponent<CardHolderScript>().myMagnet = lastMagnetScript.gameObject;
+				currentMagnetScript.myCardHolder = null;
+			}
+		}
+	}
 	#region CARD MAGNETS
+	public void AssignMagnets()
+	{
+		for (int i = 0; i < cardHolders_hand.Count; i++)
+		{
+			cardHolders_hand[i].GetComponent<CardHolderScript>().myMagnet = cardMagnets_hand[i];
+			cardMagnets_hand[i].GetComponent<CardMagnetScript>().myCardHolder = cardHolders_hand[i];
+		}
+	}
+	public void ActivateNextMagnet()
+	{
+		var index = cardMagnets_hand.Count;
+		//var index = premade_cardMagnets_hand.IndexOf(currentMagnet) + 1; // don't know why but the correct next magnet will be active
+		index = Mathf.Clamp(index, 0, premade_cardMagnets_hand.Count - 1);
+		if (premade_cardMagnets_hand[index].activeSelf != true)
+		{
+			premade_cardMagnets_hand[index].SetActive(true);
+			cardMagnets_hand.Add(premade_cardMagnets_hand[index]);
+		}
+		ArrangeHandMagnets();
+	}
 	private void MakeCardMagnets() // premake card magnets
 	{
 		for (var i = 0; i < handMaxSize; i++) // make hand card magnets
@@ -73,38 +109,42 @@ public class CardUIManager : MonoBehaviour
 	public void UpdateHandMagnets()
 	{
 		cardMagnets_hand.Clear(); // clear hand ui list
-		foreach (var cardHolder in premade_cardMagnets_hand) // deactivate all hand ui
+		foreach (var cardMagnet in premade_cardMagnets_hand) // deactivate all hand magnets
 		{
-			cardHolder.transform.localScale = new Vector3(1,1,1);
-			cardHolder.SetActive(false);
+			cardMagnet.transform.localScale = new Vector3(1,1,1);
+			cardMagnet.SetActive(false);
 		}
-		for (var i = 0; i < CardManagerNew.me.hand.Count; i++) // activate and assign cardholder
+		for (var i = 0; i < CardManagerNew.me.hand.Count; i++) // activate based on hand count and assign cardholder
 		{
 			premade_cardMagnets_hand[i].SetActive(true);
-			premade_cardMagnets_hand[i].GetComponent<CardMagnetScript>().myCard = premade_cardHolders_hand[i];
+			premade_cardMagnets_hand[i].GetComponent<CardMagnetScript>().myCardHolder = premade_cardHolders_hand[i];
 			cardMagnets_hand.Add(premade_cardMagnets_hand[i]);
 		}
 		ArrangeHandMagnets();
 	}
 	private void ArrangeHandMagnets()
 	{
-		for (var i = cardMagnets_hand.Count - 1; i >= 0; i--)
+		// for (var i = cardMagnets_hand.Count - 1; i >= 0; i--)
+		// {
+		// 	cardMagnets_hand[i].transform.position = centerPos - cardArrangeInterval * (cardMagnets_hand.Count - 1 - i);
+		// }
+		for (var i = 0; i < cardMagnets_hand.Count; i++)
 		{
-			cardMagnets_hand[i].transform.position = centerPos - cardArrangeInterval * (cardMagnets_hand.Count - 1 - i);
+			cardMagnets_hand[i].transform.position = centerPos - cardArrangeInterval * (i);
 		}
 	}
 	public void UpdateGraveMagnets()
 	{
 		cardMagnets_grave.Clear(); // clear hand ui list
-		foreach (var cardHolder in premade_cardMagnets_grave) // deactivate all hand ui
+		foreach (var graveMagnet in premade_cardMagnets_grave) // deactivate all hand ui
 		{
-			cardHolder.transform.localScale = new Vector3(1,1,1);
-			cardHolder.SetActive(false);
+			 graveMagnet.transform.localScale = new Vector3(1,1,1);
+			 graveMagnet.SetActive(false);
 		}
-		for (var i = 0; i < CardManagerNew.me.grave.Count; i++) // activate and assign cardholder
+		for (var i = 0; i < CardManagerNew.me.grave.Count; i++) // activate based on grave count and assign cardholder
 		{
 			premade_cardMagnets_grave[i].SetActive(true);
-			premade_cardMagnets_grave[i].GetComponent<CardMagnetScript>().myCard = premade_cardHolders_grave[i];
+			premade_cardMagnets_grave[i].GetComponent<CardMagnetScript>().myCardHolder = premade_cardHolders_grave[i];
 			cardMagnets_grave.Add(premade_cardMagnets_grave[i]);
 		}
 		ArrangeGraveMagnets();
@@ -158,9 +198,13 @@ public class CardUIManager : MonoBehaviour
 	}
 	private void ArrangeHandUI()
 	{
-		for (var i = cardHolders_hand.Count - 1; i >= 0; i--)
+		// for (var i = cardHolders_hand.Count - 1; i >= 0; i--)
+		// {
+		// 	cardHolders_hand[i].transform.position = centerPos - cardArrangeInterval * (cardHolders_hand.Count - 1 - i);
+		// }
+		for (var i = 0; i < cardHolders_hand.Count; i++)
 		{
-			cardHolders_hand[i].transform.position = centerPos - cardArrangeInterval * (cardHolders_hand.Count - 1 - i);
+			cardHolders_hand[i].transform.position = centerPos - cardArrangeInterval * (i);
 		}
 	}
 	public void UpdateGraveUI()

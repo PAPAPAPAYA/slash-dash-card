@@ -5,8 +5,15 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+	#region SINGLETON
 	public static GameManager me;
-
+	private void Awake()
+	{
+		me = this;
+	}
+	#endregion
+	[Header("GAME STATEs")]
+	public GameStateRefSO currentGameState;
 	[Header("SCORE")]
 	public GameObject scorePrefab;
 	public int score = 0;
@@ -22,10 +29,7 @@ public class GameManager : MonoBehaviour
 	[Header("DEBUG")]
 	public bool showKnifeReport;
 	public bool CardSystemActivated;
-	private void Awake()
-	{
-		me = this;
-	}
+	
 	private void Update()
 	{
 		hpIndicator.GetComponent<TextMeshProUGUI>().text = hpText + PlayerControlScript.me.hp;
@@ -40,6 +44,10 @@ public class GameManager : MonoBehaviour
 			score  -= upgradeAmount;
 			upgradeAmount  = (int)(upgradeAmount_scaler * upgradeAmount);
 			CardObtainManager.me.ShowCardOptions();
+			currentGameState.gameState = EnumStorage.GameState.upgrade;
+			CardManagerNew.me.MoveAllGraveToHand();
+			CardUIManager.me.AssignMagnets();
+			CardUIManager.me.ActivateNextMagnet();
 			//UpgradeInteractionManager.me.ShowButtons();
 		}
 	}

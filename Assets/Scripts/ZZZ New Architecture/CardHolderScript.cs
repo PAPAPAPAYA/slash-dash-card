@@ -25,10 +25,10 @@ public class CardHolderScript : MonoBehaviour
                 }
                 else
                 {
-                        if (!_released)
+                        if (!_released) // mouse up frame
                         {
                                 _released = true;
-                                
+                                CardUIManager.me.ShiftCardHolders();
                         }
                 }
         }
@@ -52,19 +52,22 @@ public class CardHolderScript : MonoBehaviour
                         else
                         {
                                 _clicked = false;
+                                _beingDragged = false;
                                 CardUIManager.me.cardBeingDragged = null;
                         }
-                        _beingDragged = Input.GetMouseButton(0);
+                        //_beingDragged = Input.GetMouseButton(0);
                 }
                 else
                 {
                         _beingDragged = false;
                         _clicked = false;
+                        
                 }
                 if (_beingDragged)
                 {
                         var newPos = new Vector3(_mouseWorldPos.x, _mouseWorldPos.y, 0);
                         transform.position = newPos +  _mousePosOffset;
+                        transform.localScale = new Vector3(1, 1, 1);
                 }
         }
         private void OnMouseEnter()

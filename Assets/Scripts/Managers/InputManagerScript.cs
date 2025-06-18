@@ -44,13 +44,14 @@ public class InputManagerScript : MonoBehaviour
 		if (Input.GetMouseButtonUp(0)) // mouse up frame
 		{
 			mouseDragDuration = 0;
-			if (pcs.chargeCompleted 
-			//&& !pcs.moving
-			)
+			if (pcs.chargeCompleted)
 			{
 				if (cardMan.reloaded)
 				{
-					pcs.Slash(mouseDragDir);
+					if (GameManager.me.currentGameState.gameState == EnumStorage.GameState.game)
+					{
+						pcs.Slash(mouseDragDir);
+					}
 				}
 				else
 				{

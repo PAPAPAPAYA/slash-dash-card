@@ -10,7 +10,7 @@ public class SlashingState : State
 	{
 		base.OnEnter(stateController);
 		
-		CardScript cardBeingUsed = sc.cmn.hand[^1].GetComponent<CardScript>();
+		CardScript cardBeingUsed = sc.cmn.hand[0].GetComponent<CardScript>();
 		//AbilityContainerScript cardBeingUsed = sc.cm.hand[^1].GetComponent<AbilityContainerScript>();
 		//sc.cm.lastUsedCard = sc.cm.activatedCard;
 		
@@ -26,8 +26,8 @@ public class SlashingState : State
 		{
 			//sc.ams.CardSystem_AdjustAbility(ability, true); // load or activate abilities 
 		}
-		sc.cmn.MoveCard_HandLastToGraveFirst(); // move last card in hand to be the first card in grave
-		
+		//sc.cmn.MoveCard_HandLastToGraveFirst(); // move last card in hand to be the first card in grave
+		sc.cmn.MoveCard_HandFirstToGraveLast();
 		AbilityManagerScript.onPlayerSlash?.Invoke(); //! time point
 	}
 	public override void OnUpdate()
