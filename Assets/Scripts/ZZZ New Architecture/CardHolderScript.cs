@@ -28,7 +28,7 @@ public class CardHolderScript : MonoBehaviour
                         if (!_released) // mouse up frame
                         {
                                 _released = true;
-                                CardUIManager.me.ShiftCardHolders();
+                                
                         }
                 }
         }
@@ -61,7 +61,6 @@ public class CardHolderScript : MonoBehaviour
                 {
                         _beingDragged = false;
                         _clicked = false;
-                        
                 }
                 if (_beingDragged)
                 {

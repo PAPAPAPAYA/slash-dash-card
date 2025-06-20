@@ -2130,8 +2130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCardHolder: {fileID: 0}
-  attractDis: 5
+  attractDis: 3
   enlarge: 1
+  optionMagnet: 1
+  debugMe: 0
 --- !u!1 &690504540
 GameObject:
   m_ObjectHideFlags: 0
@@ -5048,8 +5050,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCardHolder: {fileID: 0}
-  attractDis: 5
+  attractDis: 3
   enlarge: 1
+  optionMagnet: 1
+  debugMe: 0
 --- !u!1 &1748259920
 GameObject:
   m_ObjectHideFlags: 0
@@ -5631,8 +5635,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCardHolder: {fileID: 0}
-  attractDis: 5
+  attractDis: 3
   enlarge: 1
+  optionMagnet: 1
+  debugMe: 0
 --- !u!1 &2101787194
 GameObject:
   m_ObjectHideFlags: 0

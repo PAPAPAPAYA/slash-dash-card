@@ -26,17 +26,23 @@
 	// get card // UI is such a fucking mess
 		// show card options
 			// need to disable player character control
+				//// card usage disabled
+				// can also disable player input ui
 		//// activate new card magnets when a new card is in hand zone
 		//// auto shift card holders to right
 		//// stop listening for mouse over if already dragging a card
-		//todo: add a button to confirm order and cards in hand
-		//todo: allocate actual cards to card options
+		// todo: add a button to confirm order and cards in hand
+		// todo: allocate actual cards to card options
 		// todo: because the card options are enlarged and shrinks when dragged, when dragging outside the original size, it flickers between enlarged and shrunk
-		// todo: shift magnet on the left side's myCard if a new card is in between two existing card holders / card magnets
-			// need to add newly obtained card to hand, or else auto shift right will bug out
-				// even added newly obtained card's cardholder to cardholder_hand, auto shift right is still bugging out, maybe need to refresh the order of the list?
-			// need to optimize to shift left or shift right
-		
+		// need to optimize to shift left or shift right
+		//// todo: shift card holders on the left side's myCard if a new card is in between two existing card holders / card magnets
+			//// need to add newly obtained card to hand, or else auto shift right will bug out
+				//// even added newly obtained card's cardholder to cardholder_hand, auto shift right is still bugging out, maybe need to refresh the order of the list?
+			//// shifting when there's no space in hand
+				//// shift left done, need to implement shift right
+			//// when no space in hand, auto shift right is weird
+			//// remove card holder from hand when it's not in hand
+			//// shifting cards double booking
 			//// no shifting
 			//// or
 			//// auto shift right, shift all cards on left/right when inserting a new card
@@ -47,8 +53,7 @@
 	// when player dash into an enemy, player get stuck inside an enemy
 	//// enlarge current card
 	//// show card
-	// arrange card
-		// activate card moveability only when CardObtainManager is showing options
+	//// arrange card
 	//// debug grave order
 //* structure
 	//// use card to set ability variables//todo: when it comes to it, change the corresponding ability func

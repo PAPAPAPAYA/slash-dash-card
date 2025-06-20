@@ -56,13 +56,13 @@ public class CardUIManager : MonoBehaviour
 	{
 		
 	}
-	public void ShiftCardHolders()
+	public void AutoShiftRight()
 	{
 		for (var i = 1; i < cardMagnets_hand.Count; i++)
 		{
 			var currentMagnetScript = cardMagnets_hand[i].GetComponent<CardMagnetScript>();
 			var lastMagnetScript = cardMagnets_hand[i - 1].GetComponent<CardMagnetScript>();
-			if (!lastMagnetScript.myCardHolder)
+			if (!lastMagnetScript.myCardHolder &&  currentMagnetScript.myCardHolder)
 			{
 				lastMagnetScript.myCardHolder = currentMagnetScript.myCardHolder;
 				lastMagnetScript.myCardHolder.GetComponent<CardHolderScript>().myMagnet = lastMagnetScript.gameObject;
