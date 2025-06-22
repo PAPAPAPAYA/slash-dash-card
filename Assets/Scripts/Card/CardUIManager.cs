@@ -189,10 +189,11 @@ public class CardUIManager : MonoBehaviour
 		}
 		for (int i = 0; i < CardManagerNew.me.hand.Count; i++) // activate and change text based on hand
 		{
-			premade_cardHolders_hand[i].SetActive(true);
 			premade_cardHolders_hand[i].GetComponent<CardHolderScript>().inHand = true;
+			premade_cardHolders_hand[i].GetComponent<CardHolderScript>().myCard = CardManagerNew.me.hand[i];
 			cardHolders_hand.Add(premade_cardHolders_hand[i]);
-			premade_cardHolders_hand[i].GetComponentInChildren<TextMeshPro>().text = CardManagerNew.me.hand[i].GetComponent<CardScript>().cardName;
+			//premade_cardHolders_hand[i].GetComponentInChildren<TextMeshPro>().text = CardManagerNew.me.hand[i].GetComponent<CardScript>().cardName;
+			premade_cardHolders_hand[i].SetActive(true);
 		}
 		ArrangeHandUI();
 	}
@@ -216,9 +217,11 @@ public class CardUIManager : MonoBehaviour
 		}
 		for (var i = 0; i < CardManagerNew.me.grave.Count; i++) // activate and change text based on grave
 		{
-			premade_cardHolders_grave[i].SetActive(true);
+			premade_cardHolders_grave[i].GetComponent<CardHolderScript>().myCard =
+				CardManagerNew.me.grave[i];
 			cardHolders_grave.Add(premade_cardHolders_grave[i]);
-			premade_cardHolders_grave[i].GetComponentInChildren<TextMeshPro>().text = CardManagerNew.me.grave[i].GetComponent<CardScript>().cardName;
+			//premade_cardHolders_grave[i].GetComponentInChildren<TextMeshPro>().text = CardManagerNew.me.grave[i].GetComponent<CardScript>().cardName;
+			premade_cardHolders_grave[i].SetActive(true);
 		}
 		ArrangeGraveUI();
 	}

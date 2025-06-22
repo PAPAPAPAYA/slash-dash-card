@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CardHolderScript : MonoBehaviour
 {
@@ -13,7 +14,12 @@ public class CardHolderScript : MonoBehaviour
         private Vector3 _mousePosOffset;
         public bool inHand;
         public GameObject myMagnet;
+        public GameObject myCard;
 
+        private void OnEnable()
+        {
+                GetComponentInChildren<TextMeshPro>().text = myCard.GetComponent<CardScript>().cardName;
+        }
         private void Update()
         {
                 // todo: need to check game state, only in upgrade screen that cards can be moved
@@ -43,7 +49,7 @@ public class CardHolderScript : MonoBehaviour
                                 _beingDragged = true;
                                 if (!_clicked) // mouse down frame
                                 {
-                                        _mousePosOffset = transform.position - _mouseWorldPos  ;
+                                        _mousePosOffset = (transform.position - _mouseWorldPos)/transform.localScale.x;
                                         _mousePosOffset = new Vector3(_mousePosOffset.x, _mousePosOffset.y, 0);
                                         _clicked = true;
                                         CardUIManager.me.cardBeingDragged = gameObject;
@@ -64,9 +70,10 @@ public class CardHolderScript : MonoBehaviour
                 }
                 if (_beingDragged)
                 {
+                        transform.localScale = new Vector3(1, 1, 1);
                         var newPos = new Vector3(_mouseWorldPos.x, _mouseWorldPos.y, 0);
                         transform.position = newPos +  _mousePosOffset;
-                        transform.localScale = new Vector3(1, 1, 1);
+                        
                 }
         }
         private void OnMouseEnter()

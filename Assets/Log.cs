@@ -4,10 +4,11 @@
 //* misc
 	//// switch to rider
 //* card
-	// add a rubbish card //todo: WIP
-		// curse
-			// need to be drawn two times
-			// burn this card when used
+	//// add a rubbish card
+		//// curse
+			//? need to be drawn two times
+			//// burn this card when used
+			//// self burn
 	//// heal
 	//// death explosion: need to distinguish source of damage
 	//// revamp ammo: everytime the player draws, shoot out bullets based on ammo count
@@ -27,14 +28,15 @@
 		// show card options
 			// need to disable player character control
 				//// card usage disabled
-				// can also disable player input ui
+				//todo can also disable player input ui
 		//// activate new card magnets when a new card is in hand zone
 		//// auto shift card holders to right
 		//// stop listening for mouse over if already dragging a card
 		// todo: add a button to confirm order and cards in hand
-		// todo: allocate actual cards to card options
-		// todo: because the card options are enlarged and shrinks when dragged, when dragging outside the original size, it flickers between enlarged and shrunk
-		// need to optimize to shift left or shift right
+			// todo: show and hide confirm button
+		//// todo: allocate actual cards to card options
+		//// todo: because the card options are enlarged and shrinks when dragged, when dragging outside the original size, it flickers between enlarged and shrunk
+		// todo:  optimize to shift left or shift right
 		//// todo: shift card holders on the left side's myCard if a new card is in between two existing card holders / card magnets
 			//// need to add newly obtained card to hand, or else auto shift right will bug out
 				//// even added newly obtained card's cardholder to cardholder_hand, auto shift right is still bugging out, maybe need to refresh the order of the list?
@@ -50,7 +52,7 @@
 		//// make cards moveable with mouse drag
 		//// cards in hand appear bigger when in grave
 		//// snap cards to position //when getting card being dragged position through card ui manager, the position doesn't update
-	// when player dash into an enemy, player get stuck inside an enemy
+	//todo when player dash into an enemy, player get stuck inside an enemy
 	//// enlarge current card
 	//// show card
 	//// arrange card

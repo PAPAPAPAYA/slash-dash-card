@@ -25,7 +25,6 @@ public class CardManagerNew : MonoBehaviour
 	{
 		_handCountOg = hand.Count;
 	}
-	
 	private void Update()
 	{
 		if (hand.Count >= _handCountOg && !reloaded)
@@ -37,6 +36,10 @@ public class CardManagerNew : MonoBehaviour
 		{
 			reloaded = false;
 		}
+	}
+	public void UpdateHandCountOG()
+	{
+		_handCountOg = hand.Count;
 	}
 	public void MoveAllGraveToHand() // move all cards in grave to hand
 	{

@@ -102,7 +102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8276928058132655749
 Transform:
   m_ObjectHideFlags: 0
@@ -135,6 +135,7 @@ MonoBehaviour:
   _beingDragged: 0
   inHand: 0
   myMagnet: {fileID: 0}
+  myCard: {fileID: 0}
 --- !u!61 &1093874415133541437
 BoxCollider2D:
   m_ObjectHideFlags: 0
