@@ -55,14 +55,14 @@ public class CardHolderScript : MonoBehaviour
                                         _mousePosOffset = (transform.position - _mouseWorldPos)/transform.localScale.x;
                                         _mousePosOffset = new Vector3(_mousePosOffset.x, _mousePosOffset.y, 0);
                                         _clicked = true;
-                                        CardUIManager.me.cardBeingDragged = gameObject;
+                                        CardUIManager.me.cardHolderBeingDragged = gameObject;
                                 }
                         }
                         else
                         {
                                 _clicked = false;
                                 _beingDragged = false;
-                                CardUIManager.me.cardBeingDragged = null;
+                                CardUIManager.me.cardHolderBeingDragged = null;
                         }
                         //_beingDragged = Input.GetMouseButton(0);
                 }

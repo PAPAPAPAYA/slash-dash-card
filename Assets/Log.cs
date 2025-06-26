@@ -20,18 +20,22 @@
 	//// self burn, explosion when entering grave
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
-	//todo when confirming new cards, first card is used
+	// todo last card in grave doesn't need to be dashed
+	// todo refs of magnet and cardholder become missing when putting a card to option magnet then putting it back
+	//// todo when putting card to option magnet, card ui manager's cardholders_hand doesn't update
+	//// todo when confirming new cards, first card is used
 	////todo WIP need to instantiate card along with cardholder, or copy last card is bugged coz when one card is altered, all cards with the same name are altered
 	//// check for cost, if cost not satisfied, no effect
 	//// object pool enemy
 		//// object pool score
 		////scores have more than 1 hp, and need to check if i-frame is reset -- turns out i was releasing the scores incorrectly
-	// get card // UI is such a fucking mess
+	// todo when player dash into an enemy, player get stuck inside an enemy
+	//// get card // UI is such a fucking mess
 		//// disable card dragging when in game state
-		// show card options
-			// need to disable player character control
+		//// show card options
+			//// need to disable player character control
 				//// card usage disabled
-				//todo can also disable player input ui
+				////todo can also disable player input ui
 		//// activate new card magnets when a new card is in hand zone
 		//// auto shift card holders to right
 		//// stop listening for mouse over if already dragging a card
@@ -39,7 +43,7 @@
 			//// todo: show and hide confirm button
 		//// todo: allocate actual cards to card options
 		//// todo: because the card options are enlarged and shrinks when dragged, when dragging outside the original size, it flickers between enlarged and shrunk
-		// todo:  optimize to shift left or shift right
+		//// todo:  optimize to shift left or shift right
 		//// todo: shift card holders on the left side's myCard if a new card is in between two existing card holders / card magnets
 			//// need to add newly obtained card to hand, or else auto shift right will bug out
 				//// even added newly obtained card's cardholder to cardholder_hand, auto shift right is still bugging out, maybe need to refresh the order of the list?
@@ -55,7 +59,6 @@
 		//// make cards moveable with mouse drag
 		//// cards in hand appear bigger when in grave
 		//// snap cards to position //when getting card being dragged position through card ui manager, the position doesn't update
-	//todo when player dash into an enemy, player get stuck inside an enemy
 	//// enlarge current card
 	//// show card
 	//// arrange card

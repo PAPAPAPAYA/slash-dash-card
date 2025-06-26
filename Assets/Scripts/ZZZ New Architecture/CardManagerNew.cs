@@ -30,10 +30,6 @@ public class CardManagerNew : MonoBehaviour
 	public CardScript lastUsedCard;
 	public bool costPayed;
 	
-	private void Start()
-	{
-		
-	}
 	private void Update()
 	{
 		if (hand.Count >= _handCountOg && !reloaded)

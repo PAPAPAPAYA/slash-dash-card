@@ -2127,7 +2127,7 @@ MonoBehaviour:
   myCardHolder: {fileID: 0}
   attractDis: 3
   enlarge: 1
-  imOptionMagnet: 0
+  imOptionMagnet: 1
   debugMe: 0
 --- !u!1 &690504540
 GameObject:
@@ -3528,7 +3528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef892a7c4eb1f2c46ba231a30c04c306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardBeingDragged: {fileID: 0}
+  cardHolderBeingDragged: {fileID: 0}
   prefabCardPos: {fileID: 2076690796513809440, guid: e7ddf83ca959785429fbe6d5e2e39a51, type: 3}
   prefab_cardHolder: {fileID: 1786795107446561707, guid: 060bec26c5d34c54ab474d80db308b0d, type: 3}
   secondToLastColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -4313,7 +4313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50289509795b09440a533c2487d8df9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeMax: 0
+  chargeMax: 0.1
   chargeCurrent: 0
   chargeCompleted: 0
   actionPrefab: {fileID: 1227395673779544722, guid: 0b96dcf1afc39a449b41871d1abe65f8, type: 3}
@@ -5277,7 +5277,7 @@ MonoBehaviour:
   myCardHolder: {fileID: 0}
   attractDis: 3
   enlarge: 1
-  imOptionMagnet: 0
+  imOptionMagnet: 1
   debugMe: 0
 --- !u!1 &1748259920
 GameObject:
@@ -5998,7 +5998,7 @@ MonoBehaviour:
   myCardHolder: {fileID: 0}
   attractDis: 3
   enlarge: 1
-  imOptionMagnet: 0
+  imOptionMagnet: 1
   debugMe: 0
 --- !u!1 &2101787194
 GameObject:

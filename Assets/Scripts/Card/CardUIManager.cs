@@ -7,7 +7,7 @@ using UnityEngine.XR;
 public class CardUIManager : MonoBehaviour
 {
 	[HideInInspector]
-	public GameObject cardBeingDragged;
+	public GameObject cardHolderBeingDragged;
 	public GameObject prefabCardPos;
 	public GameObject prefab_cardHolder;
 	public Color secondToLastColor;
