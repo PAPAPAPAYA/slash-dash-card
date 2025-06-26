@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
 			score  -= upgradeAmount;
 			upgradeAmount  = (int)(upgradeAmount_scaler * upgradeAmount);
 			CardObtainManager.me.ShowCardOptions();
+			CardObtainManager.me.ShowConfirmButton();
 			currentGameState.gameState = EnumStorage.GameState.upgrade;
 			CardManagerNew.me.MoveAllGraveToHand();
 			CardUIManager.me.AssignMagnets();

@@ -23,7 +23,10 @@ public class CardHolderScript : MonoBehaviour
         private void Update()
         {
                 // todo: need to check game state, only in upgrade screen that cards can be moved
-                ChangePosition();
+                if (GameManager.me.currentGameState.gameState == EnumStorage.GameState.upgrade)
+                {
+                        ChangePosition(); 
+                }
                 // if being dragged, record it in cardUIManager
                 if (_beingDragged)
                 {

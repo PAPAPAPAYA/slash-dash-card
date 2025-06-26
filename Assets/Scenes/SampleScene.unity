@@ -1065,11 +1065,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ddeb6e228acd6b4193028450c99852a, type: 3}
---- !u!1 &319314672 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
-  m_PrefabInstance: {fileID: 490263930297319503}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &413779103
 GameObject:
   m_ObjectHideFlags: 0
@@ -3600,7 +3595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1112608252
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4129,16 +4124,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPool:
   - {fileID: 6764457072692428388, guid: 53a2a7e70aef3d448a71f4c47828514a, type: 3}
-  - {fileID: 5983269025601790300, guid: 11fe02ff12dd8d04298cb04d248d9789, type: 3}
-  - {fileID: 1560987572977044186, guid: 564e67a3cd8492848b797cd1c577a7b7, type: 3}
-  - {fileID: 7722139111272446604, guid: d3e58145baffba94fa29922447f99148, type: 3}
-  - {fileID: 4718930035311488727, guid: 825fa2c9b6868df4c8758bea844f0e1f, type: 3}
   optionPos:
   - {fileID: 1680533072}
   - {fileID: 666665636}
   - {fileID: 2081540021}
   cardHolderPrefab: {fileID: 1786795107446561707, guid: 060bec26c5d34c54ab474d80db308b0d, type: 3}
   cardOptions: []
+  confirmButton: {fileID: 1112608251}
+  newCards: []
 --- !u!4 &1204065523
 Transform:
   m_ObjectHideFlags: 0
@@ -4973,11 +4966,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1631529640 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5983269025601790300, guid: 11fe02ff12dd8d04298cb04d248d9789, type: 3}
-  m_PrefabInstance: {fileID: 8055288809130052411}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1633239585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6041,10 +6029,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c8d648dc5fd0141a929c6082c851a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand:
-  - {fileID: 319314672}
-  - {fileID: 1631529640}
-  - {fileID: 1631529640}
+  initCards:
+  - {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
+  - {fileID: 5983269025601790300, guid: 11fe02ff12dd8d04298cb04d248d9789, type: 3}
+  hand: []
   grave: []
   reloaded: 0
   activatedCard: {fileID: 0}
@@ -6233,6 +6221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlankCard
       objectReference: {fileID: 0}
+    - target: {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6289,6 +6281,10 @@ PrefabInstance:
     - target: {fileID: 6764457072692428388, guid: 53a2a7e70aef3d448a71f4c47828514a, type: 3}
       propertyPath: m_Name
       value: CopyLast
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764457072692428388, guid: 53a2a7e70aef3d448a71f4c47828514a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6482,6 +6478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SelfBurnNExplode
       objectReference: {fileID: 0}
+    - target: {fileID: 7677447964595475450, guid: 99d506046905f1147a920a8b984f2a1b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7687162125735939421, guid: 99d506046905f1147a920a8b984f2a1b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6635,6 +6635,10 @@ PrefabInstance:
     - target: {fileID: 5925643762552677827, guid: d3455c2e3aef4114ca65d3054a6e4125, type: 3}
       propertyPath: m_Name
       value: Curse
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925643762552677827, guid: d3455c2e3aef4114ca65d3054a6e4125, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6885,6 +6889,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AddRubbishHeal
       objectReference: {fileID: 0}
+    - target: {fileID: 7001516046628970457, guid: 72c3d370282df2d4a9ecf3a9a6e58e5c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8256150214712601699, guid: 72c3d370282df2d4a9ecf3a9a6e58e5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6998,6 +7006,10 @@ PrefabInstance:
     - target: {fileID: 1560987572977044186, guid: 564e67a3cd8492848b797cd1c577a7b7, type: 3}
       propertyPath: m_Name
       value: DiscardNextAddAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560987572977044186, guid: 564e67a3cd8492848b797cd1c577a7b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3256136685877446496, guid: 564e67a3cd8492848b797cd1c577a7b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7219,6 +7231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MadnessSlash
       objectReference: {fileID: 0}
+    - target: {fileID: 4718930035311488727, guid: 825fa2c9b6868df4c8758bea844f0e1f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7235,6 +7251,10 @@ PrefabInstance:
     - target: {fileID: 5983269025601790300, guid: 11fe02ff12dd8d04298cb04d248d9789, type: 3}
       propertyPath: m_Name
       value: DeathExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983269025601790300, guid: 11fe02ff12dd8d04298cb04d248d9789, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6697035864405710740, guid: 11fe02ff12dd8d04298cb04d248d9789, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7332,6 +7352,10 @@ PrefabInstance:
     - target: {fileID: 7722139111272446604, guid: d3e58145baffba94fa29922447f99148, type: 3}
       propertyPath: m_Name
       value: MadnessDoubleSlash
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722139111272446604, guid: d3e58145baffba94fa29922447f99148, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

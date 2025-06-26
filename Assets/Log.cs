@@ -20,11 +20,14 @@
 	//// self burn, explosion when entering grave
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
+	//todo when confirming new cards, first card is used
+	////todo WIP need to instantiate card along with cardholder, or copy last card is bugged coz when one card is altered, all cards with the same name are altered
 	//// check for cost, if cost not satisfied, no effect
 	//// object pool enemy
 		//// object pool score
 		////scores have more than 1 hp, and need to check if i-frame is reset -- turns out i was releasing the scores incorrectly
 	// get card // UI is such a fucking mess
+		//// disable card dragging when in game state
 		// show card options
 			// need to disable player character control
 				//// card usage disabled
@@ -32,8 +35,8 @@
 		//// activate new card magnets when a new card is in hand zone
 		//// auto shift card holders to right
 		//// stop listening for mouse over if already dragging a card
-		// todo: add a button to confirm order and cards in hand
-			// todo: show and hide confirm button
+		//// todo: add a button to confirm order and cards in hand
+			//// todo: show and hide confirm button
 		//// todo: allocate actual cards to card options
 		//// todo: because the card options are enlarged and shrinks when dragged, when dragging outside the original size, it flickers between enlarged and shrunk
 		// todo:  optimize to shift left or shift right

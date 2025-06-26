@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5507425805820695180}
   - component: {fileID: 5754057568416518541}
   - component: {fileID: 1370093149073871770}
+  - component: {fileID: -5425037149821743172}
   - component: {fileID: 8663154644140724166}
   m_Layer: 0
   m_Name: MadnessDoubleSlash
@@ -50,17 +51,17 @@ MonoBehaviour:
   TryPayCostEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8663154644140724166}
-        m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
-        m_MethodName: SetCostPayed
-        m_Mode: 1
+      - m_Target: {fileID: -5425037149821743172}
+        m_TargetAssemblyTypeName: CardMannipulationEffect, Assembly-CSharp
+        m_MethodName: DiscardNextCard
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   EnemyHitEvent:
     m_PersistentCalls:
@@ -169,6 +170,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraSlashAmount: 1
+--- !u!114 &-5425037149821743172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7722139111272446604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266511e72b3a8394c949c05117d415ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardToAddToGrave: {fileID: 0}
+  cardToAddToHand: {fileID: 0}
 --- !u!114 &8663154644140724166
 MonoBehaviour:
   m_ObjectHideFlags: 0

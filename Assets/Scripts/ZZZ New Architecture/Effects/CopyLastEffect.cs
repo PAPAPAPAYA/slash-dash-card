@@ -7,7 +7,7 @@ public class CopyLastEffect : MonoBehaviour
 {
         private CardEventTrigger _lastTrigger;
         private CardScript _lastCardScript;
-        private CardEventTrigger _myTrigger;
+        public CardEventTrigger _myTrigger;
         private CardScript _myCardScript;
 
         private void OnEnable()
@@ -27,6 +27,14 @@ public class CopyLastEffect : MonoBehaviour
         }
         public void CopyEvents()
         {
+                if (!_myTrigger)
+                {
+                      print("my trigger null: ");  
+                }
+                if (!_lastTrigger)
+                {
+                        print("last trigger null");
+                }
                 _myTrigger.CardActivateEvent =  _lastTrigger.CardActivateEvent;
                 _myTrigger.EnemyHitEvent = _lastTrigger.EnemyHitEvent;
                 _myTrigger.OnDmgCalculation =  _lastTrigger.OnDmgCalculation;
