@@ -7,7 +7,7 @@ public class CardObtainManager : MonoBehaviour
         public List<GameObject> cardPool;
         public List<Transform> optionPos;
         public GameObject cardHolderPrefab;
-        public List<GameObject> cardOptions;
+        public List<GameObject> newCardHolders;
         public GameObject confirmButton;
         public List<GameObject> newCards;
         #region SINGLETON
@@ -43,7 +43,7 @@ public class CardObtainManager : MonoBehaviour
                         option.GetComponent<CardHolderScript>().myCard = card;
                         optionPos[i].GetComponent<CardMagnetScript>().myCardHolder = option;
                         option.SetActive(true);
-                        cardOptions.Add(option);
+                        newCardHolders.Add(option);
                         if (i == 2)
                         {
                                 Time.timeScale = 0;
@@ -64,7 +64,7 @@ public class CardObtainManager : MonoBehaviour
         }
         public void ConfirmButtonFunc()
         {
-                foreach (var cardOption in cardOptions)
+                foreach (var cardOption in newCardHolders)
                 {
                         Destroy(cardOption);
                 }
@@ -75,15 +75,16 @@ public class CardObtainManager : MonoBehaviour
                                 Destroy(card);
                         }
                 }
-                cardOptions.Clear();
+                newCardHolders.Clear();
                 foreach (var option in optionPos)
                 {
                         option.gameObject.SetActive(false);
                 }
-                GameManager.me.currentGameState.gameState = EnumStorage.GameState.game;
                 CardManagerNew.me.UpdateHandCountOG();
                 HideConfirmButton();
                 CardUIManager.me.UpdateHandUI();
+                CardUIManager.me.UpdateHandMagnets();
+                GameManager.me.currentGameState.gameState = EnumStorage.GameState.game;
                 Time.timeScale = 1;
         }
 }

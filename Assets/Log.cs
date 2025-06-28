@@ -20,8 +20,8 @@
 	//// self burn, explosion when entering grave
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
-	// todo last card in grave doesn't need to be dashed
-	// todo refs of magnet and cardholder become missing when putting a card to option magnet then putting it back
+	//// todo last card in grave doesn't need to be dashed
+	//// todo refs of magnet and cardholder become missing when putting a card to option magnet then putting it back
 	//// todo when putting card to option magnet, card ui manager's cardholders_hand doesn't update
 	//// todo when confirming new cards, first card is used
 	////todo WIP need to instantiate card along with cardholder, or copy last card is bugged coz when one card is altered, all cards with the same name are altered
@@ -29,7 +29,8 @@
 	//// object pool enemy
 		//// object pool score
 		////scores have more than 1 hp, and need to check if i-frame is reset -- turns out i was releasing the scores incorrectly
-	// todo when player dash into an enemy, player get stuck inside an enemy
+	//// todo when player dash into an enemy, player get stuck inside an enemy
+		//// todo stop player when player hit an enemy without invincibility
 	//// get card // UI is such a fucking mess
 		//// disable card dragging when in game state
 		//// show card options

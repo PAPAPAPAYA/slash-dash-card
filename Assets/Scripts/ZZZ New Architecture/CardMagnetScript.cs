@@ -27,25 +27,7 @@ public class CardMagnetScript : MonoBehaviour
                 {
                         _cardHolderBeingDragged = CardUIManager.me.cardHolderBeingDragged;
                 }
-                if (Input.GetMouseButtonUp(0))
-                {
-                        _cardHolderBeingDragged = null;
-                        if (!myCardHolder) // grab my card holder from card holder list
-                        {
-                                foreach (var cardHolder in _cardUIManager.cardHolders_hand)
-                                {
-                                        if (cardHolder.GetComponent<CardHolderScript>().myMagnet == gameObject)
-                                        {
-                                                myCardHolder = cardHolder;
-                                        }
-                                }
-                                if (HandHasSpace())
-                                {
-                                        CardUIManager.me.AutoShiftRight();
-                                }
-                        }
-                        
-                }
+                
                 if (_cardHolderBeingDragged) // if a card is being dragged
                 {
                         if (!myCardHolder) // if this magnet isn't assigned a card
@@ -113,6 +95,24 @@ public class CardMagnetScript : MonoBehaviour
                     Vector2.Distance(myCardHolder.transform.position, transform.position) < 1f)
                 {
                         myCardHolder.transform.localScale = new Vector3(2f, 2f, 2f);
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                        _cardHolderBeingDragged = null;
+                        if (!myCardHolder) // grab my card holder from card holder list
+                        {
+                                foreach (var cardHolder in _cardUIManager.cardHolders_hand)
+                                {
+                                        if (cardHolder.GetComponent<CardHolderScript>().myMagnet == gameObject)
+                                        {
+                                                myCardHolder = cardHolder;
+                                        }
+                                }
+                                if (HandHasSpace())
+                                {
+                                        CardUIManager.me.AutoShiftRight();
+                                }
+                        }
                 }
                 Debug.DrawLine(transform.position, transform.position + Vector3.up * attractDis, Color.red);
         }

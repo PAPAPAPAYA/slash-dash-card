@@ -10,7 +10,6 @@ public class CardManagerNew : MonoBehaviour
 	{
 		_cardUIManager = CardUIManager.me;
 		me = this;
-		_handCountOg = hand.Count;
 		foreach (var card in initCards)
 		{
 			var cardInst = Instantiate(card);
@@ -18,6 +17,7 @@ public class CardManagerNew : MonoBehaviour
 			hand.Add(cardInst);
 			cardInst.SetActive(true);
 		}
+		_handCountOg = hand.Count;
 	}
 	#endregion
 	public List<GameObject> initCards;
@@ -25,7 +25,7 @@ public class CardManagerNew : MonoBehaviour
 	public List<GameObject> grave;
 	public bool reloaded;
 	private CardUIManager _cardUIManager;
-	private int _handCountOg;
+	public int _handCountOg;
 	public CardScript activatedCard;
 	public CardScript lastUsedCard;
 	public bool costPayed;

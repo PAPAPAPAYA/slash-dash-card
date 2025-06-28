@@ -118,6 +118,8 @@ public class CardUIManager : MonoBehaviour
 		{
 			premade_cardMagnets_hand[i].SetActive(true);
 			premade_cardMagnets_hand[i].GetComponent<CardMagnetScript>().myCardHolder = premade_cardHolders_hand[i];
+			premade_cardHolders_hand[i].GetComponent<CardHolderScript>().myMagnet =
+				premade_cardMagnets_hand[i];
 			cardMagnets_hand.Add(premade_cardMagnets_hand[i]);
 		}
 		ArrangeHandMagnets();

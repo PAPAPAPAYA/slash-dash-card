@@ -11,22 +11,23 @@ public class PlayerHurtBoxScript : MonoBehaviour
 		me = this;
 	}
 	#endregion
-	private PlayerControlScript pcs;
+	private PlayerControlScript _pcs;
 	
 	private void Start()
 	{
-		pcs = PlayerControlScript.me;
+		_pcs = PlayerControlScript.me;
 	}
 	private void Update()
 	{
-		transform.position = pcs.transform.position;
+		transform.position = _pcs.transform.position;
 	}
 	public void GetHit_byEnemy(int hitAmount)
 	{
-		if (!pcs.invincible)
+		if (!_pcs.invincible)
 		{
-			pcs.hp -= hitAmount;
-			GameObject ps = Instantiate(pcs.PS_blood);
+			_pcs.hp -= hitAmount;
+			_pcs.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+			var ps = Instantiate(_pcs.PS_blood);
 			ps.transform.position = transform.position;
 			AbilityManagerScript.onPlayerHitByEnemy?.Invoke();
 		}
