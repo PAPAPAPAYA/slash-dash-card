@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5420824701539620775}
   - component: {fileID: 1043718249537806943}
   m_Layer: 0
-  m_Name: DiscardNextAddAmmo
+  m_Name: AddAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,17 +50,17 @@ MonoBehaviour:
   TryPayCostEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1937684315307203131}
-        m_TargetAssemblyTypeName: CardMannipulationEffect, Assembly-CSharp
-        m_MethodName: DiscardNextCard
-        m_Mode: 6
+      - m_Target: {fileID: 1043718249537806943}
+        m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
+        m_MethodName: SetCostPayed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
   EnemyHitEvent:
     m_PersistentCalls:
@@ -161,6 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Discard Next Add Ammo
+  cardName: Add Ammo
   dmg: 1
   tempCard: 0

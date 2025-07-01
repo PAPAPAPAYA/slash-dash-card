@@ -82,8 +82,10 @@ public class CardObtainManager : MonoBehaviour
                 }
                 CardManagerNew.me.UpdateHandCountOG();
                 HideConfirmButton();
+                CardUIManager.me.UpdateCardManagerHand();
                 CardUIManager.me.UpdateHandUI();
                 CardUIManager.me.UpdateHandMagnets();
+                
                 GameManager.me.currentGameState.gameState = EnumStorage.GameState.game;
                 Time.timeScale = 1;
         }

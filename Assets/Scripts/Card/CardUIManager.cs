@@ -70,6 +70,21 @@ public class CardUIManager : MonoBehaviour
 			}
 		}
 	}
+	public void UpdateCardManagerHand() // update card manager new's hand list based on cardholder's list
+	{
+		CardManagerNew.me.hand.Clear();
+		cardHolders_hand.Clear();
+		// update cardholders_hand list
+		foreach (var t in cardMagnets_hand)
+		{
+			cardHolders_hand.Add(t.GetComponent<CardMagnetScript>().myCardHolder);
+		}
+		// update card manager new's hand list
+		foreach (var cardHolder in cardHolders_hand)
+		{
+			CardManagerNew.me.hand.Add(cardHolder.GetComponent<CardHolderScript>().myCard);
+		}
+	}
 	#region CARD MAGNETS
 	public void AssignMagnets()
 	{

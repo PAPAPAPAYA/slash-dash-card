@@ -4124,6 +4124,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPool:
   - {fileID: 6764457072692428388, guid: 53a2a7e70aef3d448a71f4c47828514a, type: 3}
+  - {fileID: 5983269025601790300, guid: 11fe02ff12dd8d04298cb04d248d9789, type: 3}
+  - {fileID: 1560987572977044186, guid: 564e67a3cd8492848b797cd1c577a7b7, type: 3}
+  - {fileID: 4718930035311488727, guid: 825fa2c9b6868df4c8758bea844f0e1f, type: 3}
   optionPos:
   - {fileID: 1680533072}
   - {fileID: 666665636}
@@ -6030,6 +6033,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initCards:
+  - {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
+  - {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
   - {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
   hand: []
   grave: []

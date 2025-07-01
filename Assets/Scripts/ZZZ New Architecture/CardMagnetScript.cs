@@ -56,6 +56,7 @@ public class CardMagnetScript : MonoBehaviour
                                                 if (!_cardUIManager.cardHolders_hand.Contains(_cardHolderBeingDragged))
                                                 {
                                                         _cardUIManager.cardHolders_hand.Add(_cardHolderBeingDragged);
+                                                        //var myMagnetIndex = _cardUIManager.cardMagnets_hand.IndexOf(gameObject);
                                                         CardManagerNew.me.hand.Add(_cardHolderBeingDragged.GetComponent<CardHolderScript>().myCard);
                                                 }
                                         }

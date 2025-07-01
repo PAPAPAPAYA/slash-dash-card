@@ -4,6 +4,18 @@
 //* misc
 	//// switch to rider
 //* card
+	// corpse explosion
+		// create corpses no exp
+		// chance to spawn more corpses yes exp
+	// draw bullet
+		// when drawn self, shoot bullet
+		// more cards to draw cards
+	// discard madness
+		// more cards to benefit from being discarded
+	// pandora heal
+		// more curse card
+		// more cards that benefit from curses
+	//? self burn poison
 	//// add a rubbish card
 		//// curse
 			//? need to be drawn two times
@@ -32,6 +44,8 @@
 	//// todo when player dash into an enemy, player get stuck inside an enemy
 		//// todo stop player when player hit an enemy without invincibility
 	//// get card // UI is such a fucking mess
+		////todo new cards automatically sorted to last in hand
+		//todo can't shift right when there's space
 		//// disable card dragging when in game state
 		//// show card options
 			//// need to disable player character control
