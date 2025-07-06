@@ -43,9 +43,14 @@
 		////scores have more than 1 hp, and need to check if i-frame is reset -- turns out i was releasing the scores incorrectly
 	//// todo when player dash into an enemy, player get stuck inside an enemy
 		//// todo stop player when player hit an enemy without invincibility
-	//// get card // UI is such a fucking mess
+	// get card // UI is such a fucking mess
+		// clicking confirm button will trigger ammo effect
 		////todo new cards automatically sorted to last in hand
-		//todo can't shift right when there's space
+		////todo can't shift right when there's space
+			////todo actually the card being dragged was snapped to a new magnet before shifting right
+		////todo when there is no space, shifting is bugged
+		////todo placing card holder to the empty space will cause auto shift right to ignore the newly placed card
+			//// current implementation will prevent said problem, but need to optimize call frequency of AutoShiftRight
 		//// disable card dragging when in game state
 		//// show card options
 			//// need to disable player character control

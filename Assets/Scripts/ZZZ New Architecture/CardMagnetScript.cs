@@ -20,6 +20,10 @@ public class CardMagnetScript : MonoBehaviour
         {
                 if (debugMe)
                 {
+                        if (!myCardHolder)
+                        {
+                                print(gameObject.name + ": no card holder");
+                        }
                         //print("my index: " + _cardUIManager.cardMagnets_hand.IndexOf(gameObject) + "; my card holder: " + myCardHolder);
                         //print("space in hand: "+HandHasSpace());
                 }
@@ -34,30 +38,34 @@ public class CardMagnetScript : MonoBehaviour
                         {
                                 if (Vector3.Distance(_cardHolderBeingDragged.transform.position, transform.position) < attractDis) // if the dragged card in my range
                                 {
-                                        myCardHolder = _cardHolderBeingDragged.gameObject; // assign the dragged card to me
-                                        if (myCardHolder.GetComponent<CardHolderScript>().myMagnet) // if the dragged card has an original magnet assigned
+                                        //if (_cardHolderBeingDragged.GetComponent<CardHolderScript>().myMagnet.GetComponent<CardMagnetScript>().imOptionMagnet &&
+                                        //    HandHasSpace())
                                         {
-                                                myCardHolder.GetComponent<CardHolderScript>().myMagnet.GetComponent<CardMagnetScript>().myCardHolder = null; // clear the og magnet's assignment
-                                        }
-                                        _cardHolderBeingDragged.GetComponent<CardHolderScript>().myMagnet = gameObject; // and assign me to dragged card
-                                        _cardHolderBeingDragged.GetComponent<CardHolderScript>().inHand = true; // set inHand, so that confirm button won't delete it
-                                        
-                                        // update card ui manager's cardholder hand list
-                                        if (imOptionMagnet)
-                                        {
-                                                if (_cardUIManager.cardHolders_hand.Contains(_cardHolderBeingDragged))
+                                                myCardHolder = _cardHolderBeingDragged.gameObject; // assign the dragged card to me
+                                                if (myCardHolder.GetComponent<CardHolderScript>().myMagnet) // if the dragged card has an original magnet assigned
                                                 {
-                                                        _cardUIManager.cardHolders_hand.Remove(_cardHolderBeingDragged);
-                                                        CardManagerNew.me.hand.Remove(_cardHolderBeingDragged.GetComponent<CardHolderScript>().myCard);
+                                                        myCardHolder.GetComponent<CardHolderScript>().myMagnet.GetComponent<CardMagnetScript>().myCardHolder = null; // clear the og magnet's assignment
                                                 }
-                                        }
-                                        else
-                                        {
-                                                if (!_cardUIManager.cardHolders_hand.Contains(_cardHolderBeingDragged))
+                                                _cardHolderBeingDragged.GetComponent<CardHolderScript>().myMagnet = gameObject; // and assign me to dragged card
+                                                _cardHolderBeingDragged.GetComponent<CardHolderScript>().inHand = true; // set inHand, so that confirm button won't delete it
+                                                
+                                                // update card ui manager's cardholder hand
+                                                if (imOptionMagnet) // if im an option magnet, remove card and card holder from lists
                                                 {
-                                                        _cardUIManager.cardHolders_hand.Add(_cardHolderBeingDragged);
-                                                        //var myMagnetIndex = _cardUIManager.cardMagnets_hand.IndexOf(gameObject);
-                                                        CardManagerNew.me.hand.Add(_cardHolderBeingDragged.GetComponent<CardHolderScript>().myCard);
+                                                        if (_cardUIManager.cardHolders_hand.Contains(_cardHolderBeingDragged))
+                                                        {
+                                                                _cardUIManager.cardHolders_hand.Remove(_cardHolderBeingDragged);
+                                                                CardManagerNew.me.hand.Remove(_cardHolderBeingDragged.GetComponent<CardHolderScript>().myCard);
+                                                        }
+                                                }
+                                                else // if im a hand magnet, add card and card holder to lists
+                                                {
+                                                        if (!_cardUIManager.cardHolders_hand.Contains(_cardHolderBeingDragged))
+                                                        {
+                                                                _cardUIManager.cardHolders_hand.Add(_cardHolderBeingDragged);
+                                                                //var myMagnetIndex = _cardUIManager.cardMagnets_hand.IndexOf(gameObject);
+                                                                CardManagerNew.me.hand.Add(_cardHolderBeingDragged.GetComponent<CardHolderScript>().myCard);
+                                                        }
                                                 }
                                         }
                                 }
@@ -72,14 +80,13 @@ public class CardMagnetScript : MonoBehaviour
                                         if (_cardHolderBeingDragged.transform.position.x > transform.position.x)
                                         {
                                                 // shift left
-                                                //if (HandHasSpace())
                                                 {
                                                         ShiftLeft(gameObject);
                                                 }
                                         }
                                         else
                                         {
-                                                //if (HandHasSpace())
+                                                // shift right
                                                 {
                                                         ShiftRight(gameObject);
                                                 }
@@ -97,9 +104,10 @@ public class CardMagnetScript : MonoBehaviour
                 {
                         myCardHolder.transform.localScale = new Vector3(2f, 2f, 2f);
                 }
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonUp(0) && _cardHolderBeingDragged)
                 {
                         _cardHolderBeingDragged = null;
+                        
                         if (!myCardHolder) // grab my card holder from card holder list
                         {
                                 foreach (var cardHolder in _cardUIManager.cardHolders_hand)
@@ -109,53 +117,26 @@ public class CardMagnetScript : MonoBehaviour
                                                 myCardHolder = cardHolder;
                                         }
                                 }
-                                if (HandHasSpace())
-                                {
-                                        CardUIManager.me.AutoShiftRight();
-                                }
                         }
+                        
                 }
                 Debug.DrawLine(transform.position, transform.position + Vector3.up * attractDis, Color.red);
-        }
-        private bool HandHasSpace()
-        {
-                var yesSpace = false;
-                //foreach (var magnet in _cardUIManager.cardMagnets_hand)
-                {
-                        //foreach (var cardHolder in _cardUIManager.cardHolders_hand)
-                        {
-                                //var magnetScript = magnet.GetComponent<CardMagnetScript>();
-                                //var cardHolderScript = cardHolder.GetComponent<CardHolderScript>();
-                                if (_cardUIManager.cardHolders_hand.Count < _cardUIManager.cardMagnets_hand.Count)
-                                {
-                                        yesSpace = true;
-                                        //break;
-                                }
-                        }
-                }
-                return yesSpace;
         }
         private void ShiftLeft(GameObject cardMagnet)
         {
                 var newInsertedMagnetIndex = _cardUIManager.cardMagnets_hand.IndexOf(cardMagnet);
                 var startIndex = _cardUIManager.cardMagnets_hand.Count - 1;
-                var cardBeingDraggedIndex = _cardUIManager.cardMagnets_hand.IndexOf(_cardHolderBeingDragged
+                var cardBeingDraggedMagnetIndex = _cardUIManager.cardMagnets_hand.IndexOf(_cardHolderBeingDragged
                         .GetComponent<CardHolderScript>()
                         .myMagnet);
-                if (cardBeingDraggedIndex > newInsertedMagnetIndex)
+                if (!_cardUIManager.HandHasSpace() &&
+                    cardBeingDraggedMagnetIndex < newInsertedMagnetIndex)
                 {
-                        startIndex = cardBeingDraggedIndex;
+                        return;
                 }
-                if (!HandHasSpace())
+                if (cardBeingDraggedMagnetIndex > newInsertedMagnetIndex)
                 {
-                        if (cardBeingDraggedIndex > newInsertedMagnetIndex)
-                        {
-                                //startIndex = cardBeingDraggedIndex;
-                        }
-                        else
-                        {
-                                return;
-                        }
+                        startIndex = cardBeingDraggedMagnetIndex;
                 }
                 for (var i = startIndex; i > newInsertedMagnetIndex; i--)
                 {
@@ -173,20 +154,18 @@ public class CardMagnetScript : MonoBehaviour
         private void ShiftRight(GameObject cardMagnet)
         {
                 var newInsertedMagnetIndex = _cardUIManager.cardMagnets_hand.IndexOf(cardMagnet);
-                var startIndex = newInsertedMagnetIndex;
-                var cardBeingDraggedIndex = _cardUIManager.cardMagnets_hand.IndexOf(_cardHolderBeingDragged
+                var startIndex = 0;
+                var cardBeingDraggedMagnetIndex = _cardUIManager.cardMagnets_hand.IndexOf(_cardHolderBeingDragged
                         .GetComponent<CardHolderScript>()
                         .myMagnet);
-                if (!HandHasSpace())
+                if (!_cardUIManager.HandHasSpace() &&
+                    cardBeingDraggedMagnetIndex > newInsertedMagnetIndex)
                 {
-                        if (cardBeingDraggedIndex < newInsertedMagnetIndex)
-                        {
-                                startIndex = cardBeingDraggedIndex;
-                        }
-                        else
-                        {
-                                return;
-                        }
+                        return;
+                }
+                if (cardBeingDraggedMagnetIndex < newInsertedMagnetIndex)
+                {
+                        startIndex = cardBeingDraggedMagnetIndex;
                 }
                 for (var i = startIndex; i < newInsertedMagnetIndex; i++)
                 {

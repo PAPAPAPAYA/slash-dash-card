@@ -51,12 +51,12 @@ public class CardUIManager : MonoBehaviour
 	void Update()
 	{
 		//MakeCurrentCardBigger();
+		if (!cardHolderBeingDragged && HandHasSpace())
+		{
+			AutoShiftRight();
+		}
 	}
-	public void RefreshListBasedOnMagnetsStatus()
-	{
-		
-	}
-	public void AutoShiftRight()
+	private void AutoShiftRight()
 	{
 		for (var i = 1; i < cardMagnets_hand.Count; i++)
 		{
@@ -70,14 +70,22 @@ public class CardUIManager : MonoBehaviour
 			}
 		}
 	}
+	public bool HandHasSpace()
+	{
+		var result = false || cardHolders_hand.Count < cardMagnets_hand.Count;
+		return result;
+	}
 	public void UpdateCardManagerHand() // update card manager new's hand list based on cardholder's list
 	{
 		CardManagerNew.me.hand.Clear();
 		cardHolders_hand.Clear();
 		// update cardholders_hand list
-		foreach (var t in cardMagnets_hand)
+		foreach (var magnet in cardMagnets_hand)
 		{
-			cardHolders_hand.Add(t.GetComponent<CardMagnetScript>().myCardHolder);
+			if (magnet.GetComponent<CardMagnetScript>().myCardHolder)
+			{
+				cardHolders_hand.Add(magnet.GetComponent<CardMagnetScript>().myCardHolder);
+			}
 		}
 		// update card manager new's hand list
 		foreach (var cardHolder in cardHolders_hand)
@@ -112,6 +120,7 @@ public class CardUIManager : MonoBehaviour
 		{
 			var cardMag = Instantiate(magnetPrefab);
 			premade_cardMagnets_hand.Add(cardMag);
+			cardMag.name = "Magnet" + i;
 		}
 		for (var i = 0; i < graveMaxSize; i++) // make grave card magnets
 		{
@@ -189,6 +198,7 @@ public class CardUIManager : MonoBehaviour
 		{
 			var cardHolder = Instantiate(prefab_cardHolder);
 			premade_cardHolders_hand.Add(cardHolder);
+			cardHolder.name = "CardHolder_" + i;
 		}
 		for (int i = 0; i < graveMaxSize; i++) // make grave card holders
 		{

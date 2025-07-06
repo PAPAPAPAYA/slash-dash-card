@@ -6033,9 +6033,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initCards:
-  - {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
-  - {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
-  - {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
+  - {fileID: 1560987572977044186, guid: 564e67a3cd8492848b797cd1c577a7b7, type: 3}
+  - {fileID: 1560987572977044186, guid: 564e67a3cd8492848b797cd1c577a7b7, type: 3}
+  - {fileID: 1560987572977044186, guid: 564e67a3cd8492848b797cd1c577a7b7, type: 3}
   hand: []
   grave: []
   reloaded: 0

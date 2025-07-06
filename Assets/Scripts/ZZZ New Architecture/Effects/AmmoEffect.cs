@@ -45,7 +45,6 @@ public class AmmoEffect : MonoBehaviour
         }
         private void SpawnBullet_atPlayerPos()
         {
-                print("Spawning bullet");
                 var bullet = GameObjectPoolScript.me.BulletPool.Get();
                 bullet.GetComponent<KnifeScript>().hp = bulletHp.value;
                 bullet.transform.SetPositionAndRotation(PlayerControlScript.me.transform.position, Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
