@@ -97,13 +97,19 @@ public class CardManagerNew : MonoBehaviour
 	{
 		if (grave.Count > 0)
 		{
-			hand.Add(grave[0]);
-			grave.RemoveAt(0);
+			if (!grave[0].GetComponent<CardScript>().tempCard)
+			{
+				grave[0].GetComponent<CardEventTrigger>().InvokeOnToHandEvent(); //! when send to grave
+				
+				hand.Add(grave[0]);
+				grave.RemoveAt(0);
+			}
 			_cardUIManager.UpdateHandUI();
 			_cardUIManager.UpdateGraveUI();
 			_cardUIManager.UpdateHandMagnets();
 			_cardUIManager.UpdateGraveMagnets();
-			LingerEffectManager.me.InvokeOnCardDrawnEvent();
+			LingerEffectManager.me.InvokeOnAnyCardDrawnEvent();
+			
 			// check if ability activated
 			//AbilityManagerScript.me.BulletWhenCardDrawn();
 		}

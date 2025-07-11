@@ -223,7 +223,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c480abfdbc89c840a306401babc6e2c, type: 2}
+  - {fileID: 2100000, guid: 8e46cafe9e56a89499f93947b6fcb616, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 6872622129804145438}
   - component: {fileID: 1590254355685610135}
   m_Layer: 0
-  m_Name: enemy_score
+  m_Name: enemy_dummyScore
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,7 +316,7 @@ MonoBehaviour:
   shoot_interval: 0
   shooter_stopDis: 0
   bulletPrefab: {fileID: 0}
-  chanceToScore: 1
+  chanceToScore: 0
   myShadow: {fileID: 0}
   shadow_xOffset: 0.1
   shadow_yOffset: -0.1

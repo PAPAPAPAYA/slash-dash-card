@@ -35,6 +35,7 @@ public class AmmoEffect : MonoBehaviour
         {
                 ammoCounter.value = 0;
         }
+        
         private void DrawBullet()
         {
                 for (int i = 0; i < ammoCounter.value; i++)

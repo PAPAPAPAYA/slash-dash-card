@@ -19,7 +19,7 @@ public class LingerEffectManager : MonoBehaviour
 		onLastHand.Invoke();
 	}
 	public UnityEvent onCardDrawn;
-	public void InvokeOnCardDrawnEvent()
+	public void InvokeOnAnyCardDrawnEvent()
 	{
 		onCardDrawn.Invoke();
 	}

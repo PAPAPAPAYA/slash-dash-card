@@ -5,10 +5,14 @@
 	//// switch to rider
 //* card
 	// corpse explosion
+		//// change unityEvent to pass in dynamic parameter pos
 		// create corpses no exp
+			//todo test
+			// chance to spawn / don't spawn when hitting dummy score
+			//// change score sprite when is dummy
 		// chance to spawn more corpses yes exp
 	// draw bullet
-		// when drawn self, shoot bullet
+		// when drawn self, shoot bullet todo
 		// more cards to draw cards
 	// discard madness
 		// more cards to benefit from being discarded
@@ -16,6 +20,7 @@
 		// more curse card
 		// more cards that benefit from curses
 	//? self burn poison
+		// curse to self burn?
 	//// add a rubbish card
 		//// curse
 			//? need to be drawn two times

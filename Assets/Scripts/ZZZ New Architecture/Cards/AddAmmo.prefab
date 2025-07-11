@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3256136685877446496}
   - component: {fileID: 4452187437054643163}
-  - component: {fileID: 1937684315307203131}
   - component: {fileID: 5420824701539620775}
   - component: {fileID: 1043718249537806943}
   m_Layer: 0
@@ -119,20 +118,6 @@ MonoBehaviour:
   OnAnyCardActivated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1937684315307203131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1560987572977044186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 266511e72b3a8394c949c05117d415ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardToAddToGrave: {fileID: 0}
-  cardToAddToHand: {fileID: 0}
 --- !u!114 &5420824701539620775
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -41,6 +41,7 @@ public class EnemyScript : MonoBehaviour
 	private float shoot_timer;
 	public float shooter_stopDis;
 	public GameObject bulletPrefab;
+	[Header("SCOREs")] public float chanceToScore;
 	[Header("SHADOWs")]
 	public GameObject myShadow;
 	public float shadow_xOffset;
@@ -121,6 +122,7 @@ public class EnemyScript : MonoBehaviour
 			hp > 0)
 		{
 			All_Hit_VFXs();
+			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeEnemyHitEvent(gameObject); //! when enemy is hit
 			if (!undying)
 			{
 				hp -= amount;
@@ -174,7 +176,7 @@ public class EnemyScript : MonoBehaviour
 		switch (myEnemyType)
 		{
 			case EnemyType.brawler:
-				ShootOutCorpse(GameManager.me.scorePrefab, GameManager.me.score_spawnForce);
+				ShootOutCorpse(1);
 				AbilityManagerScript.onEnemyKilled?.Invoke(transform.position);
 				if (poison_duration > 0)
 				{
@@ -183,7 +185,7 @@ public class EnemyScript : MonoBehaviour
 				GameObjectPoolScript.me.EnemyPool.Release(gameObject);
 				break;
 			case EnemyType.shooter:
-				ShootOutCorpse(GameManager.me.scorePrefab, GameManager.me.score_spawnForce);
+				ShootOutCorpse(1);
 				AbilityManagerScript.onEnemyKilled?.Invoke(transform.position);
 				if (poison_duration > 0)
 				{
@@ -192,7 +194,10 @@ public class EnemyScript : MonoBehaviour
 				GameObjectPoolScript.me.EnemyPool.Release(gameObject);
 				break;
 			case EnemyType.score:
-				GameManager.me.score++;
+				if (chanceToScore > Random.Range(0f, 1f))
+				{
+					GameManager.me.score++;
+				}
 				AbilityManagerScript.onScoreKilled?.Invoke(transform.position);
 				GameObjectPoolScript.me.ScorePool.Release(gameObject);
 				break;
@@ -201,7 +206,7 @@ public class EnemyScript : MonoBehaviour
 		}
 		if (dmgType == EnumStorage.DmgType.playerSlash)
 		{
-			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled();
+			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject);
 		}
 		EnemySpawnerScript.me.enemies.Remove(gameObject);
 		
@@ -215,7 +220,7 @@ public class EnemyScript : MonoBehaviour
 			collision.GetComponent<PlayerHurtBoxScript>().GetHit_byEnemy(dmg);
 		}
 	}
-	private void ShootOutCorpse(GameObject obj2Shoot, float spawnForce)
+	public void ShootOutCorpse(float _chanceToScore)
 	{
 		//var obj = Instantiate(obj2Shoot);
 		var obj = GameObjectPoolScript.me.ScorePool.Get();
@@ -226,7 +231,15 @@ public class EnemyScript : MonoBehaviour
 		Vector3 randDir = new(randX, randY, 0);
 		randDir = randDir.normalized;
 		obj.transform.position = new Vector3(transform.position.x, transform.position.y, obj.transform.position.z);
-		obj.GetComponent<Rigidbody2D>().AddForce(randDir * spawnForce, ForceMode2D.Impulse);
+		if (obj.GetComponent<EnemyScript>())
+		{
+			obj.GetComponent<EnemyScript>().chanceToScore = _chanceToScore;
+			if (_chanceToScore <= 0)
+			{
+				obj.GetComponentInChildren<SpriteRenderer>().material = hurtMat;
+			}
+		}
+		obj.GetComponent<Rigidbody2D>().AddForce(randDir * GameManager.me.score_spawnForce, ForceMode2D.Impulse);
 	}
 	public void RestartButton_Init()
 	{

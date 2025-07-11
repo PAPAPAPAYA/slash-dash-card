@@ -10,11 +10,13 @@ public class CardEventTrigger : MonoBehaviour
 	{
 		TryPayCostEvent.Invoke(true);
 	}
-	public UnityEvent EnemyHitEvent;
-	public void InvokeEnemyHitEvent()
+	
+	public UnityEvent<GameObject> EnemyHitEvent;
+	public void InvokeEnemyHitEvent(GameObject enemy)
 	{
-		EnemyHitEvent.Invoke();
+		EnemyHitEvent.Invoke(enemy);
 	}
+	
 	public UnityEvent CardActivateEvent;
 	public void InvokeActivateEvent()
 	{
@@ -23,28 +25,37 @@ public class CardEventTrigger : MonoBehaviour
 			CardActivateEvent.Invoke();
 		}
 	}
+	
+	public UnityEvent onToHandEvent;
+	public void InvokeOnToHandEvent()
+	{
+		onToHandEvent.Invoke();
+	}
+	
 	public UnityEvent OnToGraveEvent;
 	public void InvokeOntoGraveEvent()
 	{
 		OnToGraveEvent.Invoke();
 	}
+	
 	public UnityEvent OnDmgCalculation;
 	public void InvokeOnDmgCalculation()
 	{
 		OnDmgCalculation.Invoke();
 	}
 
-	public UnityEvent OnEnemyKilled;
-
-	public void InvokeOnEnemyKilled()
+	public UnityEvent<GameObject> OnEnemyKilled;
+	public void InvokeOnEnemyKilled(GameObject enemyKilled)
 	{
-		OnEnemyKilled.Invoke();
+		OnEnemyKilled.Invoke(enemyKilled);
 	}
+	
 	public UnityEvent OnSlashFinished;
 	public void InvokeOnSlashFinished()
 	{
 		OnSlashFinished.Invoke();
 	}
+	
 	public UnityEvent OnAnyCardActivated;
 	public void InvokeOnAnyCardActivated()
 	{
