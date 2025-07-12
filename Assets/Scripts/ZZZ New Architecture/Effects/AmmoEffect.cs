@@ -23,8 +23,8 @@ public class AmmoEffect : MonoBehaviour
         }
         public void LoadDrawBullet()
         {
-                LingerEffectManager.me.onCardDrawn.RemoveListener(DrawBullet);
-                LingerEffectManager.me.onCardDrawn.AddListener(DrawBullet);
+                LingerEffectManager.me.onCardDrawn.RemoveListener(SpawnBullet);
+                LingerEffectManager.me.onCardDrawn.AddListener(SpawnBullet);
         }
         public void LoadResetAmmoCounter()
         {
@@ -36,13 +36,13 @@ public class AmmoEffect : MonoBehaviour
                 ammoCounter.value = 0;
         }
         
-        private void DrawBullet()
+        public void SpawnBullet()
         {
                 for (int i = 0; i < ammoCounter.value; i++)
                 {
                         SpawnBullet_atPlayerPos();
                 }
-                ammoCounter.value--;
+                //ammoCounter.value--;
         }
         private void SpawnBullet_atPlayerPos()
         {

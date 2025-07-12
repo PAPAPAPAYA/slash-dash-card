@@ -6,8 +6,10 @@ public class CardScript : MonoBehaviour
 {
 	public string cardName;
 	public int dmg;
-	public bool tempCard;
+	public bool tempCard = false;
 	private int _ogDmg;
+	public int myHandIndex;
+	public int myGraveIndex;
 	private void OnEnable()
 	{
 		_ogDmg = dmg;

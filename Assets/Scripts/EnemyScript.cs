@@ -194,7 +194,7 @@ public class EnemyScript : MonoBehaviour
 				GameObjectPoolScript.me.EnemyPool.Release(gameObject);
 				break;
 			case EnemyType.score:
-				if (chanceToScore > Random.Range(0f, 1f))
+				if (chanceToScore > Random.value)
 				{
 					GameManager.me.score++;
 				}

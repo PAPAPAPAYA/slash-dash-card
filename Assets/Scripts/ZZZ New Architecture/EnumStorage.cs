@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class EnumStorage : MonoBehaviour
 {
-	public enum PosType
-	{
-		playerPos
-	};
-
 	public enum DmgType
 	{
 		playerSlash,
@@ -22,4 +17,10 @@ public class EnumStorage : MonoBehaviour
 		game,
 		upgrade
 	};
+
+	public enum BuffCategory
+	{
+		slashDmg,
+		slashWidth
+	}
 }

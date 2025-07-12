@@ -18,6 +18,7 @@ public class CardManagerNew : MonoBehaviour
 			cardInst.SetActive(true);
 		}
 		_handCountOg = hand.Count;
+		UpdateIndex();
 	}
 	#endregion
 	public List<GameObject> initCards;
@@ -61,12 +62,14 @@ public class CardManagerNew : MonoBehaviour
 			{
 				hand[0].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when send to grave
 				grave.Add(hand[0]);
+				hand[0].GetComponent<CardScript>().ResetDmg();
 			}
 			hand.RemoveAt(0);
 			_cardUIManager.UpdateHandUI();
 			_cardUIManager.UpdateGraveUI();
 			_cardUIManager.UpdateHandMagnets();
 			_cardUIManager.UpdateGraveMagnets();
+			UpdateIndex();
 		}
 		if (hand.Count == 0)
 		{
@@ -87,6 +90,7 @@ public class CardManagerNew : MonoBehaviour
 			_cardUIManager.UpdateGraveUI();
 			_cardUIManager.UpdateHandMagnets();
 			_cardUIManager.UpdateGraveMagnets();
+			UpdateIndex();
 		}
 		if (hand.Count == 0)
 		{
@@ -99,7 +103,7 @@ public class CardManagerNew : MonoBehaviour
 		{
 			if (!grave[0].GetComponent<CardScript>().tempCard)
 			{
-				grave[0].GetComponent<CardEventTrigger>().InvokeOnToHandEvent(); //! when send to grave
+				grave[0].GetComponent<CardEventTrigger>().InvokeOnToHandEvent(); //! when drawn to hand
 				
 				hand.Add(grave[0]);
 				grave.RemoveAt(0);
@@ -109,9 +113,37 @@ public class CardManagerNew : MonoBehaviour
 			_cardUIManager.UpdateHandMagnets();
 			_cardUIManager.UpdateGraveMagnets();
 			LingerEffectManager.me.InvokeOnAnyCardDrawnEvent();
-			
-			// check if ability activated
-			//AbilityManagerScript.me.BulletWhenCardDrawn();
+			UpdateIndex();
+		}
+	}
+	public void MoveCard_GraveLastToHandLast()
+	{
+		if (grave.Count > 0)
+		{
+			if (!grave[^1].GetComponent<CardScript>().tempCard)
+			{
+				grave[^1].GetComponent<CardEventTrigger>().InvokeOnToHandEvent(); //! when drawn to hand
+				
+				hand.Add(grave[^1]);
+				grave.RemoveAt(hand.Count - 1);
+			}
+			_cardUIManager.UpdateHandUI();
+			_cardUIManager.UpdateGraveUI();
+			_cardUIManager.UpdateHandMagnets();
+			_cardUIManager.UpdateGraveMagnets();
+			LingerEffectManager.me.InvokeOnAnyCardDrawnEvent();
+			UpdateIndex();
+		}
+	}
+	private void UpdateIndex()
+	{
+		foreach (var card in hand)
+		{
+			card.GetComponent<CardScript>().myHandIndex = hand.IndexOf(card);
+		}
+		foreach (var card in grave)
+		{
+			card.GetComponent<CardScript>().myGraveIndex = hand.IndexOf(card);
 		}
 	}
 }

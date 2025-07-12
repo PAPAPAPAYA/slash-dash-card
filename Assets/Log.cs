@@ -4,21 +4,24 @@
 //* misc
 	//// switch to rider
 //* card
-	// corpse explosion
+	//// boost next card dmg
+		//// reset
+	//// corpse explosion
 		//// change unityEvent to pass in dynamic parameter pos
-		// create corpses no exp
-			//todo test
-			// chance to spawn / don't spawn when hitting dummy score
+		//// create corpses no exp
+			////todo test
 			//// change score sprite when is dummy
-		// chance to spawn more corpses yes exp
-	// draw bullet
-		// when drawn self, shoot bullet todo
-		// more cards to draw cards
+		//// chance to spawn more corpses yes exp when killing an enemy
+	//// draw bullet
+		//// when drawn self, shoot bullet
+		//// draw last used card from grave
 	// discard madness
 		// more cards to benefit from being discarded
 	// pandora heal
 		// more curse card
 		// more cards that benefit from curses
+	// copy last used card
+		// debug
 	//? self burn poison
 		// curse to self burn?
 	//// add a rubbish card
@@ -37,6 +40,7 @@
 	//// self burn, explosion when entering grave
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
+	//// show slash dmg
 	//// todo last card in grave doesn't need to be dashed
 	//// todo refs of magnet and cardholder become missing when putting a card to option magnet then putting it back
 	//// todo when putting card to option magnet, card ui manager's cardholders_hand doesn't update
@@ -48,8 +52,8 @@
 		////scores have more than 1 hp, and need to check if i-frame is reset -- turns out i was releasing the scores incorrectly
 	//// todo when player dash into an enemy, player get stuck inside an enemy
 		//// todo stop player when player hit an enemy without invincibility
-	// get card // UI is such a fucking mess
-		// clicking confirm button will trigger ammo effect
+	//// get card // UI is such a fucking mess
+		//// clicking confirm button will trigger ammo effect: because cards are drawn
 		////todo new cards automatically sorted to last in hand
 		////todo can't shift right when there's space
 			////todo actually the card being dragged was snapped to a new magnet before shifting right

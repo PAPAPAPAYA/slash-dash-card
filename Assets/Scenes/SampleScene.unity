@@ -5335,7 +5335,7 @@ MonoBehaviour:
   spawnAmount_increaseInterval: 15
   spawnInterval_start: 3
   spawnInterval_decreaseRate: 0
-  spawnHP: 3
+  spawnHP: 1
   spawnHP_increaseInterval: 20
 --- !u!1 &1803591532
 GameObject:
@@ -6034,9 +6034,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initCards:
-  - {fileID: 7677447964595475450, guid: 9e0f3fc08d208544a9984dbd4b60bcc6, type: 3}
-  - {fileID: 5983269025601790300, guid: 11fe02ff12dd8d04298cb04d248d9789, type: 3}
-  - {fileID: 7677447964595475450, guid: 9e0f3fc08d208544a9984dbd4b60bcc6, type: 3}
+  - {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
+  - {fileID: 1560987572977044186, guid: 564e67a3cd8492848b797cd1c577a7b7, type: 3}
+  - {fileID: 1560987572977044186, guid: 539b38a4ca49fb544991245f82bdc345, type: 3}
   hand: []
   grave: []
   reloaded: 0

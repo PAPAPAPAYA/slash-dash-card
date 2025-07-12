@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7677447964595475450
+--- !u!1 &1560987572977044186
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7687162125735939421}
-  - component: {fileID: 1985561835630797147}
-  - component: {fileID: 3402914949657072690}
-  - component: {fileID: 3589631536816475824}
+  - component: {fileID: 3256136685877446496}
+  - component: {fileID: 4452187437054643163}
+  - component: {fileID: 5167267954240280179}
+  - component: {fileID: 1043718249537806943}
   m_Layer: 0
-  m_Name: SpawnMoreCorpses
+  m_Name: DrawLastOneFromGrave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7687162125735939421
+--- !u!4 &3256136685877446496
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677447964595475450}
+  m_GameObject: {fileID: 1560987572977044186}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1985561835630797147
+--- !u!114 &4452187437054643163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677447964595475450}
+  m_GameObject: {fileID: 1560987572977044186}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c992d514cd7efe40820f6d093c28dd3, type: 3}
@@ -49,7 +49,7 @@ MonoBehaviour:
   TryPayCostEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3589631536816475824}
+      - m_Target: {fileID: 1043718249537806943}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: SetCostPayed
         m_Mode: 1
@@ -63,11 +63,14 @@ MonoBehaviour:
         m_CallState: 2
   EnemyHitEvent:
     m_PersistentCalls:
+      m_Calls: []
+  CardActivateEvent:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3402914949657072690}
-        m_TargetAssemblyTypeName: SpawnObjAtPosEffect, Assembly-CSharp
-        m_MethodName: SpawnObject
-        m_Mode: 0
+      - m_Target: {fileID: 5167267954240280179}
+        m_TargetAssemblyTypeName: CardMannipulationEffect, Assembly-CSharp
+        m_MethodName: DrawFromGrave
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -76,9 +79,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  CardActivateEvent:
-    m_PersistentCalls:
-      m_Calls: []
   onToHandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -97,33 +97,35 @@ MonoBehaviour:
   OnAnyCardActivated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3402914949657072690
+--- !u!114 &5167267954240280179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677447964595475450}
+  m_GameObject: {fileID: 1560987572977044186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e3de026aec6f4346a442e605fbea89b, type: 3}
+  m_Script: {fileID: 11500000, guid: 266511e72b3a8394c949c05117d415ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjectToSpawn: {fileID: 7639828799481462458, guid: b49425dba3d04e844846955a26e33080, type: 3}
-  amountToSpawn: 1
-  chanceToScore: 0
---- !u!114 &3589631536816475824
+  drawAmount: 1
+  cardToAddToGrave: {fileID: 0}
+  cardToAddToHand: {fileID: 0}
+--- !u!114 &1043718249537806943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677447964595475450}
+  m_GameObject: {fileID: 1560987572977044186}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: spawn dummy score
+  cardName: Draw Last From Grave
   dmg: 1
   tempCard: 0
+  myHandIndex: 0
+  myGraveIndex: 0

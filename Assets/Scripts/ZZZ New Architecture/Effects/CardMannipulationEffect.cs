@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class CardMannipulationEffect : MonoBehaviour
 {
+        [Header("DRAW")]
+        public int drawAmount;
+        [Header("ADD")]
         public GameObject cardToAddToGrave;
         public GameObject cardToAddToHand;
 
-        public void AddCurseToGrave() // curse card deal 1 dmg to self, when used, burn
+        public void DrawFromGrave()
+        {
+                for (int i = 0; i < drawAmount; i++)
+                {
+                        CardManagerNew.me.MoveCard_GraveLastToHandLast();
+                }
+        }
+        public void AddCurseToGrave() 
         {
                 CardManagerNew.me.grave.Add(Instantiate(cardToAddToGrave));
         }
-
         public void AddCurseToHand()
         {
                 CardManagerNew.me.hand.Insert(0, Instantiate(cardToAddToHand));

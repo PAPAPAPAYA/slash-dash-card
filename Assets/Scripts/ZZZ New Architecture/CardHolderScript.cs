@@ -18,16 +18,15 @@ public class CardHolderScript : MonoBehaviour
 
         private void OnEnable()
         {
-                GetComponentInChildren<TextMeshPro>().text = myCard.GetComponent<CardScript>().cardName;
+                GetComponentInChildren<TextMeshPro>().text = myCard.GetComponent<CardScript>().cardName
+                        + "\n\n" + myCard.GetComponent<CardScript>().dmg;
         }
         private void Update()
         {
-                // todo: need to check game state, only in upgrade screen that cards can be moved
                 if (GameManager.me.currentGameState.gameState == EnumStorage.GameState.upgrade)
                 {
                         ChangePosition(); 
                 }
-                // if being dragged, record it in cardUIManager
                 if (_beingDragged)
                 {
                         
@@ -37,7 +36,6 @@ public class CardHolderScript : MonoBehaviour
                         if (!_released) // mouse up frame
                         {
                                 _released = true;
-                                
                         }
                 }
         }
@@ -64,7 +62,6 @@ public class CardHolderScript : MonoBehaviour
                                 _beingDragged = false;
                                 CardUIManager.me.cardHolderBeingDragged = null;
                         }
-                        //_beingDragged = Input.GetMouseButton(0);
                 }
                 else
                 {

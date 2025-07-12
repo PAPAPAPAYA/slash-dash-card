@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3256136685877446496}
   - component: {fileID: 4452187437054643163}
-  - component: {fileID: 5420824701539620775}
+  - component: {fileID: 4910757343140303950}
   - component: {fileID: 1043718249537806943}
   m_Layer: 0
-  m_Name: AddAmmo
+  m_Name: BoostNextSlashDmg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,21 +67,9 @@ MonoBehaviour:
   CardActivateEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5420824701539620775}
-        m_TargetAssemblyTypeName: AmmoEffect, Assembly-CSharp
-        m_MethodName: AddAmmo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5420824701539620775}
-        m_TargetAssemblyTypeName: AmmoEffect, Assembly-CSharp
-        m_MethodName: LoadResetAmmoCounter
+      - m_Target: {fileID: 4910757343140303950}
+        m_TargetAssemblyTypeName: BuffEffect, Assembly-CSharp
+        m_MethodName: BoostHandIndex
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -93,19 +81,7 @@ MonoBehaviour:
         m_CallState: 2
   onToHandEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5420824701539620775}
-        m_TargetAssemblyTypeName: AmmoEffect, Assembly-CSharp
-        m_MethodName: SpawnBullet
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnToGraveEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -121,7 +97,7 @@ MonoBehaviour:
   OnAnyCardActivated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5420824701539620775
+--- !u!114 &4910757343140303950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,13 +106,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1560987572977044186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 826d56613aab78d4d839b0926bfcf099, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f1152d756d19184d86675b4493b439e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoAddAmount: 1
-  ammoCounter: {fileID: 11400000, guid: 898db290dabad0046a823ed9da1f2aa1, type: 2}
-  bulletRef: {fileID: 11400000, guid: 27eed4e279cc04a4f844c240c2ab1678, type: 2}
-  bulletHp: {fileID: 11400000, guid: 6a9ae4fbad76e8f40a2cfd27069983ab, type: 2}
+  indexToBoost: 1
+  amountToBoost: 1
+  thingToBoost: 0
 --- !u!114 &1043718249537806943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Add Ammo, When Drawn Shooot Bullet
+  cardName: Boost Next Card's Slash
   dmg: 1
   tempCard: 0
   myHandIndex: 0

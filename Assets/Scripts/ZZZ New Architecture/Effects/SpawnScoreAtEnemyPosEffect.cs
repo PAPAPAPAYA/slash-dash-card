@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnObjAtPosEffect : MonoBehaviour
+public class SpawnScoreAtEnemyPosEffect : MonoBehaviour
 {
-	public GameObject gameObjectToSpawn;
 	public int amountToSpawn;
 	public float chanceToScore;
+	public float chanceToSpawn;
 	
-	public void SpawnObject(GameObject enemy)
+	public void SpawnDummyScore(GameObject enemy)
 	{
 		if (!enemy.GetComponent<EnemyScript>()) return;
 		for (var i = 0; i < amountToSpawn; i++)
 		{
-			enemy.GetComponent<EnemyScript>().ShootOutCorpse(chanceToScore);
+			if (Random.value < chanceToSpawn)
+			{
+				enemy.GetComponent<EnemyScript>().ShootOutCorpse(chanceToScore);
+			}
 		}
 	}
 }
