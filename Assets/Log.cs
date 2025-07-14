@@ -11,15 +11,32 @@
 		//// create corpses no exp
 			////todo test
 			//// change score sprite when is dummy
+		// more explosion
+			// buff for explosion
 		//// chance to spawn more corpses yes exp when killing an enemy
 	//// draw bullet
 		//// when drawn self, shoot bullet
 		//// draw last used card from grave
+		// more add ammo
 	// discard madness
+		// todo: test discard function
 		// more cards to benefit from being discarded
+		// discarded to heal
+		// discarded to explode
+		// discarded to draw
+		// discarded to add ammo
+		// more madness
+		// more card to discard
+			// discard curse to madness
 	// pandora heal
+		// implement compulsive add curse
 		// more curse card
 		// more cards that benefit from curses
+			// burn all curses in hand, add dmg
+			// each curses in hand, add dmg times
+		// curse to explode
+		// curse to draw
+		// curse to add ammo
 	// copy last used card
 		// debug
 	//? self burn poison
@@ -40,6 +57,7 @@
 	//// self burn, explosion when entering grave
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
+	// different rarity and different chance
 	//// show slash dmg
 	//// todo last card in grave doesn't need to be dashed
 	//// todo refs of magnet and cardholder become missing when putting a card to option magnet then putting it back

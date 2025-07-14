@@ -92,6 +92,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onToHandEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnToGraveEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -143,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266511e72b3a8394c949c05117d415ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawAmount: 0
   cardToAddToGrave: {fileID: 0}
   cardToAddToHand: {fileID: 0}
 --- !u!114 &8988590651337314115
@@ -170,6 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Madness Cut
+  cardName: Discard Next, Madness Slash
   dmg: 1
   tempCard: 0
+  myHandIndex: 0
+  myGraveIndex: 0

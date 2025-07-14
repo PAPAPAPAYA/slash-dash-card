@@ -37,7 +37,8 @@ public class CardMannipulationEffect : MonoBehaviour
                 }
                 else
                 {
-                        CardManagerNew.me.MoveCard_HandLastToGraveFirst();
+                        var myCardIndex = GetComponent<CardScript>().myHandIndex;
+                        CardManagerNew.me.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
                         if (cost)
                         {
                                 CardManagerNew.me.costPayed = true;

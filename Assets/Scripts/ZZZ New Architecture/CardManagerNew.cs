@@ -60,7 +60,7 @@ public class CardManagerNew : MonoBehaviour
 		{
 			if (!hand[0].GetComponent<CardScript>().tempCard)
 			{
-				hand[0].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when send to grave
+				hand[0].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when sent to grave
 				grave.Add(hand[0]);
 				hand[0].GetComponent<CardScript>().ResetDmg();
 			}
@@ -82,10 +82,33 @@ public class CardManagerNew : MonoBehaviour
 		{
 			if (!hand[^1].GetComponent<CardScript>().tempCard)
 			{
-				hand[^1].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when send to grave
+				hand[^1].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when sent to grave
 				grave.Insert(0, hand[^1]);
 			}
 			hand.RemoveAt(hand.Count - 1);
+			_cardUIManager.UpdateHandUI();
+			_cardUIManager.UpdateGraveUI();
+			_cardUIManager.UpdateHandMagnets();
+			_cardUIManager.UpdateGraveMagnets();
+			UpdateIndex();
+		}
+		if (hand.Count == 0)
+		{
+			reloaded = false;
+		}
+	}
+	public void MoveCardSystem_HandIndexToGraveLast(int index)
+	{
+		if (hand.Count > 0)
+		{
+			if (!hand[index].GetComponent<CardScript>().tempCard)
+			{
+				hand[index].GetComponent<CardEventTrigger>().InvokeOnDiscardedEvent(); //! when discarded to grave
+				hand[index].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when sent to grave
+				grave.Add(hand[index]);
+				hand[index].GetComponent<CardScript>().ResetDmg();
+			}
+			hand.RemoveAt(index);
 			_cardUIManager.UpdateHandUI();
 			_cardUIManager.UpdateGraveUI();
 			_cardUIManager.UpdateHandMagnets();
