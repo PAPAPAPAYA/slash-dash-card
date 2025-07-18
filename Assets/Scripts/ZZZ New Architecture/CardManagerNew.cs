@@ -14,8 +14,12 @@ public class CardManagerNew : MonoBehaviour
 		{
 			var cardInst = Instantiate(card);
 			cardInst.transform.parent = transform;
-			hand.Add(cardInst);
-			cardInst.SetActive(true);
+			hand.Add(Instantiate(card));
+			//cardInst.SetActive(true);
+		}
+		foreach (var card in hand)
+		{
+			card.SetActive(true); // so that cards' OnEnables are called when all cards are in hand
 		}
 		_handCountOg = hand.Count;
 		UpdateIndex();
@@ -62,7 +66,7 @@ public class CardManagerNew : MonoBehaviour
 			{
 				hand[0].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when sent to grave
 				grave.Add(hand[0]);
-				hand[0].GetComponent<CardScript>().ResetDmg();
+				//hand[0].GetComponent<CardScript>().ResetDmg();
 			}
 			hand.RemoveAt(0);
 			_cardUIManager.UpdateHandUI();
@@ -106,7 +110,7 @@ public class CardManagerNew : MonoBehaviour
 				hand[index].GetComponent<CardEventTrigger>().InvokeOnDiscardedEvent(); //! when discarded to grave
 				hand[index].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when sent to grave
 				grave.Add(hand[index]);
-				hand[index].GetComponent<CardScript>().ResetDmg();
+				//hand[index].GetComponent<CardScript>().ResetDmg();
 			}
 			hand.RemoveAt(index);
 			_cardUIManager.UpdateHandUI();

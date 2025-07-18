@@ -11,7 +11,7 @@ public class MadnessEffect : MonoBehaviour
 	}
 	public void ApplyMadnessToDmg()
 	{
-		transform.GetComponent<CardScript>().dmg += madnessCounterRef.value;
+		GetComponent<CardScript>().dmg += madnessCounterRef.value;
 	}
 	public void ResetMadness()
 	{

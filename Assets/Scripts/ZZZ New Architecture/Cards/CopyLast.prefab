@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5732878546815970330
 Transform:
   m_ObjectHideFlags: 0
@@ -67,7 +67,13 @@ MonoBehaviour:
   CardActivateEvent:
     m_PersistentCalls:
       m_Calls: []
+  onToHandEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnToGraveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDiscardedEvent:
     m_PersistentCalls:
       m_Calls: []
   OnDmgCalculation:
@@ -130,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64eae06663271f43bbebd6ff81fb730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _myTrigger: {fileID: 0}
 --- !u!114 &8785565306040362626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,3 +152,5 @@ MonoBehaviour:
   cardName: Copy Last Used Card
   dmg: 1
   tempCard: 0
+  myHandIndex: 0
+  myGraveIndex: 0

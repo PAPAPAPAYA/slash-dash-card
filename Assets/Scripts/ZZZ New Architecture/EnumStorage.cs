@@ -21,6 +21,7 @@ public class EnumStorage : MonoBehaviour
 	public enum BuffCategory
 	{
 		slashDmg,
-		slashWidth
+		slashWidth,
+		becomeMadness
 	}
 }

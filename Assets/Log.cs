@@ -4,6 +4,9 @@
 //* misc
 	//// switch to rider
 //* card
+	// todo: discarding a card as cost messes up card order in the grave
+	// todo: madness dmg boost not taking effect
+		// todo: adding non persistent listeners in buff effect is weird
 	//// boost next card dmg
 		//// reset
 	//// corpse explosion
@@ -18,13 +21,15 @@
 		//// when drawn self, shoot bullet
 		//// draw last used card from grave
 		// more add ammo
+		// more draw
 	// discard madness
-		// todo: test discard function
+		//// todo: test discard function
 		// more cards to benefit from being discarded
-		// discarded to heal
-		// discarded to explode
-		// discarded to draw
-		// discarded to add ammo
+			//// discarded to heal
+			// discarded to explode
+			//// discarded to draw
+			//// discarded to add ammo
+			// discarded to add madness
 		// more madness
 		// more card to discard
 			// discard curse to madness

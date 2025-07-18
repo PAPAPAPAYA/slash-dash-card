@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3256136685877446496
 Transform:
   m_ObjectHideFlags: 0
@@ -109,6 +109,9 @@ MonoBehaviour:
   OnToGraveEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnDiscardedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnDmgCalculation:
     m_PersistentCalls:
       m_Calls: []
@@ -149,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Add Ammo, When Drawn Shooot Bullet
+  cardName: Add [Ammo], When Drawn Shooot Bullet
   dmg: 1
   tempCard: 0
   myHandIndex: 0

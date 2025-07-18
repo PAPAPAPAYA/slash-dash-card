@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7687162125735939421
 Transform:
   m_ObjectHideFlags: 0
@@ -85,6 +85,9 @@ MonoBehaviour:
   OnToGraveEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnDiscardedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnDmgCalculation:
     m_PersistentCalls:
       m_Calls: []
@@ -127,3 +130,5 @@ MonoBehaviour:
   cardName: spawn dummy score
   dmg: 1
   tempCard: 0
+  myHandIndex: 0
+  myGraveIndex: 0

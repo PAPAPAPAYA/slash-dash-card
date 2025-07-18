@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6697035864405710740
 Transform:
   m_ObjectHideFlags: 0
@@ -71,6 +71,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnToGraveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDiscardedEvent:
     m_PersistentCalls:
       m_Calls: []
   OnDmgCalculation:
@@ -127,3 +130,5 @@ MonoBehaviour:
   cardName: Death Explosion
   dmg: 1
   tempCard: 0
+  myHandIndex: 0
+  myGraveIndex: 0

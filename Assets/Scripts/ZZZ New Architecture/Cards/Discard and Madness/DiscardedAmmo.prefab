@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7677447964595475450
+--- !u!1 &7722139111272446604
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7687162125735939421}
-  - component: {fileID: 1985561835630797147}
-  - component: {fileID: 3402914949657072690}
-  - component: {fileID: 3589631536816475824}
+  - component: {fileID: 7648072534631336507}
+  - component: {fileID: 5507425805820695180}
+  - component: {fileID: -7265639359032594163}
+  - component: {fileID: 8663154644140724166}
   m_Layer: 0
-  m_Name: ChanceToSpawnCorpses
+  m_Name: DiscardedAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &7687162125735939421
+--- !u!4 &7648072534631336507
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677447964595475450}
+  m_GameObject: {fileID: 7722139111272446604}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1985561835630797147
+--- !u!114 &5507425805820695180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677447964595475450}
+  m_GameObject: {fileID: 7722139111272446604}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c992d514cd7efe40820f6d093c28dd3, type: 3}
@@ -49,7 +49,7 @@ MonoBehaviour:
   TryPayCostEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3589631536816475824}
+      - m_Target: {fileID: 8663154644140724166}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: SetCostPayed
         m_Mode: 1
@@ -75,17 +75,11 @@ MonoBehaviour:
       m_Calls: []
   OnDiscardedEvent:
     m_PersistentCalls:
-      m_Calls: []
-  OnDmgCalculation:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEnemyKilled:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3402914949657072690}
-        m_TargetAssemblyTypeName: SpawnScoreAtEnemyPosEffect, Assembly-CSharp
-        m_MethodName: SpawnDummyScore
-        m_Mode: 0
+      - m_Target: {fileID: -7265639359032594163}
+        m_TargetAssemblyTypeName: AmmoEffect, Assembly-CSharp
+        m_MethodName: AddAmmo
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -94,40 +88,47 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDmgCalculation:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyKilled:
+    m_PersistentCalls:
+      m_Calls: []
   OnSlashFinished:
     m_PersistentCalls:
       m_Calls: []
   OnAnyCardActivated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3402914949657072690
+--- !u!114 &-7265639359032594163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677447964595475450}
+  m_GameObject: {fileID: 7722139111272446604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e3de026aec6f4346a442e605fbea89b, type: 3}
+  m_Script: {fileID: 11500000, guid: 826d56613aab78d4d839b0926bfcf099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountToSpawn: 2
-  chanceToScore: 1
-  chanceToSpawn: 0.5
---- !u!114 &3589631536816475824
+  ammoAddAmount: 1
+  ammoCounter: {fileID: 11400000, guid: 898db290dabad0046a823ed9da1f2aa1, type: 2}
+  bulletRef: {fileID: 11400000, guid: 27eed4e279cc04a4f844c240c2ab1678, type: 2}
+  bulletHp: {fileID: 11400000, guid: 6a9ae4fbad76e8f40a2cfd27069983ab, type: 2}
+--- !u!114 &8663154644140724166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677447964595475450}
+  m_GameObject: {fileID: 7722139111272446604}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Chance to spawn 2 score
+  cardName: When Discarded, Add [Ammo]
   dmg: 1
   tempCard: 0
   myHandIndex: 0

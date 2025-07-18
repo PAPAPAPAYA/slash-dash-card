@@ -16,6 +16,7 @@ public class CardScript : MonoBehaviour
 	}
 	public void ResetDmg()
 	{
+		print(cardName+": reset dmg");
 		dmg = _ogDmg;
 	}
 

@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8256150214712601699
 Transform:
   m_ObjectHideFlags: 0
@@ -80,6 +80,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onToHandEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnToGraveEvent:
     m_PersistentCalls:
       m_Calls:
@@ -95,6 +98,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDiscardedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnDmgCalculation:
     m_PersistentCalls:
       m_Calls: []
@@ -119,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266511e72b3a8394c949c05117d415ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawAmount: 0
   cardToAddToGrave: {fileID: 0}
   cardToAddToHand: {fileID: 5925643762552677827, guid: d3455c2e3aef4114ca65d3054a6e4125, type: 3}
 --- !u!114 &8063705759560178760
@@ -150,3 +157,5 @@ MonoBehaviour:
   cardName: Add Curse and Heal
   dmg: 1
   tempCard: 0
+  myHandIndex: 0
+  myGraveIndex: 0
