@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indexToBoost: 1
   amountToBoost: 1
-  thingToBoost: 0
+  thingToBoost: 2
   madnessEffect: {fileID: -3461300577002485903}
   cardScript: {fileID: 8663154644140724166}
 --- !u!114 &-3461300577002485903

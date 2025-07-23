@@ -6,7 +6,9 @@
 //* card
 	// todo: discarding a card as cost messes up card order in the grave
 	// todo: madness dmg boost not taking effect
-		// todo: adding non persistent listeners in buff effect is weird
+		//// todo: adding non persistent listeners in buff effect is weird
+		// todo: reset madness correctly
+		// todo: don't add [madness] to name everytime
 	//// boost next card dmg
 		//// reset
 	//// corpse explosion

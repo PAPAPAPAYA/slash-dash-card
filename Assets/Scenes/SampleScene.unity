@@ -6036,6 +6036,7 @@ MonoBehaviour:
   initCards:
   - {fileID: 7722139111272446604, guid: e0ff9ad911f71e746b73dd7483d1536f, type: 3}
   - {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
+  - {fileID: 4718930035311488727, guid: d59c138e84087e34da508308f583dff3, type: 3}
   hand: []
   grave: []
   reloaded: 0

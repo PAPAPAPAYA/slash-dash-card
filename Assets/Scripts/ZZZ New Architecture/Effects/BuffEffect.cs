@@ -31,10 +31,7 @@ public class BuffEffect : MonoBehaviour
                 {
                         case EnumStorage.BuffCategory.slashDmg:
                                 _cardToBoost.GetComponent<CardScript>().dmg += amountToBoost;
-                                print(_cardToBoost.GetComponent<CardScript>().cardName);
-                                _cardToBoost.GetComponent<CardEventTrigger>().OnSlashFinished.AddListener(cardScript.ResetDmg);
-                                _cardToBoost.GetComponent<CardEventTrigger>().InvokeOnSlashFinished();
-                                print(_cardToBoost.GetComponent<CardScript>().cardName);
+                                _cardToBoost.GetComponent<CardEventTrigger>().OnSlashFinished.AddListener(_cardToBoost.GetComponent<CardScript>().ResetDmg);
                                 break;
                         case EnumStorage.BuffCategory.slashWidth:
                                 break;
