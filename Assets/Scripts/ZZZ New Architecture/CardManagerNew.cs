@@ -143,6 +143,25 @@ public class CardManagerNew : MonoBehaviour
 			UpdateIndex();
 		}
 	}
+	public void MoveCardSystem_GraveFirstToHandLast()
+	{
+        if (grave.Count > 0)
+        {
+            if (!grave[0].GetComponent<CardScript>().tempCard)
+            {
+                grave[0].GetComponent<CardEventTrigger>().InvokeOnToHandEvent(); //! when drawn to hand
+
+                hand.Add(grave[0]);
+                grave.RemoveAt(0);
+            }
+            _cardUIManager.UpdateHandUI();
+            _cardUIManager.UpdateGraveUI();
+            _cardUIManager.UpdateHandMagnets();
+            _cardUIManager.UpdateGraveMagnets();
+            LingerEffectManager.me.InvokeOnAnyCardDrawnEvent();
+            UpdateIndex();
+        }
+    }
 	public void MoveCard_GraveLastToHandLast()
 	{
 		if (grave.Count > 0)

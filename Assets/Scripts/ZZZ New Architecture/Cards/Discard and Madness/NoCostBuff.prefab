@@ -116,7 +116,7 @@ MonoBehaviour:
   indexToBoost: 1
   amountToBoost: 1
   thingToBoost: 2
-  madnessEffect: {fileID: -3461300577002485903}
+  madnessEffectCounter: {fileID: 11400000, guid: f5331a9a34a6b0343a13af5603560eef, type: 2}
   cardScript: {fileID: 8663154644140724166}
 --- !u!114 &-3461300577002485903
 MonoBehaviour:

@@ -269,7 +269,7 @@ MonoBehaviour:
   scorePrefab: {fileID: 7639828799481462458, guid: aded9cedb3a221042b7e3758ed1d003f, type: 3}
   score: 0
   score_spawnForce: 30
-  upgradeAmount: 1
+  upgradeAmount: 50
   upgradeAmount_scaler: 1.5
   hpIndicator: {fileID: 1051494346}
   scoreIndicator: {fileID: 551337192}

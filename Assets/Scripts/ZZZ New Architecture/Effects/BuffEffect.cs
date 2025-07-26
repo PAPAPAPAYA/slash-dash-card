@@ -9,7 +9,7 @@ public class BuffEffect : MonoBehaviour
         public int indexToBoost; // + self index
         public int amountToBoost;
         public EnumStorage.BuffCategory thingToBoost;
-        public MadnessEffect madnessEffect;
+        public IntVaribaleSO madnessEffectCounter;
         public CardScript cardScript;
         private GameObject _cardToBoost;
         private CardManagerNew _cmn;
@@ -36,11 +36,13 @@ public class BuffEffect : MonoBehaviour
                         case EnumStorage.BuffCategory.slashWidth:
                                 break;
                         case EnumStorage.BuffCategory.becomeMadness:
-                                _cardToBoost.GetComponent<CardEventTrigger>().CardActivateEvent.AddListener(madnessEffect.LoadResetMadness);
-                                _cardToBoost.GetComponent<CardEventTrigger>().CardActivateEvent.AddListener(madnessEffect.ApplyMadnessToDmg);
-                                _cardToBoost.GetComponent<CardEventTrigger>().OnSlashFinished.AddListener(madnessEffect.AddMadness);
-                                _cardToBoost.GetComponent<CardEventTrigger>().OnSlashFinished.AddListener(cardScript.ResetDmg);
-                                _cardToBoost.GetComponent<CardScript>().cardName+=" [Madness]";
+                                _cardToBoost.AddComponent<MadnessEffect>();
+                                _cardToBoost.GetComponent<MadnessEffect>().madnessCounterRef = madnessEffectCounter;
+                                _cardToBoost.GetComponent<CardEventTrigger>().CardActivateEvent.AddListener(_cardToBoost.GetComponent<MadnessEffect>().LoadResetMadness);
+                                _cardToBoost.GetComponent<CardEventTrigger>().CardActivateEvent.AddListener(_cardToBoost.GetComponent<MadnessEffect>().ApplyMadnessToDmg);
+                                _cardToBoost.GetComponent<CardEventTrigger>().OnSlashFinished.AddListener(_cardToBoost.GetComponent<MadnessEffect>().AddMadness);
+                                _cardToBoost.GetComponent<CardEventTrigger>().OnSlashFinished.AddListener(_cardToBoost.GetComponent<CardScript>().ResetDmg);
+                                _cardToBoost.GetComponent<CardScript>().cardName ="[Madness] "+ _cardToBoost.GetComponent<CardScript>().cardName;
                                 break;
                         default:
                                 break;

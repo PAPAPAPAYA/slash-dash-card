@@ -8,6 +8,7 @@ public class MadnessEffect : MonoBehaviour
 	public void AddMadness()
 	{
 		madnessCounterRef.value++;
+		print(GetComponent<CardScript>().cardName + ": madness added");
 	}
 	public void ApplyMadnessToDmg()
 	{

@@ -6,7 +6,22 @@ using UnityEngine.Events;
 public class CardEventTrigger : MonoBehaviour
 {
 	public UnityEvent<bool> TryPayCostEvent;
-	public void InvokeTryPayCostEvent() // 尝试支付cost
+	private CardScript _myCS;
+    private void OnEnable()
+    {
+		if (GetComponent<CardScript>())
+		{
+            _myCS = GetComponent<CardScript>();
+        }
+		else
+		{
+			Debug.LogError("this gameobject needs a card script");
+		}
+		//onToHandEvent.AddListener(_myCS.ResetCardName);
+        //onToHandEvent.AddListener(_myCS.ResetEventTrigger);
+		
+    }
+    public void InvokeTryPayCostEvent() // 尝试支付cost
 	{
 		TryPayCostEvent.Invoke(true);
 	}

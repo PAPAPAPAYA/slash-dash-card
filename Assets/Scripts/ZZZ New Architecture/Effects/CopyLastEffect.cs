@@ -35,11 +35,14 @@ public class CopyLastEffect : MonoBehaviour
                 {
                         print("last trigger null");
                 }
-                _myTrigger.CardActivateEvent =  _lastTrigger.CardActivateEvent;
+                _myTrigger.TryPayCostEvent = _lastTrigger.TryPayCostEvent;
                 _myTrigger.EnemyHitEvent = _lastTrigger.EnemyHitEvent;
-                _myTrigger.OnDmgCalculation =  _lastTrigger.OnDmgCalculation;
-                _myTrigger.OnSlashFinished =  _lastTrigger.OnSlashFinished;
+                _myTrigger.CardActivateEvent =  _lastTrigger.CardActivateEvent;
+                _myTrigger.onToHandEvent = _lastTrigger.onToHandEvent;
                 _myTrigger.OnToGraveEvent = _lastTrigger.OnToGraveEvent;
+                _myTrigger.OnDiscardedEvent = _lastTrigger.OnDiscardedEvent;
+                _myTrigger.OnDmgCalculation =  _lastTrigger.OnDmgCalculation;
                 _myTrigger.OnEnemyKilled = _lastTrigger.OnEnemyKilled;
+                _myTrigger.OnSlashFinished =  _lastTrigger.OnSlashFinished;
         }
 }

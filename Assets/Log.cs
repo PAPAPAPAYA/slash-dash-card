@@ -5,16 +5,19 @@
 	//// switch to rider
 //* card
 	// todo: discarding a card as cost messes up card order in the grave
-	// todo: madness dmg boost not taking effect
+	//// todo: madness dmg boost not taking effect
 		//// todo: adding non persistent listeners in buff effect is weird
-		// todo: reset madness correctly
-		// todo: don't add [madness] to name everytime
+		//// todo: reset madness correctly
+		//// todo: not applying madness dmg boost
+		//// todo: reset cards when they are drawn
+		//// todo: don't add [madness] to name everytime
+			//// reset name when drawn
 	//// boost next card dmg
 		//// reset
 	//// corpse explosion
 		//// change unityEvent to pass in dynamic parameter pos
 		//// create corpses no exp
-			////todo test
+			//// todo test
 			//// change score sprite when is dummy
 		// more explosion
 			// buff for explosion
