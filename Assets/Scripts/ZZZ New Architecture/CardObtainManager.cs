@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardObtainManager : MonoBehaviour
@@ -30,20 +31,22 @@ public class CardObtainManager : MonoBehaviour
         public void ShowCardOptions()
         {
                 ActivateCardMagnets();
+                // make card holders
                 for (var i = 0; i < 3; i++)
                 {
-                        var option = Instantiate(cardHolderPrefab) ;
-                        option.transform.position = optionPos[i].position;
-                        option.transform.localScale = optionPos[i].localScale;
-                        option.transform.SetParent(gameObject.transform);
-                        option.GetComponent<CardHolderScript>().myMagnet = optionPos[i].gameObject;
-                        var card = Instantiate(RollCardOption());
-                        card.transform.SetParent(CardManagerNew.me.transform);
-                        newCards.Add(card);
-                        option.GetComponent<CardHolderScript>().myCard = card;
-                        optionPos[i].GetComponent<CardMagnetScript>().myCardHolder = option;
-                        option.SetActive(true);
-                        newCardHolders.Add(option);
+                        var option = Instantiate(cardHolderPrefab); // instantiate
+                        option.transform.position = optionPos[i].position; // set pos
+                        option.transform.localScale = optionPos[i].localScale; // set scale
+                        option.transform.SetParent(gameObject.transform); // set parent
+                        option.GetComponent<CardHolderScript>().myMagnet = optionPos[i].gameObject; // assign magnet to card holder
+                        var card = Instantiate(RollCardOption()); // roll a card
+                        card.transform.SetParent(CardManagerNew.me.transform); // set card's parent
+                        newCards.Add(card); // add card to list (so that we can destroy it later)
+                        option.GetComponent<CardHolderScript>().myCard = card; // assign card to card holder
+                        optionPos[i].GetComponent<CardMagnetScript>().myCardHolder = option; // assign card holder to magnet
+                        option.SetActive(true); // enable card holder
+                        newCardHolders.Add(option); // add card holder to list
+                        // if all card holders are made, stop time
                         if (i == 2)
                         {
                                 Time.timeScale = 0;
@@ -64,18 +67,43 @@ public class CardObtainManager : MonoBehaviour
         }
         public void ConfirmButtonFunc()
         {
+                // destroy all new card holders
                 foreach (var cardOption in newCardHolders)
                 {
                         Destroy(cardOption);
                 }
-                foreach (var card in newCards)
-                {
-                        if (!CardManagerNew.me.hand.Contains(card))
-                        {
-                                Destroy(card);
-                        }
-                }
+                // clear new card holders list
                 newCardHolders.Clear();
+                // destroy all cards that isn't in card manager new's hand list
+                //foreach (var card in newCards)
+                //{
+                //        if (!CardManagerNew.me.hand.Contains(card))
+                //        {
+                //                Destroy(card);
+                //        }
+                //        else
+                //        {
+                //                card.SetActive(true);
+                //        }
+                //}
+                
+                // todo: work backwards, clean up item not in card manager new's hand list
+                for (int i = newCards.Count - 1; i >= 0; i--)
+                {
+                    if (!CardManagerNew.me.hand.Contains(newCards[i]))
+                    {
+                        Destroy(newCards[i]);
+                        newCards.RemoveAt(i);
+                    }
+                    else // if the card is newly added to hand, enable it and invoke WhenSelected event
+                    {
+                        newCards[i].SetActive(true);
+                        newCards[i].GetComponent<CardEventTrigger>().InvokeWhenSelected(); //! when card is put into hand when leveling up
+                    }
+                }
+                // clear new cards list
+                //newCards.Clear();
+                // disable option magnets
                 foreach (var option in optionPos)
                 {
                         option.gameObject.SetActive(false);
@@ -88,5 +116,6 @@ public class CardObtainManager : MonoBehaviour
                 
                 GameManager.me.currentGameState.gameState = EnumStorage.GameState.game;
                 Time.timeScale = 1;
+                
         }
 }

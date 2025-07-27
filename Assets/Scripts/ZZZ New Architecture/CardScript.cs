@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,6 +15,7 @@ public class CardScript : MonoBehaviour
 	private CardEventTrigger _myEventTrigger;
 	public int myHandIndex;
 	public int myGraveIndex;
+	private Component[] myComponents;
     private void OnEnable()
 	{
 		_ogCardName = cardName;
@@ -25,9 +28,9 @@ public class CardScript : MonoBehaviour
 		{
 			Debug.LogWarning("couldn't get card event trigger");
 		}
-        
+		myComponents = GetComponents<Component>();
     }
-	public void ResetDmg()
+    public void ResetDmg()
 	{
 		dmg = _ogDmg;
 	}
@@ -41,7 +44,6 @@ public class CardScript : MonoBehaviour
 	{
 		_myEventTrigger.EnemyHitEvent.RemoveAllListeners();
         _myEventTrigger.CardActivateEvent.RemoveAllListeners();
-
         _myEventTrigger.onToHandEvent.RemoveAllListeners();
         _myEventTrigger.OnToGraveEvent.RemoveAllListeners();
         _myEventTrigger.OnDiscardedEvent.RemoveAllListeners();
@@ -52,5 +54,20 @@ public class CardScript : MonoBehaviour
 	public void ResetCardName()
 	{
 		cardName = _ogCardName;
+	}
+	public void ResetComponents()
+	{
+		foreach (var component in GetComponents<Component>())
+		{
+			if (!myComponents.Contains(component))
+			{
+				Destroy(component);
+			}
+		}
+	}
+
+	public void Print() // for debugging and testing
+	{
+		print(cardName + "'s test func called");
 	}
 }

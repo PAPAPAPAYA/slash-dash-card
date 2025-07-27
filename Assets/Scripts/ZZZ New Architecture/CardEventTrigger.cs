@@ -82,4 +82,10 @@ public class CardEventTrigger : MonoBehaviour
 	{
 		OnAnyCardActivated.Invoke();
 	}
+
+	public UnityEvent WhenSelected; // 当被加入到手牌时
+	public void InvokeWhenSelected()
+	{
+		WhenSelected.Invoke();
+	}
 }

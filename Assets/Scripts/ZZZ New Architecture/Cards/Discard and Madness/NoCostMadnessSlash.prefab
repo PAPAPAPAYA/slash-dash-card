@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8988590651337314115}
   - component: {fileID: 5803037462683335607}
   m_Layer: 0
-  m_Name: MadnessSlash 1
+  m_Name: NoCostMadnessSlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Discard Next, [Madness] Slash
+  cardName: '[Madness] Slash'
   dmg: 1
   tempCard: 0
   myHandIndex: 0

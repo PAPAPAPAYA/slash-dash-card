@@ -26,23 +26,40 @@ public class CardMannipulationEffect : MonoBehaviour
                 CardManagerNew.me.hand.Insert(0, Instantiate(cardToAddToHand));
                 CardUIManager.me.UpdateHandUI();
         }
-        public void DiscardNextCard(bool cost)
+        public void CheckIfTheresCardToDiscard()
         {
-                if (CardManagerNew.me.hand.Count <= 1)
-                {
-                        if (cost)
-                        {
-                                CardManagerNew.me.costPayed = false;
-                        }
-                }
-                else
-                {
-                        var myCardIndex = GetComponent<CardScript>().myHandIndex;
-                        CardManagerNew.me.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
-                        if (cost)
-                        {
-                                CardManagerNew.me.costPayed = true;
-                        }
-                }
+            if (CardManagerNew.me.hand.Count <= 1)
+            {
+                CardManagerNew.me.costPayed = false;
+            }
+            else
+            {
+                CardManagerNew.me.costPayed = true;
+            }
         }
+        public void DiscardNextCard()
+        {
+            var myCardIndex = GetComponent<CardScript>().myHandIndex;
+            CardManagerNew.me.MoveCardSystem_HandFirstToGraveLast();
+            //CardManagerNew.me.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
+        }
+    //public void DiscardNextCard(bool cost)
+    //    {
+    //            if (CardManagerNew.me.hand.Count <= 1)
+    //            {
+    //                    if (cost)
+    //                    {
+    //                            CardManagerNew.me.costPayed = false;
+    //                    }
+    //            }
+    //            else
+    //            {
+    //                    var myCardIndex = GetComponent<CardScript>().myHandIndex;
+    //                    CardManagerNew.me.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
+    //                    if (cost)
+    //                    {
+    //                            CardManagerNew.me.costPayed = true;
+    //                    }
+    //            }
+    //    }
 }

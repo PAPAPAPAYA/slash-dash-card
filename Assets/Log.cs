@@ -4,7 +4,10 @@
 //* misc
 	//// switch to rider
 //* card
-	// todo: discarding a card as cost messes up card order in the grave
+	//// todo: discarding a card as cost messes up card order in the grave
+		//// try pay cost event only check if the cost can be satisfied, pay cost in activation event
+		//// not buffing
+		//// order still wrong, hand index!!
 	//// todo: madness dmg boost not taking effect
 		//// todo: adding non persistent listeners in buff effect is weird
 		//// todo: reset madness correctly
@@ -12,6 +15,7 @@
 		//// todo: reset cards when they are drawn
 		//// todo: don't add [madness] to name everytime
 			//// reset name when drawn
+		//// madness effect component is destroyed when resetting, and is only added when card doesn't have it already
 	//// boost next card dmg
 		//// reset
 	//// corpse explosion
@@ -34,12 +38,13 @@
 			// discarded to explode
 			//// discarded to draw
 			//// discarded to add ammo
-			// discarded to add madness
+			//// discarded to add madness
 		// more madness
 		// more card to discard
 			// discard curse to madness
 	// pandora heal
 		// implement compulsive add curse
+			//// time point: when added to hand in upgrade menu
 		// more curse card
 		// more cards that benefit from curses
 			// burn all curses in hand, add dmg
@@ -67,6 +72,7 @@
 	//// self burn, explosion when entering grave
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
+	// todo: when entering upgrade menu and moving all cards from grave to hand, the order is messed up
 	// different rarity and different chance
 	//// show slash dmg
 	//// todo last card in grave doesn't need to be dashed

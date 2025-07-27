@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7648072534631336507}
   - component: {fileID: 5507425805820695180}
   - component: {fileID: -6976314058547697525}
-  - component: {fileID: -7413863383467359623}
   - component: {fileID: 8663154644140724166}
   m_Layer: 0
   m_Name: DiscardedMadness
@@ -116,21 +115,8 @@ MonoBehaviour:
   indexToBoost: 1
   amountToBoost: 0
   thingToBoost: 2
-  madnessEffect: {fileID: -7413863383467359623}
+  madnessEffectCounter: {fileID: 11400000, guid: f5331a9a34a6b0343a13af5603560eef, type: 2}
   cardScript: {fileID: 8663154644140724166}
---- !u!114 &-7413863383467359623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722139111272446604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e253f6634aa9d5342a9c82a0ce7d95d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  madnessCounterRef: {fileID: 11400000, guid: f5331a9a34a6b0343a13af5603560eef, type: 2}
 --- !u!114 &8663154644140724166
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class CardManagerNew : MonoBehaviour
 		{
 			var cardInst = Instantiate(card);
 			cardInst.transform.parent = transform;
-			hand.Add(Instantiate(card));
+			hand.Add(cardInst);
 			//cardInst.SetActive(true);
 		}
 		foreach (var card in hand)
@@ -58,7 +59,30 @@ public class CardManagerNew : MonoBehaviour
 			MoveCard_GraveFirstToHandLast();
 		}
 	}
-	public void MoveCard_HandFirstToGraveLast()
+    public void MoveCardSystem_HandFirstToGraveLast()
+    {
+        if (hand.Count > 0)
+        {
+            if (!hand[0].GetComponent<CardScript>().tempCard)
+            {
+                hand[0].GetComponent<CardEventTrigger>().InvokeOnDiscardedEvent(); //! when discarded to grave
+                hand[0].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when sent to grave
+                grave.Add(hand[0]);
+                //hand[0].GetComponent<CardScript>().ResetDmg();
+            }
+            hand.RemoveAt(0);
+            _cardUIManager.UpdateHandUI();
+            _cardUIManager.UpdateGraveUI();
+            _cardUIManager.UpdateHandMagnets();
+            _cardUIManager.UpdateGraveMagnets();
+            UpdateIndex();
+        }
+        if (hand.Count == 0)
+        {
+            reloaded = false;
+        }
+    }
+    public void MoveCard_HandFirstToGraveLast()
 	{
 		if (hand.Count > 0)
 		{
@@ -189,7 +213,7 @@ public class CardManagerNew : MonoBehaviour
 		}
 		foreach (var card in grave)
 		{
-			card.GetComponent<CardScript>().myGraveIndex = hand.IndexOf(card);
+			card.GetComponent<CardScript>().myGraveIndex = grave.IndexOf(card);
 		}
 	}
 }
