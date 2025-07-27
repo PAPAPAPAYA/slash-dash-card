@@ -4,6 +4,7 @@
 //* misc
 	//// switch to rider
 //* card
+	// need to add reset funcs to all cards
 	//// todo: discarding a card as cost messes up card order in the grave
 		//// try pay cost event only check if the cost can be satisfied, pay cost in activation event
 		//// not buffing
