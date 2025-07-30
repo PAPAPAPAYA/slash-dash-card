@@ -38,13 +38,14 @@
 			//// discarded to heal
 			// discarded to explode
 			//// discarded to draw
+			// todo:  discarded to draw [ammo] WIP
 			//// discarded to add ammo
 			//// discarded to add madness
 		// more madness
 		// more card to discard
 			// discard curse to madness
 	// pandora heal
-		// implement compulsive add curse
+		// todo: implement compulsive add curse
 			//// time point: when added to hand in upgrade menu
 		// more curse card
 		// more cards that benefit from curses
@@ -73,7 +74,7 @@
 	//// self burn, explosion when entering grave
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
-	// todo: when entering upgrade menu and moving all cards from grave to hand, the order is messed up
+	//!: when entering upgrade menu and moving all cards from grave to hand, the order is messed up
 	// different rarity and different chance
 	//// show slash dmg
 	//// todo last card in grave doesn't need to be dashed

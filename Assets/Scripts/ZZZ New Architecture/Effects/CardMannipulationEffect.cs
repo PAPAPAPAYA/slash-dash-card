@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class CardMannipulationEffect : MonoBehaviour
 {
-        [Header("DRAW")]
-        public int drawAmount;
-        [Header("ADD")]
-        public GameObject cardToAddToGrave;
+        [Header("DRAW")] public int drawAmount;
+        [Header("ADD")] public GameObject cardToAddToGrave;
         public GameObject cardToAddToHand;
 
         public void DrawFromGrave()
@@ -17,7 +15,7 @@ public class CardMannipulationEffect : MonoBehaviour
                         CardManagerNew.me.MoveCard_GraveLastToHandLast();
                 }
         }
-        public void AddCurseToGrave() 
+        public void AddCurseToGrave()
         {
                 CardManagerNew.me.grave.Add(Instantiate(cardToAddToGrave));
         }
@@ -28,38 +26,47 @@ public class CardMannipulationEffect : MonoBehaviour
         }
         public void CheckIfTheresCardToDiscard()
         {
-            if (CardManagerNew.me.hand.Count <= 1)
-            {
-                CardManagerNew.me.costPayed = false;
-            }
-            else
-            {
-                CardManagerNew.me.costPayed = true;
-            }
+                if (CardManagerNew.me.hand.Count < 1)
+                {
+                        CardManagerNew.me.costPayed = false;
+                }
+                else
+                {
+                        CardManagerNew.me.costPayed = true;
+                }
         }
         public void DiscardNextCard()
         {
-            var myCardIndex = GetComponent<CardScript>().myHandIndex;
-            CardManagerNew.me.MoveCardSystem_HandFirstToGraveLast();
-            //CardManagerNew.me.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
+                CardManagerNew.me.MoveCardSystem_HandFirstToGraveLast();
+                //CardManagerNew.me.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
         }
-    //public void DiscardNextCard(bool cost)
-    //    {
-    //            if (CardManagerNew.me.hand.Count <= 1)
-    //            {
-    //                    if (cost)
-    //                    {
-    //                            CardManagerNew.me.costPayed = false;
-    //                    }
-    //            }
-    //            else
-    //            {
-    //                    var myCardIndex = GetComponent<CardScript>().myHandIndex;
-    //                    CardManagerNew.me.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
-    //                    if (cost)
-    //                    {
-    //                            CardManagerNew.me.costPayed = true;
-    //                    }
-    //            }
-    //    }
+        public void DrawAmmoCard()
+        {
+                foreach (var cardHolder in CardUIManager.me.cardHolders_grave)
+                {
+                        if (!cardHolder.GetComponent<CardHolderScript>().myCard.GetComponent<AmmoEffect>()) continue;
+                        cardToAddToHand = cardHolder;
+                        print("add "+cardToAddToHand.GetComponent<CardHolderScript>().myCard.GetComponent<CardScript>().cardName+" to hand");
+                        return;
+                }
+        }
+        //public void DiscardNextCard(bool cost)
+        //    {
+        //            if (CardManagerNew.me.hand.Count <= 1)
+        //            {
+        //                    if (cost)
+        //                    {
+        //                            CardManagerNew.me.costPayed = false;
+        //                    }
+        //            }
+        //            else
+        //            {
+        //                    var myCardIndex = GetComponent<CardScript>().myHandIndex;
+        //                    CardManagerNew.me.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
+        //                    if (cost)
+        //                    {
+        //                            CardManagerNew.me.costPayed = true;
+        //                    }
+        //            }
+        //    }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6834034160802002736}
   - component: {fileID: 8663154644140724166}
   m_Layer: 0
-  m_Name: DiscardedDraw
+  m_Name: DiscardedDrawAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6834034160802002736}
         m_TargetAssemblyTypeName: CardMannipulationEffect, Assembly-CSharp
-        m_MethodName: DrawFromGrave
+        m_MethodName: DrawAmmoCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -98,6 +98,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnAnyCardActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  WhenSelected:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &6834034160802002736
@@ -127,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: When Discarded, Draw
+  cardName: When Discarded, Draw [Ammo]
   dmg: 1
   tempCard: 0
   myHandIndex: 0
