@@ -52,6 +52,17 @@ public class CardManagerNew : MonoBehaviour
         {
                 _handCountOg = hand.Count;
         }
+        public void MoveCardFromGraveToHand(GameObject cardHolder)
+        {
+                if (!grave.Contains(cardHolder)) return;
+                hand.Add(cardHolder);
+                grave.Remove(cardHolder);
+                _cardUIManager.UpdateHandUI();
+                _cardUIManager.UpdateGraveUI();
+                _cardUIManager.UpdateHandMagnets();
+                _cardUIManager.UpdateGraveMagnets();
+                UpdateIndex();
+        }
         public void MoveAllGraveToHand() // move all cards in grave to hand
         {
                 while (grave.Count > 0)

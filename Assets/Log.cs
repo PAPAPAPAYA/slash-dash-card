@@ -2,6 +2,7 @@
 
 //* 2025/05/05
 //* misc
+	// document
 	//// switch to rider
 //* card
 	// need to add reset funcs to all cards
@@ -39,6 +40,10 @@
 			// discarded to explode
 			//// discarded to draw
 			// todo:  discarded to draw [ammo] WIP
+				// when adding cards to hand, should we draw them and reorder the grave or copy them from grave to hand? since if we only draw them straight from grave, the order is messed up
+					// drawing and reorder later introduces more depth, but would it be too complicated?
+					// yes it would, just copy them
+				// todo: null ref error is thrown
 			//// discarded to add ammo
 			//// discarded to add madness
 		// more madness

@@ -1,44 +1,50 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CardMannipulationEffect : MonoBehaviour
 {
+        private CardManagerNew _cmn;
         [Header("DRAW")] public int drawAmount;
         [Header("ADD")] public GameObject cardToAddToGrave;
         public GameObject cardToAddToHand;
-
+        
+        private void Start()
+        {
+                _cmn = CardManagerNew.me;
+        }
         public void DrawFromGrave()
         {
                 for (int i = 0; i < drawAmount; i++)
                 {
-                        CardManagerNew.me.MoveCard_GraveLastToHandLast();
+                        _cmn.MoveCard_GraveLastToHandLast();
                 }
         }
         public void AddCurseToGrave()
         {
-                CardManagerNew.me.grave.Add(Instantiate(cardToAddToGrave));
+                _cmn.grave.Add(Instantiate(cardToAddToGrave));
         }
         public void AddCurseToHand()
         {
-                CardManagerNew.me.hand.Insert(0, Instantiate(cardToAddToHand));
+                _cmn.hand.Insert(0, Instantiate(cardToAddToHand));
                 CardUIManager.me.UpdateHandUI();
         }
         public void CheckIfTheresCardToDiscard()
         {
-                if (CardManagerNew.me.hand.Count < 1)
+                if (_cmn.hand.Count < 1)
                 {
-                        CardManagerNew.me.costPayed = false;
+                        _cmn.costPayed = false;
                 }
                 else
                 {
-                        CardManagerNew.me.costPayed = true;
+                        _cmn.costPayed = true;
                 }
         }
         public void DiscardNextCard()
         {
-                CardManagerNew.me.MoveCardSystem_HandFirstToGraveLast();
-                //CardManagerNew.me.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
+                _cmn.MoveCardSystem_HandFirstToGraveLast();
+                //_cmn.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
         }
         public void DrawAmmoCard()
         {
@@ -46,26 +52,29 @@ public class CardMannipulationEffect : MonoBehaviour
                 {
                         if (!cardHolder.GetComponent<CardHolderScript>().myCard.GetComponent<AmmoEffect>()) continue;
                         cardToAddToHand = cardHolder;
-                        print("add "+cardToAddToHand.GetComponent<CardHolderScript>().myCard.GetComponent<CardScript>().cardName+" to hand");
+                        cardToAddToHand.GetComponent<CardHolderScript>().myCard.GetComponent<CardScript>().tempCard = true;
+                        _cmn.hand.Add(cardToAddToHand);
+                        //_cmn.hand.Insert(0, cardToAddToHand);
+                        print("add ["+cardToAddToHand.GetComponent<CardHolderScript>().myCard.GetComponent<CardScript>().cardName+"] to hand");
                         return;
                 }
         }
         //public void DiscardNextCard(bool cost)
         //    {
-        //            if (CardManagerNew.me.hand.Count <= 1)
+        //            if (_cmn.hand.Count <= 1)
         //            {
         //                    if (cost)
         //                    {
-        //                            CardManagerNew.me.costPayed = false;
+        //                            _cmn.costPayed = false;
         //                    }
         //            }
         //            else
         //            {
         //                    var myCardIndex = GetComponent<CardScript>().myHandIndex;
-        //                    CardManagerNew.me.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
+        //                    _cmn.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
         //                    if (cost)
         //                    {
-        //                            CardManagerNew.me.costPayed = true;
+        //                            _cmn.costPayed = true;
         //                    }
         //            }
         //    }
