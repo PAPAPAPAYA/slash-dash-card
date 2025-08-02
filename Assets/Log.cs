@@ -1,6 +1,9 @@
 // log
 
 //* 2025/05/05
+//* Doc
+	// move cards first, then invoke effect
+	// card movement logic are in CardManagerNew, CardUIManager will update according to CardManagerNew's lists
 //* misc
 	// document
 	//// switch to rider
@@ -39,11 +42,11 @@
 			//// discarded to heal
 			// discarded to explode
 			//// discarded to draw
-			// todo:  discarded to draw [ammo] WIP
-				// when adding cards to hand, should we draw them and reorder the grave or copy them from grave to hand? since if we only draw them straight from grave, the order is messed up
-					// drawing and reorder later introduces more depth, but would it be too complicated?
-					// yes it would, just copy them
-				// todo: null ref error is thrown
+			//// todo:  discarded to draw [ammo] WIP
+				//// when adding cards to hand, should we draw them and reorder the grave or copy them from grave to hand? since if we only draw them straight from grave, the order is messed up
+					//// drawing and reorder later introduces more depth, but would it be too complicated?
+					//// yes it would, don't care about grave order, just draw them in hand order when reloading
+				//// todo: null ref error is thrown
 			//// discarded to add ammo
 			//// discarded to add madness
 		// more madness
@@ -79,6 +82,7 @@
 	//// self burn, explosion when entering grave
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
+	//// todo: don't care about grave's order, when reloading, draw cards in hand order
 	//!: when entering upgrade menu and moving all cards from grave to hand, the order is messed up
 	// different rarity and different chance
 	//// show slash dmg

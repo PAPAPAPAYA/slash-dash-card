@@ -18,6 +18,7 @@ public class CardHolderScript : MonoBehaviour
 
         private void OnEnable()
         {
+                //print("my card: "+myCard.name);
                 GetComponentInChildren<TextMeshPro>().text = myCard.GetComponent<CardScript>().cardName
                         + "\n\n" + myCard.GetComponent<CardScript>().dmg;
         }

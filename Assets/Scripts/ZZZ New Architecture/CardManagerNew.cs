@@ -35,12 +35,14 @@ public class CardManagerNew : MonoBehaviour
         public CardScript activatedCard;
         public CardScript lastUsedCard;
         public bool costPayed;
+        private List<GameObject> _handOrder = new List<GameObject>(); // copy a list of hand
 
         private void Update()
         {
                 if (hand.Count >= _handCountOg && !reloaded)
                 {
                         reloaded = true;
+                        UtilityFuncManagerScript.me.CopyGameObjectList(hand, _handOrder);
                         LingerEffectManager.me.InvokeOnReloadedEvent();
                 }
                 if (hand.Count == 0)
@@ -63,6 +65,35 @@ public class CardManagerNew : MonoBehaviour
                 _cardUIManager.UpdateGraveMagnets();
                 UpdateIndex();
         }
+        public void ReloadOne() // draw one card according to hand order
+        {
+                var cardToDraw = _handOrder[hand.Count];
+                DrawCardFromGraveToHandLast(cardToDraw);
+        }
+        public void DrawCardFromGraveToHandLast(GameObject card)
+        {
+                if (!grave.Contains(card)) return;
+                hand.Add(card);
+                card.GetComponent<CardEventTrigger>()?.InvokeOnToHandEvent();
+                grave.Remove(card);
+                _cardUIManager.UpdateHandUI();
+                _cardUIManager.UpdateGraveUI();
+                _cardUIManager.UpdateHandMagnets();
+                _cardUIManager.UpdateGraveMagnets();
+                UpdateIndex();
+        }
+        public void DrawCardFromGraveToHandFirst(GameObject card)
+        {
+                if (!grave.Contains(card)) return;
+                hand.Insert(0, card);
+                card.GetComponent<CardEventTrigger>()?.InvokeOnToHandEvent();
+                grave.Remove(card);
+                _cardUIManager.UpdateHandUI();
+                _cardUIManager.UpdateGraveUI();
+                _cardUIManager.UpdateHandMagnets();
+                _cardUIManager.UpdateGraveMagnets();
+                UpdateIndex();
+        }
         public void MoveAllGraveToHand() // move all cards in grave to hand
         {
                 while (grave.Count > 0)
@@ -74,15 +105,17 @@ public class CardManagerNew : MonoBehaviour
         {
                 if (hand.Count > 0)
                 {
-                        if (!hand[0].GetComponent<CardScript>().tempCard)
+                        var cardToMove = hand[0];
+                        hand.RemoveAt(0);
+                        if (!cardToMove.GetComponent<CardScript>().tempCard)
                         {
-                                hand[0].GetComponent<CardEventTrigger>()
+                                cardToMove.GetComponent<CardEventTrigger>()
                                         .InvokeOnDiscardedEvent(); //! when discarded to grave
-                                hand[0].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when sent to grave
-                                grave.Add(hand[0]);
+                                cardToMove.GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when sent to grave
+                                grave.Add(cardToMove);
                                 //hand[0].GetComponent<CardScript>().ResetDmg();
                         }
-                        hand.RemoveAt(0);
+                        
                         _cardUIManager.UpdateHandUI();
                         _cardUIManager.UpdateGraveUI();
                         _cardUIManager.UpdateHandMagnets();
@@ -98,13 +131,16 @@ public class CardManagerNew : MonoBehaviour
         {
                 if (hand.Count > 0)
                 {
-                        if (!hand[0].GetComponent<CardScript>().tempCard)
+                        var cardToMove = hand[0];
+                        hand.RemoveAt(0);
+                        if (!cardToMove.GetComponent<CardScript>().tempCard)
                         {
-                                hand[0].GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when sent to grave
-                                grave.Add(hand[0]);
+                                grave.Add(cardToMove);
+                                cardToMove.GetComponent<CardEventTrigger>().InvokeOntoGraveEvent(); //! when sent to grave
+                                
                                 //hand[0].GetComponent<CardScript>().ResetDmg();
                         }
-                        hand.RemoveAt(0);
+                        
                         _cardUIManager.UpdateHandUI();
                         _cardUIManager.UpdateGraveUI();
                         _cardUIManager.UpdateHandMagnets();

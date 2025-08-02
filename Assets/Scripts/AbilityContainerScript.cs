@@ -31,7 +31,7 @@ public class AbilityContainerScript : MonoBehaviour
 	void Start()
 	{
 		og_abilityName = abilityName;
-		UtilityFuncManagerScript.me.CopyList(myAbilities, og_myAbilities);
+		//UtilityFuncManagerScript.me.CopyList(myAbilities, og_myAbilities);
 		og_tempCard = tempCard;
 		og_dmg = dmg;
 		og_ammoAddAmount = ammoAddAmount;

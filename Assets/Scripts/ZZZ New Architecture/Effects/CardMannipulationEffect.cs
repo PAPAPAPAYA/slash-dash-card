@@ -48,14 +48,11 @@ public class CardMannipulationEffect : MonoBehaviour
         }
         public void DrawAmmoCard()
         {
-                foreach (var cardHolder in CardUIManager.me.cardHolders_grave)
+                foreach (var card in _cmn.grave)
                 {
-                        if (!cardHolder.GetComponent<CardHolderScript>().myCard.GetComponent<AmmoEffect>()) continue;
-                        cardToAddToHand = cardHolder;
-                        cardToAddToHand.GetComponent<CardHolderScript>().myCard.GetComponent<CardScript>().tempCard = true;
-                        _cmn.hand.Add(cardToAddToHand);
-                        //_cmn.hand.Insert(0, cardToAddToHand);
-                        print("add ["+cardToAddToHand.GetComponent<CardHolderScript>().myCard.GetComponent<CardScript>().cardName+"] to hand");
+                        if (!card.GetComponent<AmmoEffect>()) continue;
+                        print("card to add: "+card.name);
+                        _cmn.DrawCardFromGraveToHandFirst(card);
                         return;
                 }
         }

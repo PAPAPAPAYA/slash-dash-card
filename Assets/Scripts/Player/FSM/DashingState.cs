@@ -3,7 +3,8 @@ public class DashingState : State
 	public override void OnEnter(StateController stateController)
 	{
 		base.OnEnter(stateController);
-		sc.cmn.MoveCard_GraveFirstToHandLast();
+		//sc.cmn.MoveCard_GraveFirstToHandLast();
+		sc.cmn.ReloadOne();
 	}
 	public override void OnUpdate()
 	{
