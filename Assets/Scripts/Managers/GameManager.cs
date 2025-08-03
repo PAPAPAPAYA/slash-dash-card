@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 			CardObtainManager.me.ShowCardOptions();
 			CardObtainManager.me.ShowConfirmButton();
 			currentGameState.gameState = EnumStorage.GameState.upgrade;
+			CardManagerNew.me.MoveAllHandToGrave();
 			CardManagerNew.me.MoveAllGraveToHand();
 			CardUIManager.me.AssignMagnets();
 			CardUIManager.me.ActivateNextMagnet();

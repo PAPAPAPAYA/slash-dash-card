@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7648072534631336507}
   - component: {fileID: 5507425805820695180}
-  - component: {fileID: -8256803847631814306}
-  - component: {fileID: -3461300577002485903}
+  - component: {fileID: -6976314058547697525}
   - component: {fileID: 8663154644140724166}
   m_Layer: 0
-  m_Name: DiscardedBuff
+  m_Name: DiscardedMadnessBuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +76,7 @@ MonoBehaviour:
   OnDiscardedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -8256803847631814306}
+      - m_Target: {fileID: -6976314058547697525}
         m_TargetAssemblyTypeName: BuffEffect, Assembly-CSharp
         m_MethodName: BoostHandIndex
         m_Mode: 1
@@ -101,7 +100,7 @@ MonoBehaviour:
   OnAnyCardActivated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-8256803847631814306
+--- !u!114 &-6976314058547697525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,23 +113,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indexToBoost: 1
-  amountToBoost: 1
-  thingToBoost: 0
-  madnessEffectCounter: {fileID: 0}
+  amountToBoost: 0
+  thingToBoost: 2
+  madnessEffectCounter: {fileID: 11400000, guid: f5331a9a34a6b0343a13af5603560eef, type: 2}
   cardScript: {fileID: 8663154644140724166}
---- !u!114 &-3461300577002485903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722139111272446604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e253f6634aa9d5342a9c82a0ce7d95d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  madnessCounterRef: {fileID: 11400000, guid: f5331a9a34a6b0343a13af5603560eef, type: 2}
 --- !u!114 &8663154644140724166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: When Discarded, Buff Next Slash Dmg
+  cardName: When Discarded, Next Card [Madness]
   dmg: 1
   tempCard: 0
   myHandIndex: 0

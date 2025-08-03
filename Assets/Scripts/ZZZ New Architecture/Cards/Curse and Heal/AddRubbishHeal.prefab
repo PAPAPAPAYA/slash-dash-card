@@ -67,12 +67,6 @@ MonoBehaviour:
       m_Calls: []
   CardActivateEvent:
     m_PersistentCalls:
-      m_Calls: []
-  onToHandEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnToGraveEvent:
-    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8063705759560178760}
         m_TargetAssemblyTypeName: HPEffect, Assembly-CSharp
@@ -86,6 +80,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onToHandEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnToGraveEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnDiscardedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -101,6 +101,21 @@ MonoBehaviour:
   OnAnyCardActivated:
     m_PersistentCalls:
       m_Calls: []
+  WhenSelected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8655754742116681359}
+        m_TargetAssemblyTypeName: CardMannipulationEffect, Assembly-CSharp
+        m_MethodName: CompulsiveCardAdd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8655754742116681359
 MonoBehaviour:
   m_ObjectHideFlags: 0

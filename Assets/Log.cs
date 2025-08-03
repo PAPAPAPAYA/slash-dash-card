@@ -53,7 +53,7 @@
 		// more card to discard
 			// discard curse to madness
 	// pandora heal
-		// todo: implement compulsive add curse
+		//// todo: implement compulsive add curse
 			//// time point: when added to hand in upgrade menu
 		// more curse card
 		// more cards that benefit from curses
@@ -83,7 +83,7 @@
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
 	//// todo: don't care about grave's order, when reloading, draw cards in hand order
-	//!: when entering upgrade menu and moving all cards from grave to hand, the order is messed up
+	////!: when entering upgrade menu and moving all cards from grave to hand, the order is messed up
 	// different rarity and different chance
 	//// show slash dmg
 	//// todo last card in grave doesn't need to be dashed
@@ -151,8 +151,8 @@
       // 根据spawner允许的敌人数，拉远镜头，扩充场景
       // spawn敌人在围墙内
 //* upgrade
-      // UI
-      // 计算经验值
+      //// UI
+      //// 计算经验值
       // abilities
 	    // 增加伤害
 	    // 增加击中时的stun

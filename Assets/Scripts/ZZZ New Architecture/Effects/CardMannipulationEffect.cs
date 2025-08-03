@@ -21,6 +21,16 @@ public class CardMannipulationEffect : MonoBehaviour
                         _cmn.MoveCard_GraveLastToHandLast();
                 }
         }
+        public void CompulsiveCardAdd()
+        {
+                CardObtainManager.me.ShowCardOptions_specifyCard(cardToAddToHand);
+                CardObtainManager.me.ShowConfirmButton();
+                GameManager.me.currentGameState.gameState = EnumStorage.GameState.upgrade;
+                //CardManagerNew.me.MoveAllHandToGrave();
+                //CardManagerNew.me.MoveAllGraveToHand();
+                CardUIManager.me.AssignMagnets();
+                CardUIManager.me.ActivateNextMagnet();
+        }
         public void AddCurseToGrave()
         {
                 _cmn.grave.Add(Instantiate(cardToAddToGrave));
@@ -51,28 +61,8 @@ public class CardMannipulationEffect : MonoBehaviour
                 foreach (var card in _cmn.grave)
                 {
                         if (!card.GetComponent<AmmoEffect>()) continue;
-                        print("card to add: "+card.name);
                         _cmn.DrawCardFromGraveToHandFirst(card);
                         return;
                 }
         }
-        //public void DiscardNextCard(bool cost)
-        //    {
-        //            if (_cmn.hand.Count <= 1)
-        //            {
-        //                    if (cost)
-        //                    {
-        //                            _cmn.costPayed = false;
-        //                    }
-        //            }
-        //            else
-        //            {
-        //                    var myCardIndex = GetComponent<CardScript>().myHandIndex;
-        //                    _cmn.MoveCardSystem_HandIndexToGraveLast(myCardIndex + 1);
-        //                    if (cost)
-        //                    {
-        //                            _cmn.costPayed = true;
-        //                    }
-        //            }
-        //    }
 }

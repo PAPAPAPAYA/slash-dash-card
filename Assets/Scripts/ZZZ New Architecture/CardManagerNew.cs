@@ -42,13 +42,17 @@ public class CardManagerNew : MonoBehaviour
                 if (hand.Count >= _handCountOg && !reloaded)
                 {
                         reloaded = true;
-                        UtilityFuncManagerScript.me.CopyGameObjectList(hand, _handOrder);
-                        LingerEffectManager.me.InvokeOnReloadedEvent();
+                        UpdateHandOrderList();
+                        LingerEffectManager.me.InvokeOnReloadedEvent(); //! reloaded event
                 }
                 if (hand.Count == 0)
                 {
                         reloaded = false;
                 }
+        }
+        public void UpdateHandOrderList()
+        {
+                UtilityFuncManagerScript.me.CopyGameObjectList(hand, _handOrder);
         }
         public void UpdateHandCountOG()
         {
@@ -74,7 +78,7 @@ public class CardManagerNew : MonoBehaviour
         {
                 if (!grave.Contains(card)) return;
                 hand.Add(card);
-                card.GetComponent<CardEventTrigger>()?.InvokeOnToHandEvent();
+                card.GetComponent<CardEventTrigger>()?.InvokeOnToHandEvent(); //! to hand event
                 grave.Remove(card);
                 _cardUIManager.UpdateHandUI();
                 _cardUIManager.UpdateGraveUI();
@@ -86,7 +90,7 @@ public class CardManagerNew : MonoBehaviour
         {
                 if (!grave.Contains(card)) return;
                 hand.Insert(0, card);
-                card.GetComponent<CardEventTrigger>()?.InvokeOnToHandEvent();
+                card.GetComponent<CardEventTrigger>()?.InvokeOnToHandEvent(); //! to hand event
                 grave.Remove(card);
                 _cardUIManager.UpdateHandUI();
                 _cardUIManager.UpdateGraveUI();
@@ -94,11 +98,19 @@ public class CardManagerNew : MonoBehaviour
                 _cardUIManager.UpdateGraveMagnets();
                 UpdateIndex();
         }
+        public void MoveAllHandToGrave()
+        {
+                while (hand.Count > 0)
+                {
+                        MoveCard_HandFirstToGraveLast();
+                }
+        }
         public void MoveAllGraveToHand() // move all cards in grave to hand
         {
                 while (grave.Count > 0)
                 {
-                        MoveCard_GraveFirstToHandLast();
+                        //MoveCard_GraveFirstToHandLast();
+                        ReloadOne();
                 }
         }
         public void MoveCardSystem_HandFirstToGraveLast()
