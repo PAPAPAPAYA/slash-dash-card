@@ -172,3 +172,4 @@ MonoBehaviour:
   tempCard: 0
   myHandIndex: 0
   myGraveIndex: 0
+  myTags: 03000000

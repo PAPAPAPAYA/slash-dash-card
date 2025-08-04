@@ -113,6 +113,8 @@ public class CardObtainManager : MonoBehaviour
                 CardManagerNew.me.UpdateHandOrderList();
                 GameManager.me.currentGameState.gameState = EnumStorage.GameState.game;
                 Time.timeScale = 1;
+                // record new card
+                var newCard = new GameObject();
                 // work backwards, clean up item not in card manager new's hand list
                 for (int i = newCards.Count - 1; i >= 0; i--)
                 {
@@ -124,9 +126,13 @@ public class CardObtainManager : MonoBehaviour
                         else // if the card is newly added to hand, enable it and invoke WhenSelected event
                         {
                                 newCards[i].SetActive(true);
-                                newCards[i].GetComponent<CardEventTrigger>().InvokeWhenSelected(); //! when card is put into hand when leveling up
+                                newCard = newCards[i];
                         }
                 }
                 newCards.Clear();
+                if (newCard)
+                {
+                        newCard.GetComponent<CardEventTrigger>().InvokeWhenSelected(); //! when card is put into hand when leveling up
+                }
         }
 }

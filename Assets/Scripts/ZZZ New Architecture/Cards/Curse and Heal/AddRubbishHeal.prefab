@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawAmount: 0
   cardToAddToGrave: {fileID: 0}
-  cardToAddToHand: {fileID: 5925643762552677827, guid: d3455c2e3aef4114ca65d3054a6e4125, type: 3}
+  cardToAddToHand: {fileID: 5925643762552677827, guid: 9459e82bc8e38c640a79a514e4da1be9, type: 3}
 --- !u!114 &8063705759560178760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,8 +157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Add Curse and Heal
+  cardName: Cursed Heal
   dmg: 1
   tempCard: 0
   myHandIndex: 0
   myGraveIndex: 0
+  myTag: 0

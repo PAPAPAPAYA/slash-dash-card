@@ -10,7 +10,7 @@ public class CardMannipulationEffect : MonoBehaviour
         [Header("ADD")] public GameObject cardToAddToGrave;
         public GameObject cardToAddToHand;
         
-        private void Start()
+        private void OnEnable()
         {
                 _cmn = CardManagerNew.me;
         }
@@ -30,15 +30,6 @@ public class CardMannipulationEffect : MonoBehaviour
                 //CardManagerNew.me.MoveAllGraveToHand();
                 CardUIManager.me.AssignMagnets();
                 CardUIManager.me.ActivateNextMagnet();
-        }
-        public void AddCurseToGrave()
-        {
-                _cmn.grave.Add(Instantiate(cardToAddToGrave));
-        }
-        public void AddCurseToHand()
-        {
-                _cmn.hand.Insert(0, Instantiate(cardToAddToHand));
-                CardUIManager.me.UpdateHandUI();
         }
         public void CheckIfTheresCardToDiscard()
         {
@@ -63,6 +54,15 @@ public class CardMannipulationEffect : MonoBehaviour
                         if (!card.GetComponent<AmmoEffect>()) continue;
                         _cmn.DrawCardFromGraveToHandFirst(card);
                         return;
+                }
+        }
+        // todo: need testing
+        public void DiscardAllCurse()
+        {
+                foreach (var card in _cmn.hand)
+                {
+                        if (!card.GetComponent<CardScript>().myTags.Contains(EnumStorage.Tag.curse)) continue;
+                        _cmn.MoveCardFromGraveToHand(card);
                 }
         }
 }

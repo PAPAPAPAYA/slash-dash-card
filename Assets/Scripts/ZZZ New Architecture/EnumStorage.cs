@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class EnumStorage : MonoBehaviour
 {
+	public enum Tag
+	{
+		none,
+		curse,
+		sacrificed,
+		ammo,
+		madness,
+		corpse
+	}
 	public enum DmgType
 	{
 		playerSlash,

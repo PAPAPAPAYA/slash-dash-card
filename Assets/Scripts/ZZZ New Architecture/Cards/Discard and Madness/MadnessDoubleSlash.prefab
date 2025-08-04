@@ -150,6 +150,9 @@ MonoBehaviour:
   OnAnyCardActivated:
     m_PersistentCalls:
       m_Calls: []
+  WhenSelected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5754057568416518541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,3 +211,4 @@ MonoBehaviour:
   tempCard: 0
   myHandIndex: 0
   myGraveIndex: 0
+  myTags: 04000000

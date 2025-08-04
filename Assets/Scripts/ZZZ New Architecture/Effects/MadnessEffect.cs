@@ -9,6 +9,19 @@ public class MadnessEffect : MonoBehaviour
 	{
 		madnessCounterRef.value++;
 	}
+	// todo: need testing
+	public void AddMadnessAccordingToCurseInGrave()
+	{
+		var tagAmount = 0;
+		foreach (var card in CardManagerNew.me.grave)
+		{
+			if (card.GetComponent<CardScript>().myTags.Contains(EnumStorage.Tag.curse))
+			{
+				tagAmount++;
+			}
+		}
+		madnessCounterRef.value += tagAmount;
+	}
 	public void ApplyMadnessToDmg()
 	{
 		GetComponent<CardScript>().dmg += madnessCounterRef.value;

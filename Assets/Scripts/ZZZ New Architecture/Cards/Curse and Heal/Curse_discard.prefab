@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7722139111272446604
+--- !u!1 &5925643762552677827
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7648072534631336507}
-  - component: {fileID: 5507425805820695180}
-  - component: {fileID: -7265639359032594163}
-  - component: {fileID: 8663154644140724166}
+  - component: {fileID: 1246814817749287062}
+  - component: {fileID: 4197852778064033386}
+  - component: {fileID: 4164072368948644625}
+  - component: {fileID: 4250100001516542659}
   m_Layer: 0
-  m_Name: DiscardedAmmo
+  m_Name: Curse_discard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &7648072534631336507
+--- !u!4 &1246814817749287062
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722139111272446604}
+  m_GameObject: {fileID: 5925643762552677827}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5507425805820695180
+--- !u!114 &4197852778064033386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722139111272446604}
+  m_GameObject: {fileID: 5925643762552677827}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c992d514cd7efe40820f6d093c28dd3, type: 3}
@@ -49,9 +49,9 @@ MonoBehaviour:
   TryPayCostEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8663154644140724166}
-        m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
-        m_MethodName: SetCostPayed
+      - m_Target: {fileID: 4250100001516542659}
+        m_TargetAssemblyTypeName: CardMannipulationEffect, Assembly-CSharp
+        m_MethodName: CheckIfTheresCardToDiscard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -66,19 +66,10 @@ MonoBehaviour:
       m_Calls: []
   CardActivateEvent:
     m_PersistentCalls:
-      m_Calls: []
-  onToHandEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnToGraveEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDiscardedEvent:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -7265639359032594163}
-        m_TargetAssemblyTypeName: AmmoEffect, Assembly-CSharp
-        m_MethodName: AddAmmo
+      - m_Target: {fileID: 4250100001516542659}
+        m_TargetAssemblyTypeName: CardMannipulationEffect, Assembly-CSharp
+        m_MethodName: DiscardNextCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -88,6 +79,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onToHandEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnToGraveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDiscardedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnDmgCalculation:
     m_PersistentCalls:
       m_Calls: []
@@ -103,37 +103,36 @@ MonoBehaviour:
   WhenSelected:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-7265639359032594163
+--- !u!114 &4164072368948644625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722139111272446604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 826d56613aab78d4d839b0926bfcf099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoAddAmount: 1
-  ammoCounter: {fileID: 11400000, guid: 898db290dabad0046a823ed9da1f2aa1, type: 2}
-  bulletRef: {fileID: 11400000, guid: 27eed4e279cc04a4f844c240c2ab1678, type: 2}
-  bulletHp: {fileID: 11400000, guid: 6a9ae4fbad76e8f40a2cfd27069983ab, type: 2}
---- !u!114 &8663154644140724166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722139111272446604}
+  m_GameObject: {fileID: 5925643762552677827}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Sacrificed Reload
+  cardName: '[CURSE] Discard Next Card'
   dmg: 1
   tempCard: 0
   myHandIndex: 0
   myGraveIndex: 0
-  myTags: 0200000003000000
+  myTags: 01000000
+--- !u!114 &4250100001516542659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5925643762552677827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266511e72b3a8394c949c05117d415ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawAmount: 0
+  cardToAddToGrave: {fileID: 0}
+  cardToAddToHand: {fileID: 0}

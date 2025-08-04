@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class CardScript : MonoBehaviour
 {
+        [TextArea]
         public string cardName;
         private string _ogCardName;
         public int dmg;
@@ -15,6 +16,7 @@ public class CardScript : MonoBehaviour
         private CardEventTrigger _myEventTrigger;
         public int myHandIndex;
         public int myGraveIndex;
+        public List<EnumStorage.Tag> myTags;
         private Component[] myComponents;
         private void OnEnable()
         {

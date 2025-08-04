@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4139134272043970923}
   - component: {fileID: 4164072368948644625}
   m_Layer: 0
-  m_Name: Curse
+  m_Name: Curse_selfBurn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,6 +100,9 @@ MonoBehaviour:
   OnAnyCardActivated:
     m_PersistentCalls:
       m_Calls: []
+  WhenSelected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4139134272043970923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,8 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Self Burn
+  cardName: '[CURSE] Self Burn'
   dmg: 1
-  tempCard: 1
+  tempCard: 0
   myHandIndex: 0
   myGraveIndex: 0
+  myTags: 01000000

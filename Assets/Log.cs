@@ -9,6 +9,7 @@
 	//// switch to rider
 //* card
 	// need to add reset funcs to all cards
+	// mana
 	//// todo: discarding a card as cost messes up card order in the grave
 		//// try pay cost event only check if the cost can be satisfied, pay cost in activation event
 		//// not buffing
@@ -51,11 +52,14 @@
 			//// discarded to add madness
 		// more madness
 		// more card to discard
-			// discard curse to madness
+			// todo need testing: discard all curse to madness
 	// pandora heal
 		//// todo: implement compulsive add curse
 			//// time point: when added to hand in upgrade menu
+			//// fix invoking "when selected" time point  skipping confirm button func
 		// more curse card
+			//// self burn
+			//// discard
 		// more cards that benefit from curses
 			// burn all curses in hand, add dmg
 			// each curses in hand, add dmg times
@@ -82,6 +86,8 @@
 	//// self burn, explosion when entering grave
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
+	// tag
+		// need to modify DrawAmmoCard() implementation
 	//// todo: don't care about grave's order, when reloading, draw cards in hand order
 	////!: when entering upgrade menu and moving all cards from grave to hand, the order is messed up
 	// different rarity and different chance
