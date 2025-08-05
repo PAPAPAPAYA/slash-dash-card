@@ -59,10 +59,17 @@ public class CardMannipulationEffect : MonoBehaviour
         // todo: need testing
         public void DiscardAllCurse()
         {
-                foreach (var card in _cmn.hand)
+                for (var i = _cmn.hand.Count - 1; i >= 0; i--)
                 {
-                        if (!card.GetComponent<CardScript>().myTags.Contains(EnumStorage.Tag.curse)) continue;
-                        _cmn.MoveCardFromGraveToHand(card);
+                        if (_cmn.hand[i].GetComponent<CardScript>().myTags.Contains(EnumStorage.Tag.curse))
+                        {
+                                _cmn.MoveCardFromHandToGrave(_cmn.hand[i]);
+                        }
                 }
+                // foreach (var card in _cmn.hand)
+                // {
+                //         if (!card.GetComponent<CardScript>().myTags.Contains(EnumStorage.Tag.curse)) continue;
+                //         _cmn.MoveCardFromHandToGrave(card);
+                // }
         }
 }

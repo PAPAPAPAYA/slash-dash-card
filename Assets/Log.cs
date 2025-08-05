@@ -52,7 +52,7 @@
 			//// discarded to add madness
 		// more madness
 		// more card to discard
-			// todo need testing: discard all curse to madness
+			//// todo need testing: discard all curse to madness
 	// pandora heal
 		//// todo: implement compulsive add curse
 			//// time point: when added to hand in upgrade menu
@@ -86,6 +86,7 @@
 	//// self burn, explosion when entering grave
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
+	// need to show madness & ammo
 	// tag
 		// need to modify DrawAmmoCard() implementation
 	//// todo: don't care about grave's order, when reloading, draw cards in hand order

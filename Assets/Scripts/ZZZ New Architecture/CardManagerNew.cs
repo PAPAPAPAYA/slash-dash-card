@@ -58,11 +58,22 @@ public class CardManagerNew : MonoBehaviour
         {
                 _handCountOg = hand.Count;
         }
-        public void MoveCardFromGraveToHand(GameObject cardHolder)
+        public void MoveCardFromGraveToHand(GameObject card)
         {
-                if (!grave.Contains(cardHolder)) return;
-                hand.Add(cardHolder);
-                grave.Remove(cardHolder);
+                if (!grave.Contains(card)) return;
+                hand.Add(card);
+                grave.Remove(card);
+                _cardUIManager.UpdateHandUI();
+                _cardUIManager.UpdateGraveUI();
+                _cardUIManager.UpdateHandMagnets();
+                _cardUIManager.UpdateGraveMagnets();
+                UpdateIndex();
+        }
+        public void MoveCardFromHandToGrave(GameObject card)
+        {
+                if (!hand.Contains(card)) return;
+                grave.Add(card);
+                hand.Remove(card);
                 _cardUIManager.UpdateHandUI();
                 _cardUIManager.UpdateGraveUI();
                 _cardUIManager.UpdateHandMagnets();
