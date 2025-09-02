@@ -9,7 +9,10 @@
 	//// switch to rider
 //* card
 	// need to add reset funcs to all cards
-	// mana
+	//* mana
+		// add mana
+		// consume mana
+		// if player has mana, more dmg
 	//// todo: discarding a card as cost messes up card order in the grave
 		//// try pay cost event only check if the cost can be satisfied, pay cost in activation event
 		//// not buffing
@@ -24,7 +27,7 @@
 		//// madness effect component is destroyed when resetting, and is only added when card doesn't have it already
 	//// boost next card dmg
 		//// reset
-	//// corpse explosion
+	//* corpse explosion
 		//// change unityEvent to pass in dynamic parameter pos
 		//// create corpses no exp
 			//// todo test
@@ -32,12 +35,13 @@
 		// more explosion
 			// buff for explosion
 		//// chance to spawn more corpses yes exp when killing an enemy
-	//// draw bullet
+	//* draw bullet
 		//// when drawn self, shoot bullet
 		//// draw last used card from grave
 		// more add ammo
 		// more draw
-	// discard madness
+		// boost ammo dmg
+	//* discard madness
 		//// todo: test discard function
 		// more cards to benefit from being discarded
 			//// discarded to heal
@@ -53,7 +57,7 @@
 		// more madness
 		// more card to discard
 			//// todo need testing: discard all curse to madness
-	// pandora heal
+	//* pandora heal
 		//// todo: implement compulsive add curse
 			//// time point: when added to hand in upgrade menu
 			//// fix invoking "when selected" time point  skipping confirm button func
@@ -63,13 +67,17 @@
 		// more cards that benefit from curses
 			// burn all curses in hand, add dmg
 			// each curses in hand, add dmg times
-		// curse to explode
-		// curse to draw
-		// curse to add ammo
+		// todo test curse to explode
+		// todo test curse to draw
+		// todo test curse to add ammo
 	// copy last used card
 		// debug
-	//? self burn poison
-		// curse to self burn?
+	//* self burn poison
+		// give poison dot
+		// poisoned death spawn bullets
+		// poisoned enemy spawn more corpse
+		// poisoned explosion
+		//// curse to self burn
 	//// add a rubbish card
 		//// curse
 			//? need to be drawn two times

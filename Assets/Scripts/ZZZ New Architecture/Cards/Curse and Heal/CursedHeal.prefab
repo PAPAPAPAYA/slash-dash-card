@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8063705759560178760}
   - component: {fileID: 5237793213461125955}
   m_Layer: 0
-  m_Name: AddRubbishHeal
+  m_Name: CursedHeal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
