@@ -3,14 +3,39 @@
 //* 2025/05/05
 //* Doc
 	// move cards first, then invoke effect
-	// card movement logic are in CardManagerNew, CardUIManager will update according to CardManagerNew's lists
+	// card movement logics are in CardManagerNew, CardUIManager will update according to CardManagerNew's lists
 //* misc
 	// document
 	//// switch to rider
 //* card
+	//* passive effects
+		// when drawn, add lingering effect
+		// when selected, add lingering effect; when not in hand or grave, remove lingering effect
+		// when used, add lingering effect
+		// when in hand, add lingering effect, when in grave, remove lingering effect
+	//* count effects
+		// when hit enemies x times, effect
+		// when kill enemies x times, effect
+	//* on enemy killed
+		// when used, add lingering effect: on enemy killed effects become on enemy hit
+		// when hit x enemies, spawn a fake score
+		// high dmg, enemy will have 1 hp left
+		//// when enemy killed, might spawn more scores
+		//// when enemy killed, explosion
+		// when enemy killed, +madness
+		// when x enemies killed, hp+
+		// when enemy killed, next card add effect: on hit, explosion
+		// when poison kills, spawn 1 fake score
+	//* explosion
+		// on hit: apply debuff: when dies, explosion
+		// when in hand, add lingering effect: each time player is hit, explosion
+		// when used, add lingering effect: explosion become poison
+		// when used, add lingering effect: bullets explode
+		// discard 1, on hit: explosion
+		// consume 2 bullets, on hit: explosion
+		// self burn, on hit: explosion
 	// need to add reset funcs to all cards
-	//* mana
-		// add mana
+	//* bullet as mana
 		// consume mana
 		// if player has mana, more dmg
 	//// todo: discarding a card as cost messes up card order in the grave
