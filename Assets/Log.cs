@@ -25,15 +25,30 @@
 		// when enemy killed, +madness
 		// when x enemies killed, hp+
 		// when enemy killed, next card add effect: on hit, explosion
-		// when poison kills, spawn 1 fake score
+		// when poison kills: spawn 1 fake score
 	//* explosion
 		// on hit: apply debuff: when dies, explosion
 		// when in hand, add lingering effect: each time player is hit, explosion
-		// when used, add lingering effect: explosion become poison
-		// when used, add lingering effect: bullets explode
+		// add lingering effect: explosion become poison
+		// add lingering effect: bullets explode
 		// discard 1, on hit: explosion
 		// consume 2 bullets, on hit: explosion
 		// self burn, on hit: explosion
+	// * poison
+		// poison: need to transfer from old structure
+		// on hit: apply poison
+		// gain curse, on hit: apply poison
+		// when drawn, add lingering effect: when dmg is dealt: apply poison
+		// on hit: double poison stack
+		// apply lingering effect: when dmg is dealt: apply that many poison
+		// add lingering effect: bullets apply poison
+		// on hit: apply poison based on madness stack
+		// add lingering effect: poison resolves quicker
+		// on hit: deal dmg x target poison stack
+		// self burn, on hit: deal dmg based on target poison stack
+	//* madness
+		// madness: when dealing dmg, +dmg
+		// when a bullet is consumed: + madness
 	// need to add reset funcs to all cards
 	//* bullet as mana
 		// consume mana
