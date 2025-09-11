@@ -35,7 +35,7 @@
 		// consume 2 bullets, on hit: explosion
 		// self burn, on hit: explosion
 	// * poison
-		// poison: need to transfer from old structure
+		// poison: need to transfer from old structure, resolve when need to reload
 		// on hit: apply poison
 		// gain curse, on hit: apply poison
 		// when drawn, add lingering effect: when dmg is dealt: apply poison
@@ -49,6 +49,55 @@
 	//* madness
 		// madness: when dealing dmg, +dmg
 		// when a bullet is consumed: + madness
+		// if discarded: +madness
+		// +madness
+		// add lingering effect: when hurt: +madness
+		// +madness, add debuff: - madness
+		// when kill: + madness
+		// discard all curses: add madness
+		// gain curse (self burn), when played 5 times: heal based on madness stack
+		// deal dmg x madness stack
+	//* multi-hit / aoe
+		// deal dmg x 2
+		// discard next card: deal dmg x 4
+		// buff next card: +range
+		// buff next card: hit count + 1
+		// deal dmg x curse count in grave
+		// deal dmg x (max hp - current hp)
+		// add lingering effect: when hit: deal dmg
+	//* high dmg
+		// buff next card: +dmg
+		// deal dmg = current hp
+		// deal dmg; when full health: deal more dmg
+		// deal dmg = curse count in grave
+		// + bullet based on last dmg dealt
+	//* hp
+		// when drawn: + max hp
+		// when discarded 3 times: heal
+		// when activated 5 times: heal
+		// when overheal: +bullet
+	// * self burn
+		// self burn: + bullet
+		// (4 - lost hp) bullets: high dmg
+	//* bullet
+		// when consume, shoot out bullet; mana
+		// + bullet based on [bullet] in grave
+		// + bullet based on poisoned enemy count
+		// discard next, + bullet; + bullet based on discarded bullet cost
+		// + bullet
+		// when drawn: when discard, + bullet
+		// when discarded: + bullet
+		// add lingering effect: when draw, shoot out bullets based on current bullet stack
+		// add lingering effect: when +bullet, +bullet
+		// if bullet stack > 0: deal more dmg
+		// consume all bullet stack: deal dmg x bullet stack consumed
+	//* discard
+		// discard next: deal dmg
+		// discard next: draw card from grave
+	//* utility
+		// draw a [madness] card from grave
+		// repeat last card
+		// draw a [bullet] card from grave
 	// need to add reset funcs to all cards
 	//* bullet as mana
 		// consume mana
