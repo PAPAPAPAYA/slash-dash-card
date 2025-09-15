@@ -7,16 +7,20 @@ using UnityEngine.Events;
 
 public class CardScript : MonoBehaviour
 {
+        #region BASIC INFO
+        [Header("BASIC INFO")]
         [TextArea]
         public string cardName;
-        private string _ogCardName;
         public int dmg;
+        public List<EnumStorage.Tag> myTags;
+        #endregion
+        [Header("FOR TESTING")]
         public bool tempCard = false;
+        private string _ogCardName;
         private int _ogDmg;
         private CardEventTrigger _myEventTrigger;
         public int myHandIndex;
         public int myGraveIndex;
-        public List<EnumStorage.Tag> myTags;
         private Component[] myComponents;
         private void OnEnable()
         {

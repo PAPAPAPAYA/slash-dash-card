@@ -2527,7 +2527,32 @@ MonoBehaviour:
       m_Calls: []
   onReloaded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 757756880}
+        m_TargetAssemblyTypeName: LingerEffectManager, Assembly-CSharp
+        m_MethodName: ClearAllEvents
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 757756880}
+        m_TargetAssemblyTypeName: LingerEffectManager, Assembly-CSharp
+        m_MethodName: ClearAllFlags
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onKillBecomesOnHit: 0
 --- !u!4 &757756881
 Transform:
   m_ObjectHideFlags: 0
@@ -5332,7 +5357,7 @@ MonoBehaviour:
   spawnAmount_increaseInterval: 15
   spawnInterval_start: 3
   spawnInterval_decreaseRate: 0
-  spawnHP: 1
+  spawnHP: 2
   spawnHP_increaseInterval: 20
 --- !u!1 &1803591532
 GameObject:
@@ -6031,10 +6056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initCards:
-  - {fileID: 5925643762552677827, guid: 0a13ed4607df5c04ca90adbebc2b0d62, type: 3}
-  - {fileID: 5925643762552677827, guid: d3455c2e3aef4114ca65d3054a6e4125, type: 3}
-  - {fileID: 4718930035311488727, guid: 825fa2c9b6868df4c8758bea844f0e1f, type: 3}
-  - {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
+  - {fileID: 7677447964595475450, guid: 9e0f3fc08d208544a9984dbd4b60bcc6, type: 3}
   hand: []
   grave: []
   reloaded: 0

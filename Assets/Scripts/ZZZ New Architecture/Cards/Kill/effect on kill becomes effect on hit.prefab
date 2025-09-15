@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7687162125735939421}
   - component: {fileID: 1985561835630797147}
-  - component: {fileID: 3402914949657072690}
+  - component: {fileID: -5451436353580903472}
   - component: {fileID: 3589631536816475824}
   m_Layer: 0
-  m_Name: SpawnDummyCorpses
+  m_Name: effect on kill becomes effect on hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,11 +63,14 @@ MonoBehaviour:
         m_CallState: 2
   EnemyHitEvent:
     m_PersistentCalls:
+      m_Calls: []
+  CardActivateEvent:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3402914949657072690}
-        m_TargetAssemblyTypeName: SpawnObjAtPosEffect, Assembly-CSharp
-        m_MethodName: SpawnDummyScore
-        m_Mode: 0
+      - m_Target: {fileID: -5451436353580903472}
+        m_TargetAssemblyTypeName: LingeringEffect, Assembly-CSharp
+        m_MethodName: OnKillBecomesOnHit
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -76,9 +79,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  CardActivateEvent:
-    m_PersistentCalls:
-      m_Calls: []
   onToHandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -103,7 +103,7 @@ MonoBehaviour:
   WhenSelected:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3402914949657072690
+--- !u!114 &-5451436353580903472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,12 +112,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7677447964595475450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e3de026aec6f4346a442e605fbea89b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fe0ab857c573114e9293bc3252af2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountToSpawn: 1
-  chanceToScore: 0
-  chanceToSpawn: 1
 --- !u!114 &3589631536816475824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,9 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: spawn dummy score
+  cardName: 'this round: killing effects don''t need to kill'
   dmg: 1
   tempCard: 0
   myHandIndex: 0
   myGraveIndex: 0
-  myTags: 05000000
+  myTags: 06000000

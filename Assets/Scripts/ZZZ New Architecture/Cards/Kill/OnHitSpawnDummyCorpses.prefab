@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7687162125735939421}
   - component: {fileID: 1985561835630797147}
+  - component: {fileID: -6024998400085774030}
   - component: {fileID: 3402914949657072690}
   - component: {fileID: 3589631536816475824}
   m_Layer: 0
-  m_Name: ChanceToSpawnCorpses
+  m_Name: OnHitSpawnDummyCorpses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +64,19 @@ MonoBehaviour:
         m_CallState: 2
   EnemyHitEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -6024998400085774030}
+        m_TargetAssemblyTypeName: CounterEffect, Assembly-CSharp
+        m_MethodName: CountUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   CardActivateEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -81,6 +94,18 @@ MonoBehaviour:
       m_Calls: []
   OnEnemyKilled:
     m_PersistentCalls:
+      m_Calls: []
+  OnSlashFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAnyCardActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  WhenSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  WhenCounterReached:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3402914949657072690}
         m_TargetAssemblyTypeName: SpawnScoreAtEnemyPosEffect, Assembly-CSharp
@@ -94,15 +119,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnSlashFinished:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAnyCardActivated:
-    m_PersistentCalls:
-      m_Calls: []
-  WhenSelected:
-    m_PersistentCalls:
-      m_Calls: []
+--- !u!114 &-6024998400085774030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677447964595475450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1003b74392fa044adbf892e8223983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCount: 2
+  counter: 0
 --- !u!114 &3402914949657072690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,9 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3de026aec6f4346a442e605fbea89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountToSpawn: 2
-  chanceToScore: 1
-  chanceToSpawn: 0.5
+  amountToSpawn: 1
+  chanceToScore: 0
+  chanceToSpawn: 1
 --- !u!114 &3589631536816475824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,9 +160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Chance to spawn 2 score
+  cardName: when hit 5 times, spawn dummy corpse
   dmg: 1
+  myTags: 05000000
   tempCard: 0
   myHandIndex: 0
   myGraveIndex: 0
-  myTags: 05000000

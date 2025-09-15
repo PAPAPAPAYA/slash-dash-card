@@ -11,7 +11,8 @@ public class EnumStorage : MonoBehaviour
 		sacrificed,
 		ammo,
 		madness,
-		corpse
+		corpse,
+		killing
 	}
 	public enum DmgType
 	{

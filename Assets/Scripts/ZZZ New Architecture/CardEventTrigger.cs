@@ -11,15 +11,12 @@ public class CardEventTrigger : MonoBehaviour
     {
 		if (GetComponent<CardScript>())
 		{
-            _myCS = GetComponent<CardScript>();
-        }
+			_myCS = GetComponent<CardScript>();
+		}
 		else
 		{
 			Debug.LogError("this gameobject needs a card script");
 		}
-		//onToHandEvent.AddListener(_myCS.ResetCardName);
-        //onToHandEvent.AddListener(_myCS.ResetEventTrigger);
-		
     }
     public void InvokeTryPayCostEvent() // 尝试支付cost
 	{
@@ -87,5 +84,11 @@ public class CardEventTrigger : MonoBehaviour
 	public void InvokeWhenSelected()
 	{
 		WhenSelected.Invoke();
+	}
+
+	public UnityEvent<GameObject> WhenCounterReached; // 当计数达到时
+	public void InvokeWhenCounterReached(GameObject enemy)
+	{
+		WhenCounterReached.Invoke(enemy);
 	}
 }

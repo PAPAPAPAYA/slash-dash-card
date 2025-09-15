@@ -13,6 +13,7 @@ public class LingerEffectManager : MonoBehaviour
 		me = this;
 	}
 	#endregion
+	#region EVENTS
 	public UnityEvent onLastHand;
 	public void InvokeOnLastHandEvent()
 	{
@@ -28,14 +29,25 @@ public class LingerEffectManager : MonoBehaviour
 	{
 		onReloaded.Invoke();
 	}
-	private void OnEnable()
-	{
-		onReloaded.AddListener(ClearAllEvents);
-	}
-	private void ClearAllEvents()
+	#endregion
+	#region METHODS
+	public void ClearAllEvents()
 	{
 		onLastHand.RemoveAllListeners();
 		onCardDrawn.RemoveAllListeners();
 		onReloaded.RemoveAllListeners();
 	}
+	public void ClearAllFlags()
+	{
+		onKillBecomesOnHit = false;
+	}
+	#endregion
+	#region FLAGS
+	public bool onKillBecomesOnHit;
+	#endregion
+	private void OnEnable()
+	{
+		//onReloaded.AddListener(ClearAllEvents);
+	}
+	
 }

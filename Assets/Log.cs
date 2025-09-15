@@ -4,20 +4,22 @@
 //* Doc
 	// move cards first, then invoke effect
 	// card movement logics are in CardManagerNew, CardUIManager will update according to CardManagerNew's lists
+	// currently many events pass in enemy object, including counter effect, might fuck me later
 //* misc
 	// document
 	//// switch to rider
 //* card
 	//* passive effects
-		// when drawn, add lingering effect
+		//// when drawn, add lingering effect
 		// when selected, add lingering effect; when not in hand or grave, remove lingering effect
 		// when used, add lingering effect
 		// when in hand, add lingering effect, when in grave, remove lingering effect
-	//* count effects
-		// when hit enemies x times, effect
-		// when kill enemies x times, effect
+	//* counter effects
+		// counter
+			//// when enemy hit, counter++
+			// when enemy killed, counter++
 	//* on enemy killed
-		// when used, add lingering effect: on enemy killed effects become on enemy hit
+		//// when used, add lingering effect: on enemy killed effects become on enemy hit
 		// when hit x enemies, spawn a fake score
 		// high dmg, enemy will have 1 hp left
 		//// when enemy killed, might spawn more scores

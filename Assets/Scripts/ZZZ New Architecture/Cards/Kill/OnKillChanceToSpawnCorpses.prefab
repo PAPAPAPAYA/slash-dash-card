@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7722139111272446604
+--- !u!1 &7677447964595475450
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7648072534631336507}
-  - component: {fileID: 5507425805820695180}
-  - component: {fileID: -8256803847631814306}
-  - component: {fileID: -3461300577002485903}
-  - component: {fileID: 8663154644140724166}
+  - component: {fileID: 7687162125735939421}
+  - component: {fileID: 1985561835630797147}
+  - component: {fileID: 3402914949657072690}
+  - component: {fileID: 3589631536816475824}
   m_Layer: 0
-  m_Name: NoCostBuff
+  m_Name: OnKillChanceToSpawnCorpses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &7648072534631336507
+--- !u!4 &7687162125735939421
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722139111272446604}
+  m_GameObject: {fileID: 7677447964595475450}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5507425805820695180
+--- !u!114 &1985561835630797147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722139111272446604}
+  m_GameObject: {fileID: 7677447964595475450}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c992d514cd7efe40820f6d093c28dd3, type: 3}
@@ -50,7 +49,7 @@ MonoBehaviour:
   TryPayCostEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8663154644140724166}
+      - m_Target: {fileID: 3589631536816475824}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: SetCostPayed
         m_Mode: 1
@@ -67,19 +66,7 @@ MonoBehaviour:
       m_Calls: []
   CardActivateEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -8256803847631814306}
-        m_TargetAssemblyTypeName: BuffEffect, Assembly-CSharp
-        m_MethodName: BoostHandIndex
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onToHandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -94,57 +81,58 @@ MonoBehaviour:
       m_Calls: []
   OnEnemyKilled:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3402914949657072690}
+        m_TargetAssemblyTypeName: SpawnScoreAtEnemyPosEffect, Assembly-CSharp
+        m_MethodName: SpawnDummyScore
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnSlashFinished:
     m_PersistentCalls:
       m_Calls: []
   OnAnyCardActivated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-8256803847631814306
+  WhenSelected:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3402914949657072690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722139111272446604}
+  m_GameObject: {fileID: 7677447964595475450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f1152d756d19184d86675b4493b439e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e3de026aec6f4346a442e605fbea89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexToBoost: 1
-  amountToBoost: 1
-  thingToBoost: 2
-  madnessEffectCounter: {fileID: 11400000, guid: f5331a9a34a6b0343a13af5603560eef, type: 2}
-  cardScript: {fileID: 8663154644140724166}
---- !u!114 &-3461300577002485903
+  amountToSpawn: 2
+  chanceToScore: 1
+  chanceToSpawn: 0.5
+--- !u!114 &3589631536816475824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722139111272446604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e253f6634aa9d5342a9c82a0ce7d95d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  madnessCounterRef: {fileID: 11400000, guid: f5331a9a34a6b0343a13af5603560eef, type: 2}
---- !u!114 &8663154644140724166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722139111272446604}
+  m_GameObject: {fileID: 7677447964595475450}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Give Next Card [Madness]
+  cardName: Chance to spawn 2 score
   dmg: 1
   tempCard: 0
   myHandIndex: 0
   myGraveIndex: 0
+  myTags: 05000000

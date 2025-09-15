@@ -122,7 +122,11 @@ public class EnemyScript : MonoBehaviour
 			hp > 0)
 		{
 			All_Hit_VFXs();
-			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeEnemyHitEvent(gameObject); //! when enemy is hit
+			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeEnemyHitEvent(gameObject); //! TIMEPOINT: when enemy is hit
+			if (LingerEffectManager.me.onKillBecomesOnHit)
+			{
+				CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject);
+			}
 			if (!undying)
 			{
 				hp -= amount;
@@ -206,7 +210,10 @@ public class EnemyScript : MonoBehaviour
 		}
 		if (dmgType == EnumStorage.DmgType.playerSlash)
 		{
-			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject);
+			if (!LingerEffectManager.me.onKillBecomesOnHit)
+			{
+				CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject);
+			}
 		}
 		EnemySpawnerScript.me.enemies.Remove(gameObject);
 		
