@@ -31,9 +31,8 @@ public class BuffEffect : MonoBehaviour
                 switch (thingToBoost)
                 {
                         case EnumStorage.BuffCategory.slashDmg:
-                                print(_cardToBoost.GetComponent<CardScript>().cardName+"'s dmg: "+_cardToBoost.GetComponent<CardScript>().dmg + " + " + amountToBoost);
+                                //print(_cardToBoost.GetComponent<CardScript>().cardName+"'s dmg: "+_cardToBoost.GetComponent<CardScript>().dmg + " + " + amountToBoost);
                                 _cardToBoost.GetComponent<CardScript>().dmg += amountToBoost;
-                
                                 _cardToBoost.GetComponent<CardEventTrigger>().OnSlashFinished.AddListener(_cardToBoost.GetComponent<CardScript>().ResetDmg);
                                 break;
                         case EnumStorage.BuffCategory.slashWidth:

@@ -56,10 +56,10 @@ public class CardEventTrigger : MonoBehaviour
 		OnDiscardedEvent.Invoke();
 	}
 	
-	public UnityEvent OnDmgCalculation; // 伤害计算时
-	public void InvokeOnDmgCalculation()
+	public UnityEvent<GameObject> OnDmgCalculation; // 伤害计算时
+	public void InvokeOnDmgCalculation(GameObject enemyHit)
 	{
-		OnDmgCalculation.Invoke();
+		OnDmgCalculation.Invoke(enemyHit);
 	}
 
 	public UnityEvent<GameObject> OnEnemyKilled; // 击杀敌人时

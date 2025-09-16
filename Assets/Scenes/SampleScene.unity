@@ -6056,7 +6056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initCards:
-  - {fileID: 7677447964595475450, guid: 9e0f3fc08d208544a9984dbd4b60bcc6, type: 3}
+  - {fileID: 4718930035311488727, guid: 6767bf1aeeb349e45ba1fae9ef327f45, type: 3}
   hand: []
   grave: []
   reloaded: 0

@@ -10,22 +10,22 @@
 	//// switch to rider
 //* card
 	//* passive effects
-		//// when drawn, add lingering effect
+		// when drawn, add lingering effect
 		// when selected, add lingering effect; when not in hand or grave, remove lingering effect
-		// when used, add lingering effect
+		//// when used, add lingering effect
 		// when in hand, add lingering effect, when in grave, remove lingering effect
 	//* counter effects
 		// counter
 			//// when enemy hit, counter++
-			// when enemy killed, counter++
+			//// when enemy killed, counter++
 	//* on enemy killed
 		//// when used, add lingering effect: on enemy killed effects become on enemy hit
-		// when hit x enemies, spawn a fake score
-		// high dmg, enemy will have 1 hp left
+		//// when hit x enemies, spawn a fake score
+		//// high dmg, enemy will have 1 hp left
 		//// when enemy killed, might spawn more scores
 		//// when enemy killed, explosion
-		// when enemy killed, +madness
-		// when x enemies killed, hp+
+		//// when enemy killed, +madness
+		//// when x enemies killed, hp+
 		// when enemy killed, next card add effect: on hit, explosion
 		// when poison kills: spawn 1 fake score
 	//* explosion

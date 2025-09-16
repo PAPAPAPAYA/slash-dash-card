@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4718930035311488727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 248330374183337224}
+  - component: {fileID: 8501033271206968262}
+  - component: {fileID: 1993780912673131401}
+  - component: {fileID: 8988590651337314115}
+  - component: {fileID: 5803037462683335607}
+  m_Layer: 0
+  m_Name: OnKill+Madness
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &248330374183337224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718930035311488727}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8501033271206968262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718930035311488727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c992d514cd7efe40820f6d093c28dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TryPayCostEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5803037462683335607}
+        m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
+        m_MethodName: SetCostPayed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  EnemyHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CardActivateEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8988590651337314115}
+        m_TargetAssemblyTypeName: MadnessEffect, Assembly-CSharp
+        m_MethodName: LoadResetMadness
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onToHandEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnToGraveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDiscardedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDmgCalculation:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyKilled:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8988590651337314115}
+        m_TargetAssemblyTypeName: MadnessEffect, Assembly-CSharp
+        m_MethodName: AddMadness
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnSlashFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5803037462683335607}
+        m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
+        m_MethodName: ResetDmg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnAnyCardActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  WhenSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  WhenCounterReached:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1993780912673131401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718930035311488727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266511e72b3a8394c949c05117d415ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawAmount: 0
+  cardToAddToGrave: {fileID: 0}
+  cardToAddToHand: {fileID: 0}
+--- !u!114 &8988590651337314115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718930035311488727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e253f6634aa9d5342a9c82a0ce7d95d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  madnessCounterRef: {fileID: 11400000, guid: f5331a9a34a6b0343a13af5603560eef, type: 2}
+--- !u!114 &5803037462683335607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718930035311488727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: On kill, add madness
+  dmg: 2
+  myTags: 0400000006000000
+  tempCard: 0
+  ogDmg: 0
+  myHandIndex: 0
+  myGraveIndex: 0

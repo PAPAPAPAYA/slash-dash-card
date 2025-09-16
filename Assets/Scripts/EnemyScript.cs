@@ -125,7 +125,7 @@ public class EnemyScript : MonoBehaviour
 			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeEnemyHitEvent(gameObject); //! TIMEPOINT: when enemy is hit
 			if (LingerEffectManager.me.onKillBecomesOnHit)
 			{
-				CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject);
+				CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject); //! TIMEPOINT: when enemy is killed
 			}
 			if (!undying)
 			{
@@ -212,11 +212,10 @@ public class EnemyScript : MonoBehaviour
 		{
 			if (!LingerEffectManager.me.onKillBecomesOnHit)
 			{
-				CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject);
+				CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject); //! TIMEPOINT: when enemy is killed by slash
 			}
 		}
 		EnemySpawnerScript.me.enemies.Remove(gameObject);
-		
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{

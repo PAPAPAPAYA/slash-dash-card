@@ -17,7 +17,7 @@ public class CardScript : MonoBehaviour
         [Header("FOR TESTING")]
         public bool tempCard = false;
         private string _ogCardName;
-        private int _ogDmg;
+        public int ogDmg;
         private CardEventTrigger _myEventTrigger;
         public int myHandIndex;
         public int myGraveIndex;
@@ -25,7 +25,7 @@ public class CardScript : MonoBehaviour
         private void OnEnable()
         {
                 _ogCardName = cardName;
-                _ogDmg = dmg;
+                ogDmg = dmg;
                 if (GetComponent<CardEventTrigger>())
                 {
                         _myEventTrigger = GetComponent<CardEventTrigger>();
@@ -38,7 +38,7 @@ public class CardScript : MonoBehaviour
         }
         public void ResetDmg()
         {
-                dmg = _ogDmg;
+                dmg = ogDmg;
         }
 
         public void SetCostPayed()
