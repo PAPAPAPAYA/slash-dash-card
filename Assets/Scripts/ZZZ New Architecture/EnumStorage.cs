@@ -13,7 +13,8 @@ public class EnumStorage : MonoBehaviour
 		madness,
 		corpse,
 		killing,
-		hp
+		healing,
+		explosive
 	}
 	public enum DmgType
 	{
@@ -33,6 +34,7 @@ public class EnumStorage : MonoBehaviour
 	{
 		slashDmg,
 		slashWidth,
-		becomeMadness
+		becomeMadness,
+		becomeHitExplosion,
 	}
 }

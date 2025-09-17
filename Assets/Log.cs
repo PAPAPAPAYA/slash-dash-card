@@ -5,6 +5,7 @@
 	// move cards first, then invoke effect
 	// card movement logics are in CardManagerNew, CardUIManager will update according to CardManagerNew's lists
 	// currently many events pass in enemy object, including counter effect, might fuck me later
+	// does on kill effect counts score kill?
 //* misc
 	// document
 	//// switch to rider
@@ -15,7 +16,7 @@
 		//// when used, add lingering effect
 		// when in hand, add lingering effect, when in grave, remove lingering effect
 	//* counter effects
-		// counter
+		//// counter
 			//// when enemy hit, counter++
 			//// when enemy killed, counter++
 	//* on enemy killed
@@ -26,8 +27,8 @@
 		//// when enemy killed, explosion
 		//// when enemy killed, +madness
 		//// when x enemies killed, hp+
-		// when enemy killed, next card add effect: on hit, explosion
-		// when poison kills: spawn 1 fake score
+		//// when enemy killed, next card add effect: on hit, explosion
+		// add lingering effect: when poison kills: spawn 1 fake score
 	//* explosion
 		// on hit: apply debuff: when dies, explosion
 		// when in hand, add lingering effect: each time player is hit, explosion
@@ -83,6 +84,7 @@
 		// (4 - lost hp) bullets: high dmg
 	//* bullet
 		// when consume, shoot out bullet; mana
+		// if player has bullet, more dmg
 		// + bullet based on [bullet] in grave
 		// + bullet based on poisoned enemy count
 		// discard next, + bullet; + bullet based on discarded bullet cost
@@ -101,9 +103,6 @@
 		// repeat last card
 		// draw a [bullet] card from grave
 	// need to add reset funcs to all cards
-	//* bullet as mana
-		// consume mana
-		// if player has mana, more dmg
 	//// todo: discarding a card as cost messes up card order in the grave
 		//// try pay cost event only check if the cost can be satisfied, pay cost in activation event
 		//// not buffing

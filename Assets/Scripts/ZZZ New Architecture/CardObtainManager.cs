@@ -118,7 +118,7 @@ public class CardObtainManager : MonoBehaviour
                 // work backwards, clean up item not in card manager new's hand list
                 for (int i = newCards.Count - 1; i >= 0; i--)
                 {
-                        if (!CardManagerNew.me.hand.Contains(newCards[i]))
+                        if (!CardManagerNew.me.hand.Contains(newCards[i])) // if card not in hand, destory and remove
                         {
                                 Destroy(newCards[i]);
                                 newCards.RemoveAt(i);
@@ -127,12 +127,9 @@ public class CardObtainManager : MonoBehaviour
                         {
                                 newCards[i].SetActive(true);
                                 newCard = newCards[i];
+                                newCard.GetComponent<CardEventTrigger>().InvokeWhenSelected(); //! TIMEPOINT: when card is put into hand when leveling up
                         }
                 }
                 newCards.Clear();
-                if (newCard)
-                {
-                        newCard.GetComponent<CardEventTrigger>().InvokeWhenSelected(); //! when card is put into hand when leveling up
-                }
         }
 }

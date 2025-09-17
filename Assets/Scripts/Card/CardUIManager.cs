@@ -219,17 +219,13 @@ public class CardUIManager : MonoBehaviour
 			premade_cardHolders_hand[i].GetComponent<CardHolderScript>().inHand = true;
 			premade_cardHolders_hand[i].GetComponent<CardHolderScript>().myCard = CardManagerNew.me.hand[i];
 			cardHolders_hand.Add(premade_cardHolders_hand[i]);
-			//premade_cardHolders_hand[i].GetComponentInChildren<TextMeshPro>().text = CardManagerNew.me.hand[i].GetComponent<CardScript>().cardName;
 			premade_cardHolders_hand[i].SetActive(true);
+			premade_cardHolders_hand[i].GetComponentInChildren<TextMeshPro>().text = CardManagerNew.me.hand[i].GetComponent<CardScript>().cardName;
 		}
 		ArrangeHandUI();
 	}
 	private void ArrangeHandUI()
 	{
-		// for (var i = cardHolders_hand.Count - 1; i >= 0; i--)
-		// {
-		// 	cardHolders_hand[i].transform.position = centerPos - cardArrangeInterval * (cardHolders_hand.Count - 1 - i);
-		// }
 		for (var i = 0; i < cardHolders_hand.Count; i++)
 		{
 			cardHolders_hand[i].transform.position = centerPos - cardArrangeInterval * (i);

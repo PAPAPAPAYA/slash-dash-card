@@ -10,7 +10,7 @@ public class BuffEffect : MonoBehaviour
         public int amountToBoost;
         public EnumStorage.BuffCategory thingToBoost;
         public IntVaribaleSO madnessEffectCounter;
-        public CardScript cardScript;
+        public GameObjectReferenceSO explosionAreaRef;
         private GameObject _cardToBoost;
         private CardManagerNew _cmn;
         private int _myIndex;
@@ -23,8 +23,8 @@ public class BuffEffect : MonoBehaviour
         public void BoostHandIndex()
         {
                 _myIndex = GetComponent<CardScript>().myHandIndex;
-                _cardToBoost = _cmn.hand[_myIndex + indexToBoost];
-                if (!_cmn.hand[_myIndex + indexToBoost])
+                _cardToBoost = _cmn.hand[_myIndex + indexToBoost - 1];
+                if (!_cardToBoost)
                 {
                         return;
                 }
@@ -47,7 +47,18 @@ public class BuffEffect : MonoBehaviour
                                     _cardToBoost.GetComponent<CardEventTrigger>().OnSlashFinished.AddListener(_cardToBoost.GetComponent<MadnessEffect>().AddMadness);
                                     _cardToBoost.GetComponent<CardEventTrigger>().OnSlashFinished.AddListener(_cardToBoost.GetComponent<CardScript>().ResetDmg);
                                     _cardToBoost.GetComponent<CardScript>().cardName = "[Madness] " + _cardToBoost.GetComponent<CardScript>().cardName;
+                                    CardUIManager.me.UpdateHandUI();
                                 }
+                                break;
+                        case EnumStorage.BuffCategory.becomeHitExplosion:
+                                if (!_cardToBoost.TryGetComponent<ExplosionAtPosEffect>(
+                                            out ExplosionAtPosEffect explosionEffect))
+                                {
+                                        _cardToBoost.AddComponent<ExplosionAtPosEffect>();
+                                }
+                                _cardToBoost.GetComponent<CardEventTrigger>().EnemyHitEvent.AddListener(_cardToBoost.GetComponent<ExplosionAtPosEffect>().MakeExplosion_atPos);
+                                _cardToBoost.GetComponent<CardScript>().cardName = "[Explosive] " + _cardToBoost.GetComponent<CardScript>().cardName;
+                                CardUIManager.me.UpdateHandUI();
                                 break;
                         default:
                                 break;

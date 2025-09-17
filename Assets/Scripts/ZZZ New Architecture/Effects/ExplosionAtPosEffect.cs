@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class ExplosionAtPosEffect : MonoBehaviour
 {
-	public int explosion_dmg;
-	[Header("REFs")]
-	public GameObjectReferenceSO explosionAreaRef;
-	public GameObject explosionAreaPrefab;
+	public int explosion_dmg = 1;
+	//[Header("REFs")]
+	//public GameObjectReferenceSO explosionAreaRef;
+	//public GameObject explosionAreaPrefab;
 	//public EnumStorage.PosType posType;
 
-	void Start()
-	{
-		explosionAreaPrefab = explosionAreaRef.Value();
-	}
 	public void MakeExplosion_atPos(GameObject posObj)
 	{
-		explosionAreaPrefab = explosionAreaRef.Value();
+		//explosionAreaPrefab = explosionAreaRef.Value();
 		//GameObject explosion = Instantiate(Prefab_explosionArea);
 		var explosion = GameObjectPoolScript.me.ExplosionPool.Get();
 		explosion.GetComponent<ExplosionAreaScript>().dmg = explosion_dmg;
