@@ -157,16 +157,21 @@ public class EnemyScript : MonoBehaviour
 			mySR.material = ogMat;
 		}
 	}
-	public void StartPoison() // call this to activate poison
+	public void StartPoison_deprecated() // call this to activate poison
 	{
 		poison_duration = AbilityManagerScript.me.poison_duration;
 		poison_dmg = AbilityManagerScript.me.poison_dmg;
 		poison_interval = AbilityManagerScript.me.poison_interval;
 		poison_timer = poison_interval; // initialize poison timer
+		// change material to indicate poisoned state
 		if (!mySR.material.name.Contains(poisonedMat.name))
 		{
 			mySR.material = poisonedMat;
 		}
+	}
+	public void StartPoison()
+	{
+		
 	}
 	private IEnumerator HurtStun()
 	{

@@ -430,7 +430,7 @@ public class AbilityManagerScript : MonoBehaviour
 		GameObject collider = Instantiate(Prefab_poisonArea);
 		ExplosionAreaScript eas = collider.GetComponent<ExplosionAreaScript>();
 		eas.dmg = poison_dmg;
-		eas.dot = true;
+		eas.poison = true;
 		collider.transform.position = pos;
 	}
 	public void MakeExplosion_atPos(Vector2 pos)

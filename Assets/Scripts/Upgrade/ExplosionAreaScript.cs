@@ -6,7 +6,7 @@ using UnityEngine.PlayerLoop;
 public class ExplosionAreaScript : MonoBehaviour
 {
 	public int dmg;
-	public bool dot;
+	public bool poison;
 	public float timer = .2f;
 	private float timer_og;
 	void Start()
@@ -30,14 +30,14 @@ public class ExplosionAreaScript : MonoBehaviour
 	}
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (!dot)
+		if (!poison)
 		{
 			if (other.CompareTag("Enemy"))
 			{
 				other.GetComponent<EnemyScript>().GetHit(dmg, EnumStorage.DmgType.explosion);
 			}
 		}
-		else if (dot)
+		else if (poison)
 		{
 			if (other.CompareTag("Enemy"))
 			{
@@ -45,7 +45,7 @@ public class ExplosionAreaScript : MonoBehaviour
 				var es = other.GetComponent<EnemyScript>();
 				if (es.myEnemyType != EnemyScript.EnemyType.score)
 				{
-					es.StartPoison();
+					es.StartPoison_deprecated();
 				}
 			}
 		}
