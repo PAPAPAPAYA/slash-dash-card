@@ -38,12 +38,11 @@
 		// consume 2 bullets, on hit: explosion
 		// self burn, on hit: explosion
 	// * poison
-		// poison: need to transfer from old structure, resolve when need to reload
-			// on player finish hand, deal dmg to enemies based on their poison stack
-				// apply poison stack
-				// new time point
-				// deal dmg
-		// on hit: apply poison
+		//// poison: need to transfer from old structure, resolve when need to reload
+			//// on player finish hand, deal dmg to enemies based on their poison stack
+				//// apply poison stack
+				//// deal dmg
+		//// on hit: apply poison
 		// gain curse, on hit: apply poison
 		// when drawn, add lingering effect: when dmg is dealt: apply poison
 		// on hit: double poison stack

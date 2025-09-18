@@ -269,7 +269,7 @@ MonoBehaviour:
   scorePrefab: {fileID: 7639828799481462458, guid: aded9cedb3a221042b7e3758ed1d003f, type: 3}
   score: 0
   score_spawnForce: 30
-  upgradeAmount: 1
+  upgradeAmount: 5
   upgradeAmount_scaler: 1.5
   hpIndicator: {fileID: 1051494346}
   scoreIndicator: {fileID: 551337192}
@@ -395,6 +395,7 @@ MonoBehaviour:
   shielded: 0
   rotSpd: 0
   dmg: 0
+  poisonStack: 0
   slimees: []
   slimee_spawnForce: 0
   shoot_interval: 0
@@ -1480,8 +1481,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -325, y: 245}
-  m_SizeDelta: {x: 300, y: 30}
+  m_AnchoredPosition: {x: -285, y: 200}
+  m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &551337194
 MonoBehaviour:
@@ -3363,7 +3364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -375, y: 215}
+  m_AnchoredPosition: {x: -285, y: 170}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1051494348
@@ -5353,11 +5354,11 @@ MonoBehaviour:
   - {fileID: 5970154702801796565, guid: 4ddeb6e228acd6b4193028450c99852a, type: 3}
   spawnRadius: 20
   enemies: []
-  spawnAmount: 1
+  spawnAmount: 2
   spawnAmount_increaseInterval: 15
   spawnInterval_start: 3
   spawnInterval_decreaseRate: 0
-  spawnHP: 2
+  spawnHP: 1
   spawnHP_increaseInterval: 20
 --- !u!1 &1803591532
 GameObject:
@@ -6056,8 +6057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initCards:
-  - {fileID: 4718930035311488727, guid: b26bf66fa858ae0439421db35b0e2f8f, type: 3}
-  - {fileID: 3034464075753845741, guid: e6dab73e09bbc8642be61d624282daaa, type: 3}
+  - {fileID: 3034464075753845741, guid: 5ab3156b806d9184fb4036434b4e06ee, type: 3}
   hand: []
   grave: []
   reloaded: 0

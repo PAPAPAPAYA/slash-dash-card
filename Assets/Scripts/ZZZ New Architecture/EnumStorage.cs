@@ -14,7 +14,8 @@ public class EnumStorage : MonoBehaviour
 		corpse,
 		killing,
 		healing,
-		explosive
+		explosive,
+		poison
 	}
 	public enum DmgType
 	{

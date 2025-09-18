@@ -49,5 +49,4 @@ public class LingerEffectManager : MonoBehaviour
 	{
 		//onReloaded.AddListener(ClearAllEvents);
 	}
-	
 }

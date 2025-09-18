@@ -29,25 +29,34 @@ public class EnemyScript : MonoBehaviour
 	public bool shielded;
 	public float rotSpd;
 	public int dmg;
+	public int poisonStack;
+	#region DEPRECATED
 	private float poison_timer; // timer used to time the dot
 	private float poison_interval;
 	private float poison_duration; // how long does the dot is active
 	private int poison_dmg; // how much damage the dot does
+	#endregion
+	
 	[Header("SLIMERs")]
 	public List<GameObject> slimees;
 	public float slimee_spawnForce;
+	
 	[Header("SHOOTERs")]
 	public float shoot_interval;
 	private float shoot_timer;
 	public float shooter_stopDis;
 	public GameObject bulletPrefab;
+	
 	[Header("SCOREs")] public float chanceToScore;
+	
 	[Header("SHADOWs")]
 	public GameObject myShadow;
 	public float shadow_xOffset;
 	public float shadow_yOffset;
+	
 	[Header("HP INDICATORs")]
 	public GameObject hpIndicator;
+	
 	[Header("VFXs")]
 	private SpriteRenderer mySR;
 	public GameObject myImg;
@@ -58,6 +67,7 @@ public class EnemyScript : MonoBehaviour
 	public GameObject PS_blood;
 	public float hurt_bulletTime_scale;
 	public float hurt_bulletTime_duration;
+	
 	[Header("FOR PLAYTESTs")]
 	public bool undying;
 
@@ -88,7 +98,7 @@ public class EnemyScript : MonoBehaviour
 		}
 		FacePlayer();
 		UpdateHpIndicator();
-		// not in use
+		// not in use, need to implement again
 		ControlShadow();
 		FreezeHPIndicatorRotation();
 	}
@@ -119,13 +129,24 @@ public class EnemyScript : MonoBehaviour
 	public void GetHit(int amount, EnumStorage.DmgType dmgType)
 	{
 		if (spawn_iFrame <= 0 &&
-			hp > 0)
+			hp > 0 &&
+			amount > 0)
 		{
 			All_Hit_VFXs();
-			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeEnemyHitEvent(gameObject); //! TIMEPOINT: when enemy is hit
-			if (LingerEffectManager.me.onKillBecomesOnHit)
+			switch (dmgType)
 			{
-				CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject); //! TIMEPOINT: when enemy is killed
+				case EnumStorage.DmgType.poison:
+					poisonStack = 0;
+					break;
+				case EnumStorage.DmgType.bullet:
+					TriggerCommonOnHitEvent();
+					break;
+				case EnumStorage.DmgType.explosion:
+					TriggerCommonOnHitEvent();
+					break;
+				case EnumStorage.DmgType.playerSlash:
+					TriggerCommonOnHitEvent();
+					break;
 			}
 			if (!undying)
 			{
@@ -137,25 +158,33 @@ public class EnemyScript : MonoBehaviour
 			}
 		}
 	}
+	private void TriggerCommonOnHitEvent()
+	{
+		CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeEnemyHitEvent(gameObject); //! TIMEPOINT: when enemy is hit
+		if (LingerEffectManager.me.onKillBecomesOnHit)
+		{
+			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject); //! TIMEPOINT: when enemy is killed
+		}
+	}
 	private void UpdateDot()
 	{
-		if (poison_duration>0)
-		{
-			poison_duration -= Time.deltaTime;
-			if (poison_timer>0)
-			{
-				poison_timer-=Time.deltaTime;
-			}
-			else
-			{
-				poison_timer = poison_interval;
-				GetHit(poison_dmg, EnumStorage.DmgType.poison);
-			}
-		}
-		else if (mySR.material.name.Contains(poisonedMat.name))
-		{
-			mySR.material = ogMat;
-		}
+		// if (poison_duration>0)
+		// {
+		// 	poison_duration -= Time.deltaTime;
+		// 	if (poison_timer>0)
+		// 	{
+		// 		poison_timer-=Time.deltaTime;
+		// 	}
+		// 	else
+		// 	{
+		// 		poison_timer = poison_interval;
+		// 		GetHit(poison_dmg, EnumStorage.DmgType.poison);
+		// 	}
+		// }
+		// else if (mySR.material.name.Contains(poisonedMat.name))
+		// {
+		// 	mySR.material = ogMat;
+		// }
 	}
 	public void StartPoison_deprecated() // call this to activate poison
 	{
@@ -168,10 +197,6 @@ public class EnemyScript : MonoBehaviour
 		{
 			mySR.material = poisonedMat;
 		}
-	}
-	public void StartPoison()
-	{
-		
 	}
 	private IEnumerator HurtStun()
 	{
