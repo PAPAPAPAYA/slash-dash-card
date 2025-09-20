@@ -7,7 +7,7 @@ public class SpawnScoreAtEnemyPosEffect : MonoBehaviour
 	public int amountToSpawn;
 	public float chanceToScore;
 	public float chanceToSpawn;
-	
+
 	public void SpawnDummyScore(GameObject enemy)
 	{
 		if (!enemy.GetComponent<EnemyScript>()) return;
@@ -18,5 +18,10 @@ public class SpawnScoreAtEnemyPosEffect : MonoBehaviour
 				enemy.GetComponent<EnemyScript>().ShootOutCorpse(chanceToScore);
 			}
 		}
+	}
+	public void LoadSpawnDummyScoreToPoisonKill()
+	{
+		LingerEffectManager.me.onPoisonKill.RemoveListener(SpawnDummyScore);
+		LingerEffectManager.me.onPoisonKill.AddListener(SpawnDummyScore);
 	}
 }

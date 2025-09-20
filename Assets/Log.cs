@@ -24,14 +24,12 @@
 		//// when hit x enemies, spawn a fake score
 		//// high dmg, enemy will have 1 hp left
 		//// when enemy killed, might spawn more scores
+		//// add lingering effect: when poison kills: spawn 1 fake score
+	//* explosion 
+		//// check: no chain explosion
 		//// when enemy killed, explosion
-		//// when enemy killed, +madness
-		//// when x enemies killed, hp+
 		//// when enemy killed, next card add effect: on hit, explosion
-		// add lingering effect: when poison kills: spawn 1 fake score
-	//* explosion
 		// on hit: apply debuff: when dies, explosion
-		// when in hand, add lingering effect: each time player is hit, explosion
 		// add lingering effect: explosion become poison
 		// add lingering effect: bullets explode
 		// discard 1, on hit: explosion
@@ -54,12 +52,12 @@
 		// self burn, on hit: deal dmg based on target poison stack
 	//* madness
 		// madness: when dealing dmg, +dmg
+		//// when enemy killed, +madness
 		// when a bullet is consumed: + madness
 		// if discarded: +madness
 		// +madness
 		// add lingering effect: when hurt: +madness
 		// +madness, add debuff: - madness
-		// when kill: + madness
 		// discard all curses: add madness
 		// gain curse (self burn), when played 5 times: heal based on madness stack
 		// deal dmg x madness stack
@@ -82,6 +80,7 @@
 		// when discarded 3 times: heal
 		// when activated 5 times: heal
 		// when overheal: +bullet
+		//// when x enemies killed, hp+
 	// * self burn
 		// self burn: + bullet
 		// (4 - lost hp) bullets: high dmg
@@ -188,6 +187,9 @@
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
 	// need to show madness & ammo
+	// debuff
+		// debuff recorder
+		// how to record debuff?
 	// tag
 		// need to modify DrawAmmoCard() implementation
 	//// todo: don't care about grave's order, when reloading, draw cards in hand order

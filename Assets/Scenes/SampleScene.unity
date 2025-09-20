@@ -269,7 +269,7 @@ MonoBehaviour:
   scorePrefab: {fileID: 7639828799481462458, guid: aded9cedb3a221042b7e3758ed1d003f, type: 3}
   score: 0
   score_spawnForce: 30
-  upgradeAmount: 5
+  upgradeAmount: 50
   upgradeAmount_scaler: 1.5
   hpIndicator: {fileID: 1051494346}
   scoreIndicator: {fileID: 551337192}
@@ -2553,6 +2553,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onPoisonKill:
+    m_PersistentCalls:
+      m_Calls: []
   onKillBecomesOnHit: 0
 --- !u!4 &757756881
 Transform:
@@ -5358,7 +5361,7 @@ MonoBehaviour:
   spawnAmount_increaseInterval: 15
   spawnInterval_start: 3
   spawnInterval_decreaseRate: 0
-  spawnHP: 1
+  spawnHP: 5
   spawnHP_increaseInterval: 20
 --- !u!1 &1803591532
 GameObject:
@@ -6057,7 +6060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initCards:
-  - {fileID: 3034464075753845741, guid: 5ab3156b806d9184fb4036434b4e06ee, type: 3}
+  - {fileID: 5983269025601790300, guid: 11fe02ff12dd8d04298cb04d248d9789, type: 3}
   hand: []
   grave: []
   reloaded: 0

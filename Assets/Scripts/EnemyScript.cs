@@ -238,14 +238,32 @@ public class EnemyScript : MonoBehaviour
 			default:
 				break;
 		}
-		if (dmgType == EnumStorage.DmgType.playerSlash)
+		switch (dmgType)
 		{
-			if (!LingerEffectManager.me.onKillBecomesOnHit)
-			{
-				CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject); //! TIMEPOINT: when enemy is killed by slash
-			}
+			case EnumStorage.DmgType.poison:
+				CheckOnKillBecomesOnHit();
+				LingerEffectManager.me.onPoisonKill?.Invoke(gameObject);
+				break;
+			case EnumStorage.DmgType.bullet:
+				CheckOnKillBecomesOnHit();
+				break;
+			case EnumStorage.DmgType.explosion:
+				break;
+			case EnumStorage.DmgType.playerSlash:
+				CheckOnKillBecomesOnHit();
+				break;
 		}
 		EnemySpawnerScript.me.enemies.Remove(gameObject);
+	}
+	
+	// check if on kill became on hit, if yes then don't invoke on enemy killed, or it would be invoked twice
+	private void CheckOnKillBecomesOnHit()
+	{
+		if (!LingerEffectManager.me.onKillBecomesOnHit &&
+		    myEnemyType is not (EnemyType.restart))
+		{
+			CardManagerNew.me.activatedCard?.GetComponent<CardEventTrigger>().InvokeOnEnemyKilled(gameObject); //! TIMEPOINT: when enemy is killed
+		}
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{

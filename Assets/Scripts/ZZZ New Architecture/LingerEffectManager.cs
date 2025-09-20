@@ -29,6 +29,11 @@ public class LingerEffectManager : MonoBehaviour
 	{
 		onReloaded.Invoke();
 	}
+	public UnityEvent<GameObject> onPoisonKill;
+	public void InvokeOnPoisonKillEvent(GameObject enemyKilled)
+	{
+		onPoisonKill.Invoke(enemyKilled);
+	}
 	#endregion
 	#region METHODS
 	public void ClearAllEvents()
