@@ -18,6 +18,9 @@ public class EnemyScript : MonoBehaviour
 		score,
 		restart
 	};
+
+	[Header("REFS")]
+	private DebuffRecorder dE;
 	[Header("BASICs")]
 	public int hp;
 	public float moveSpd;
@@ -29,7 +32,6 @@ public class EnemyScript : MonoBehaviour
 	public bool shielded;
 	public float rotSpd;
 	public int dmg;
-	public int poisonStack;
 	#region DEPRECATED
 	private float poison_timer; // timer used to time the dot
 	private float poison_interval;
@@ -83,6 +85,7 @@ public class EnemyScript : MonoBehaviour
 		mySR.material = ogMat;
 		spawn_iFrame = _spawnIFrameOg;
 		_hurtStunned = false;
+		dE = GetComponent<DebuffRecorder>();
 	}
 	private void Update()
 	{
@@ -136,7 +139,7 @@ public class EnemyScript : MonoBehaviour
 			switch (dmgType)
 			{
 				case EnumStorage.DmgType.poison:
-					poisonStack = 0;
+					dE.poisonStack = 0;
 					break;
 				case EnumStorage.DmgType.bullet:
 					TriggerCommonOnHitEvent();
@@ -241,23 +244,27 @@ public class EnemyScript : MonoBehaviour
 		switch (dmgType)
 		{
 			case EnumStorage.DmgType.poison:
-				CheckOnKillBecomesOnHit();
-				LingerEffectManager.me.onPoisonKill?.Invoke(gameObject);
+				CheckAndInvokeOnEnemyKilled();
+				GlobalEventTrigger.me.onEnemyDeath?.Invoke(gameObject); //! TIMEPOINT: enemy death rattle
+				LingerEffectManager.me.onPoisonKill?.Invoke(gameObject); //! TIMEPOINT: poison kill
 				break;
 			case EnumStorage.DmgType.bullet:
-				CheckOnKillBecomesOnHit();
+				GlobalEventTrigger.me.onEnemyDeath?.Invoke(gameObject); //! TIMEPOINT: enemy death rattle
+				CheckAndInvokeOnEnemyKilled();
 				break;
 			case EnumStorage.DmgType.explosion:
+				GlobalEventTrigger.me.onEnemyDeath?.Invoke(gameObject); //! TIMEPOINT: enemy death rattle
 				break;
 			case EnumStorage.DmgType.playerSlash:
-				CheckOnKillBecomesOnHit();
+				GlobalEventTrigger.me.onEnemyDeath?.Invoke(gameObject); //! TIMEPOINT: enemy death rattle
+				CheckAndInvokeOnEnemyKilled();
 				break;
 		}
 		EnemySpawnerScript.me.enemies.Remove(gameObject);
 	}
 	
 	// check if on kill became on hit, if yes then don't invoke on enemy killed, or it would be invoked twice
-	private void CheckOnKillBecomesOnHit()
+	private void CheckAndInvokeOnEnemyKilled()
 	{
 		if (!LingerEffectManager.me.onKillBecomesOnHit &&
 		    myEnemyType is not (EnemyType.restart))

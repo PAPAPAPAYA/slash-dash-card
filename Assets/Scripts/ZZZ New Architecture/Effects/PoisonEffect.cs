@@ -11,9 +11,11 @@ public class PoisonEffect : MonoBehaviour
                 {
                         // tell the enemy to apply dot to itself
                         var es = enemy.GetComponent<EnemyScript>();
+                        var dr = enemy.GetComponent<DebuffRecorder>();
                         if (es.myEnemyType != EnemyScript.EnemyType.score) // check if it's a score (can't apply poison to dead body)
                         {
-                                es.poisonStack += stackToApply;
+                                //es.poisonStack += stackToApply;
+                                dr.poisonStack += stackToApply;
                         }
                 }
         }
@@ -21,18 +23,18 @@ public class PoisonEffect : MonoBehaviour
         {
                 LingerEffectManager.me.onLastHand.RemoveListener(ResolvePoison);
                 LingerEffectManager.me.onLastHand.AddListener(ResolvePoison);
-                //todo better to also add upgrade timepoint, or else when player upgrades, poison dmg is skipped
         }
         private void ResolvePoison()
         {
                 for (int i = EnemySpawnerScript.me.enemies.Count - 1; i >= 0; i--)
                 {
                         var es = EnemySpawnerScript.me.enemies[i].GetComponent<EnemyScript>();
+                        var dr = EnemySpawnerScript.me.enemies[i].GetComponent<DebuffRecorder>();
                         if (es.myEnemyType == EnemyScript.EnemyType.score)
                         {
                                 continue;
                         }
-                        es.GetHit(es.poisonStack, EnumStorage.DmgType.poison);
+                        es.GetHit(dr.poisonStack, EnumStorage.DmgType.poison);
                 }
         }
 }

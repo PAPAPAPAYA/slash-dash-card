@@ -1,0 +1,177 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3034464075753845741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1043521285302104556}
+  - component: {fileID: 5442730717805250247}
+  - component: {fileID: -2791643139953132796}
+  - component: {fileID: 1613599810567145867}
+  - component: {fileID: -3647472466199207802}
+  m_Layer: 0
+  m_Name: On Hit, apply debuff, death explosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1043521285302104556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034464075753845741}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5442730717805250247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034464075753845741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c992d514cd7efe40820f6d093c28dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TryPayCostEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1613599810567145867}
+        m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
+        m_MethodName: SetCostPayed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EnemyHitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2791643139953132796}
+        m_TargetAssemblyTypeName: DebuffEffect, Assembly-CSharp
+        m_MethodName: ApplyDeathRattleExplosion
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  CardActivateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onToHandEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1613599810567145867}
+        m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnToGraveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDiscardedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDmgCalculation:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSlashFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAnyCardActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  WhenSelected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1613599810567145867}
+        m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
+        m_MethodName: Print
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  WhenCounterReached:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-2791643139953132796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034464075753845741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eb88759a56d9a47bd51c0e5c8e3b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1613599810567145867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034464075753845741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e57314e6c1e0248977422e95fc44a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: 'On hit: apply debuff: death explosion'
+  dmg: 1
+  myTags: 
+  tempCard: 0
+  ogDmg: 0
+  myHandIndex: 0
+  myGraveIndex: 0
+--- !u!114 &-3647472466199207802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034464075753845741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 924cdbec554aad84698450095e29017e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionDmg: 1

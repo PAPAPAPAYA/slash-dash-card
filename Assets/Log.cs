@@ -5,7 +5,8 @@
 	// move cards first, then invoke effect
 	// card movement logics are in CardManagerNew, CardUIManager will update according to CardManagerNew's lists
 	// currently many events pass in enemy object, including counter effect, might fuck me later
-	// does on kill effect counts score kill?
+	// does on kill effect counts score kill? yes
+	// global event trigger: to trigger events that don't come from cards, like death rattle (which comes from enemy), different from linger effect manager which resolve effects that still come from cards
 //* misc
 	// document
 	//// switch to rider
@@ -29,13 +30,14 @@
 		//// check: no chain explosion
 		//// when enemy killed, explosion
 		//// when enemy killed, next card add effect: on hit, explosion
-		// on hit: apply debuff: when dies, explosion
+		//// on hit: apply debuff: when dies, explosion
 		// add lingering effect: explosion become poison
 		// add lingering effect: bullets explode
 		// discard 1, on hit: explosion
 		// consume 2 bullets, on hit: explosion
 		// self burn, on hit: explosion
 	// * poison
+		//// need to go through debuff recorder
 		//// poison: need to transfer from old structure, resolve when need to reload
 			//// on player finish hand, deal dmg to enemies based on their poison stack
 				//// apply poison stack
@@ -85,6 +87,7 @@
 		// self burn: + bullet
 		// (4 - lost hp) bullets: high dmg
 	//* bullet
+		// boost ammo dmg
 		// when consume, shoot out bullet; mana
 		// if player has bullet, more dmg
 		// + bullet based on [bullet] in grave
@@ -124,8 +127,8 @@
 		//// create corpses no exp
 			//// todo test
 			//// change score sprite when is dummy
-		// more explosion
-			// buff for explosion
+		//// more explosion
+			//// buff for explosion
 		//// chance to spawn more corpses yes exp when killing an enemy
 	//* draw bullet
 		//// when drawn self, shoot bullet
@@ -187,11 +190,11 @@
 	//// reset madness //invokes event in lingeringEffectManager, but timing is off
 //* system
 	// need to show madness & ammo
-	// debuff
-		// debuff recorder
-		// how to record debuff?
+	//// debuff
+		//// debuff recorder
+		//// how to record debuff?
 	// tag
-		// need to modify DrawAmmoCard() implementation
+		// need to modify DrawAmmoCard() implementation using tag system
 	//// todo: don't care about grave's order, when reloading, draw cards in hand order
 	////!: when entering upgrade menu and moving all cards from grave to hand, the order is messed up
 	// different rarity and different chance

@@ -269,7 +269,7 @@ MonoBehaviour:
   scorePrefab: {fileID: 7639828799481462458, guid: aded9cedb3a221042b7e3758ed1d003f, type: 3}
   score: 0
   score_spawnForce: 30
-  upgradeAmount: 50
+  upgradeAmount: 1
   upgradeAmount_scaler: 1.5
   hpIndicator: {fileID: 1051494346}
   scoreIndicator: {fileID: 551337192}
@@ -395,7 +395,6 @@ MonoBehaviour:
   shielded: 0
   rotSpd: 0
   dmg: 0
-  poisonStack: 0
   slimees: []
   slimee_spawnForce: 0
   shoot_interval: 0
@@ -5361,7 +5360,7 @@ MonoBehaviour:
   spawnAmount_increaseInterval: 15
   spawnInterval_start: 3
   spawnInterval_decreaseRate: 0
-  spawnHP: 5
+  spawnHP: 2
   spawnHP_increaseInterval: 20
 --- !u!1 &1803591532
 GameObject:
@@ -5467,6 +5466,92 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1823856262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1823856266}
+  - component: {fileID: 1823856265}
+  - component: {fileID: 1823856268}
+  - component: {fileID: 1823856267}
+  m_Layer: 0
+  m_Name: GlobalEventTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1823856265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823856262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4386f2c5ecd9b3442ab102fbce87dce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onEnemyDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1823856267}
+        m_TargetAssemblyTypeName: DebuffEffect, Assembly-CSharp
+        m_MethodName: ResolveDeathRattle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &1823856266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823856262}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1823856267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823856262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eb88759a56d9a47bd51c0e5c8e3b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1823856268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823856262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 924cdbec554aad84698450095e29017e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionDmg: 1
 --- !u!1 &1912494805
 GameObject:
   m_ObjectHideFlags: 0
@@ -6060,7 +6145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initCards:
-  - {fileID: 5983269025601790300, guid: 11fe02ff12dd8d04298cb04d248d9789, type: 3}
+  - {fileID: 3034464075753845741, guid: 5ab3156b806d9184fb4036434b4e06ee, type: 3}
   hand: []
   grave: []
   reloaded: 0
@@ -7575,3 +7660,4 @@ SceneRoots:
   - {fileID: 1912494807}
   - {fileID: 1204065523}
   - {fileID: 3311820109575008724}
+  - {fileID: 1823856266}

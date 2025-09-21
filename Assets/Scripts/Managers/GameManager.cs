@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
 			CardManagerNew.me.MoveAllGraveToHand();
 			CardUIManager.me.AssignMagnets();
 			CardUIManager.me.ActivateNextMagnet();
+			LingerEffectManager.me.InvokeOnLastHandEvent();
 			//UpgradeInteractionManager.me.ShowButtons();
 		}
 	}

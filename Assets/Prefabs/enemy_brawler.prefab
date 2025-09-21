@@ -181,6 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5970154702801796554}
   - component: {fileID: 5970154702801796552}
+  - component: {fileID: 2166681798877844573}
   - component: {fileID: 5970154702801796555}
   - component: {fileID: 1164445751684208086}
   m_Layer: 6
@@ -228,11 +229,13 @@ MonoBehaviour:
   shielded: 0
   rotSpd: 5
   dmg: 1
+  poisonStack: 0
   slimees: []
   slimee_spawnForce: 0
   shoot_interval: 0
   shooter_stopDis: 0
   bulletPrefab: {fileID: 0}
+  chanceToScore: 0
   myShadow: {fileID: 0}
   shadow_xOffset: 0.1
   shadow_yOffset: -0.1
@@ -245,6 +248,18 @@ MonoBehaviour:
   hurt_bulletTime_scale: 0.2
   hurt_bulletTime_duration: 0.2
   undying: 0
+--- !u!114 &2166681798877844573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5970154702801796565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2b614b5810a654a908b6cbe98c8672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &5970154702801796555
 CircleCollider2D:
   m_ObjectHideFlags: 0

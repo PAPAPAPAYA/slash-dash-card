@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class DebuffRecorder : MonoBehaviour
 {
+        public int poisonStack;
+        public int deathRattleExplosion;
         
 }

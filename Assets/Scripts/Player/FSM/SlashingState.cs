@@ -43,7 +43,7 @@ public class SlashingState : State
                 base.OnExit();
                 sc.cmn.activatedCard.GetComponent<CardEventTrigger>().InvokeOnSlashFinished();
                 AbilityContainerScript cardSentToGrave = sc.cm.activatedCard;
-                AbilityManagerScript.beforeUnload?.Invoke(); //! time point
+                AbilityManagerScript.beforeUnload?.Invoke(); // deprecated
                 //foreach (var ability in cardSentToGrave.myAbilities)
                 {
                         //sc.ams.CardSystem_AdjustAbility(ability, false); // unload ability
@@ -51,7 +51,7 @@ public class SlashingState : State
                 // if this is the last card in hand, load the last card ability list
                 if (sc.cmn.hand.Count == 0)
                 {
-                        LingerEffectManager.me.InvokeOnLastHandEvent(); //! last card in hand
+                        LingerEffectManager.me.InvokeOnLastHandEvent(); //! TIMEPOINT: last card in hand
                         foreach (var ability in sc.ams.lastCardAbility)
                         {
                                 //sc.ams.CardSystem_AdjustAbility(ability, true); // load ability
